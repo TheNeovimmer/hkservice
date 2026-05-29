@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="facebook-domain-verification" content="egl5ces6dl8333fkjr1b9gcq3oab7p" />
+  <title>Boutique Matériaux | H&K Services</title>
+  <!-- Stylesheets -->
+  <link rel="preconnect" href="https://fonts.gstatic.com/" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;family=Teko:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/fontawesome-all.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/ebfaecfa0a.js" crossorigin="anonymous"></script>
+  <link href="css/owl.css" rel="stylesheet" />
+  <link href="css/flaticon.css" rel="stylesheet" />
+  <link href="css/linoor-icons-2.css" rel="stylesheet" />
+  <link href="css/animate.css" rel="stylesheet" />
+  <link href="css/jquery-ui.css" rel="stylesheet" />
+  <link href="css/jquery.fancybox.min.css" rel="stylesheet" />
+  <link href="css/hover.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/jarallax.css" />
+  <link href="css/custom-animate.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/rtl.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" id="jssDefault" href="css/colors/color-default.css" />
+
+  <link rel="shortcut icon" href="img/logo png/Logo.png" id="fav-shortcut" type="image/x-icon" />
+  <link rel="icon" href="img/logo png/Logo.png" id="fav-icon" type="image/x-icon" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+  <style>
+    :root {
+      --shop-accent: #0f6cbf;
+      --shop-accent-dark: #0a4d8a;
+      --shop-radius: 12px;
+      --shop-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shop-shadow-hover: 0 8px 30px rgba(15,108,191,0.15);
+      --shop-transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .shop-section { padding: 80px 0; }
+
+    /* ===== FILTER BAR ===== */
+    .shop-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .shop-filter-btn {
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 500;
+      color: #6c757d;
+      background: transparent;
+      border: 1px solid #dee2e6;
+      transition: var(--shop-transition);
+      font-family: 'Rubik', sans-serif;
+      cursor: pointer;
+    }
+    .shop-filter-btn:hover { border-color: var(--shop-accent); color: var(--shop-accent); }
+    .shop-filter-btn.active {
+      background: var(--shop-accent);
+      border-color: var(--shop-accent);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(15,108,191,0.3);
+    }
+
+    /* ===== PRODUCTS GRID ===== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: var(--shop-radius);
+      overflow: hidden;
+      box-shadow: var(--shop-shadow);
+      transition: var(--shop-transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid transparent;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shop-shadow-hover);
+      border-color: var(--shop-accent);
+    }
+    .product-card.hidden { display: none; }
+
+    /* Image container — remplacez l'emoji par votre photo */
+    .product-image {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9fa;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .product-card:hover .product-image img { transform: scale(1.05); }
+    .product-image .img-placeholder {
+      font-size: 4.5rem;
+      line-height: 1;
+      transition: transform .4s ease;
+    }
+    .product-card:hover .img-placeholder { transform: scale(1.1) rotate(-3deg); }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-family: 'Rubik', sans-serif;
+    }
+    .badge-nouveau { background: #10b981; color: #fff; }
+    .badge-promotion { background: var(--shop-accent); color: #fff; }
+    .badge-populaire { background: #6366f1; color: #fff; }
+
+    .product-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .product-category {
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--shop-accent);
+      margin-bottom: 4px;
+    }
+    .product-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+      font-family: 'Rubik', sans-serif;
+    }
+    .product-desc {
+      font-size: .85rem;
+      color: #6c757d;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    /* Colors */
+    .product-colors {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .color-label { font-size: .75rem; color: #6c757d; margin-right: 4px; }
+    .color-swatch {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: var(--shop-transition);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .color-swatch:hover { transform: scale(1.15); }
+    .color-swatch.active {
+      border-color: var(--shop-accent);
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--shop-accent);
+    }
+    .color-swatch::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%) scale(.8);
+      background: #333;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: .65rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--shop-transition);
+    }
+    .color-swatch:hover::after { opacity: 1; transform: translateX(-50%) scale(1); }
+
+    /* Pricing — DT + EUR */
+    .product-pricing {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 10px 14px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+    .price-tnd { font-size: 1.3rem; font-weight: 700; color: #1a1a2e; }
+    .price-eur { font-size: .85rem; font-weight: 500; color: #6c757d; }
+    .price-eur::before { content: '~ '; }
+
+    .btn-shop {
+      width: 100%;
+      padding: 12px;
+      background: var(--shop-accent);
+      color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: var(--shop-transition);
+      font-size: .9rem;
+      border: none;
+      font-family: 'Rubik', sans-serif;
+      cursor: pointer;
+      text-align: center;
+      display: inline-block;
+    }
+    .btn-shop:hover { background: var(--shop-accent-dark); transform: translateY(-1px); color: #fff; text-decoration: none; }
+    .btn-shop:active { transform: scale(.97); }
+
+    /* ===== CART TRIGGER ===== */
+    .cart-trigger-wrap { text-align: right; margin-bottom: 20px; }
+    .cart-icon-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff !important;
+      font-size: .9rem;
+      padding: 10px 20px;
+      background: var(--shop-accent);
+      border-radius: 8px;
+      transition: var(--shop-transition);
+      border: none;
+      cursor: pointer;
+      font-family: 'Rubik', sans-serif;
+      font-weight: 500;
+    }
+    .cart-icon-btn:hover { background: var(--shop-accent-dark); color: #fff !important; }
+    .cart-icon-btn .cart-count-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 22px;
+      height: 22px;
+      background: #dc2626;
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .cart-icon-btn .cart-count-badge.show { transform: scale(1); }
+
+    /* ===== CART SIDEBAR ===== */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--shop-transition);
+    }
+    .cart-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 10000;
+      width: 420px;
+      max-width: 100vw;
+      height: 100vh;
+      background: #fff;
+      border-left: 1px solid #e9ecef;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .4s cubic-bezier(.4,0,.2,1);
+      box-shadow: -10px 0 40px rgba(0,0,0,.1);
+    }
+    .cart-sidebar.open { transform: translateX(0); }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    .cart-header h3 {
+      font-family: 'Teko', sans-serif;
+      font-size: 1.5rem;
+      color: #1a1a2e;
+      margin: 0;
+    }
+    .cart-close {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: #6c757d;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--shop-transition);
+    }
+    .cart-close:hover { background: #f8f9fa; color: #1a1a2e; }
+
+    .cart-body { flex: 1; overflow-y: auto; padding: 16px 24px; }
+
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: #adb5bd;
+    }
+    .cart-empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .cart-empty p { font-weight: 600; color: #6c757d; }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f1f3f5;
+    }
+    .cart-item-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name {
+      font-weight: 600;
+      font-size: .9rem;
+      color: #1a1a2e;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cart-item-color { font-size: .75rem; color: #6c757d; margin-bottom: 6px; }
+
+    .cart-item-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .qty-btn {
+      width: 30px; height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #495057;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--shop-transition);
+    }
+    .qty-btn:hover { background: #f8f9fa; color: var(--shop-accent); }
+    .qty-value {
+      width: 32px;
+      text-align: center;
+      font-size: .85rem;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+    .cart-item-total { font-weight: 700; font-size: .9rem; color: var(--shop-accent); }
+    .cart-item-remove {
+      color: #adb5bd;
+      font-size: .8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--shop-transition);
+      padding: 4px 8px;
+    }
+    .cart-item-remove:hover { color: #dc2626; }
+
+    .cart-footer {
+      padding: 20px 24px;
+      border-top: 1px solid #e9ecef;
+      background: #f8f9fa;
+    }
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: .9rem;
+      color: #6c757d;
+    }
+    .cart-total-row:last-of-type { margin-bottom: 16px; }
+    .cart-total { font-weight: 800; font-size: 1.1rem; color: #1a1a2e; }
+    .btn-cart-checkout {
+      width: 100%;
+      padding: 14px;
+      background: var(--shop-accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--shop-transition);
+      font-family: 'Rubik', sans-serif;
+    }
+    .btn-cart-checkout:hover { background: var(--shop-accent-dark); }
+
+    /* ===== TOAST ===== */
+    .toast-shop {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      z-index: 99999;
+      padding: 14px 28px;
+      border-radius: 8px;
+      background: #1a1a2e;
+      color: #fff;
+      font-weight: 500;
+      font-size: .9rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,.2);
+      opacity: 0;
+      transition: all .4s cubic-bezier(.4,0,.2,1);
+      pointer-events: none;
+    }
+    .toast-shop.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast-shop.success { background: #059669; }
+    .toast-shop.error { background: #dc2626; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+      .cart-sidebar { width: 100%; }
+      .shop-filter-bar { gap: 8px; }
+      .shop-filter-btn { font-size: .8rem; padding: 6px 14px; }
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .product-image { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader"><div class="icon"></div></div>
+
+  <!-- ===== HEADER (identique au catalogue) ===== -->
+  <header class="main-header header-style-one">
+    <div class="header-upper">
+      <div class="inner-container clearfix">
+        <div class="logo-box">
+          <div class="logo">
+            <a href="index.html" title="H&K Services">
+              <img src="img/logo png/Logo.png" id="thm-logo" alt="H&K Services" title="H&K Services" />
+            </a>
+          </div>
+        </div>
+        <div class="nav-outer clearfix">
+          <div class="mobile-nav-toggler">
+            <span class="icon flaticon-menu-2"></span><span class="txt">Menu</span>
+          </div>
+          <nav class="main-menu navbar-expand-md navbar-light">
+            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+              <ul class="navigation clearfix">
+                <li><a href="index.html">Accueil</a></li>
+                <li class="dropdown">
+                  <a href="services-construction.html">Nos Services</a>
+                  <ul>
+                    <li><a href="services-construction.html#etude">Étude de Projet</a></li>
+                    <li><a href="services-construction.html#Construction">Travaux Génie Civil</a></li>
+                    <li><a href="services-construction.html#Gestion">Travaux Spécifiques</a></li>
+                  </ul>
+                </li>
+                <li><a href="projets-construction-batiments.html">Projets</a></li>
+                <li><a href="catalogue-construction.html">E-Catalogue</a></li>
+                <li><a href="societe-batiment.html">Qui Sommes Nous</a></li>
+                <li class="active"><a href="boutique.html">Boutique</a></li>
+                <li><a href="contact.html">Contactez-nous</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="other-links clearfix">
+            <div class="social-links-nav">
+              <a href="https://www.facebook.com/H&K Services.com" target="_blank" title="Facebook"><i class="fab fa-facebook-square"></i></a>
+              <a href="https://www.tiktok.com/@H&K Services.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="link-box">
+              <div class="call-us">
+                <a class="link" href="tel:+330605682407">
+                  <span class="icon"></span>
+                  <span class="sub-text">Appelez à tout moment</span>
+                  <span class="number">+330605682407</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="side-menu__block">
+    <div class="side-menu__block-overlay custom-cursor__overlay">
+      <div class="cursor"></div>
+      <div class="cursor-follower"></div>
+    </div>
+    <div class="side-menu__block-inner">
+      <div class="side-menu__top justify-content-end">
+        <a href="#" class="side-menu__toggler side-menu__close-btn"><img src="images/icons/close-1-1.html" alt="" /></a>
+      </div>
+      <nav class="mobile-nav__container"></nav>
+      <div class="side-menu__sep"></div>
+      <div class="side-menu__content">
+        <p>H&K Services est une Société franco-tunisienne de construction spécialisée dans les projets résidentiels et commerciaux.</p>
+        <p><a href="mailto:contact@hketservices.com">contact@hketservices.com</a><br /><a href="tel:+330605682407">+330605682407</a></p>
+        <div class="side-menu__social">
+          <a href="https://www.facebook.com/H&K Services"><i class="fab fa-facebook-square"></i></a>
+          <a href="https://www.tiktok.com/@H&K Services"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BANNER (style catalogue) ===== -->
+  <section class="page-banner">
+    <div class="image-layer" style="background-image: url('img/background/image-7.png')"></div>
+    <div class="shape-1"></div>
+    <div class="shape-2"></div>
+    <div class="banner-inner">
+      <div class="auto-container">
+        <div class="inner-container clearfix">
+          <h1>Notre <span style="color:var(--shop-accent);">Boutique</span></h1>
+          <div class="page-nav">
+            <ul class="bread-crumb clearfix">
+              <li><a href="index.html">Page d'accueil</a></li>
+              <li class="active">Boutique</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHOP SECTION ===== -->
+  <section class="shop-section">
+    <div class="auto-container">
+      <div class="sec-title centered">
+        <h2>Matériaux de <span class="dot" style="color:var(--shop-accent);">Construction</span></h2>
+        <p style="color:#6c757d; margin-top:8px;">Sélectionnez vos matériaux — Prix en DT et EUR</p>
+      </div>
+
+      <!-- Cart trigger -->
+      <div class="cart-trigger-wrap">
+        <button class="cart-icon-btn" id="cartToggle">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Panier</span>
+          <span class="cart-count-badge" id="cartCount">0</span>
+        </button>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="shop-filter-bar" id="filterBar">
+        <button class="shop-filter-btn active" data-filter="*">Tous</button>
+        <button class="shop-filter-btn" data-filter="maconnerie">Maçonnerie</button>
+        <button class="shop-filter-btn" data-filter="revetement">Revêtement</button>
+        <button class="shop-filter-btn" data-filter="peinture">Peinture</button>
+        <button class="shop-filter-btn" data-filter="plomberie">Plomberie</button>
+        <button class="shop-filter-btn" data-filter="electricite">Électricité</button>
+        <button class="shop-filter-btn" data-filter="outillage">Outillage</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== CART SIDEBAR ===== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-cart me-2" style="color:var(--shop-accent);"></i>Votre Panier</h3>
+      <button class="cart-close" id="cartClose">&times;</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <p>Votre panier est vide</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-total-row">
+        <span>Total (DT)</span>
+        <span class="cart-total" id="cartTotalTND">0,000 DT</span>
+      </div>
+      <div class="cart-total-row">
+        <span>Total (EUR)</span>
+        <span class="cart-total" id="cartTotalEUR">0,00 €</span>
+      </div>
+      <button class="btn-cart-checkout" id="checkoutBtn"><i class="fas fa-check-circle me-2"></i>Commander</button>
+    </div>
+  </aside>
+
+  <!-- Toast notification -->
+  <div class="toast-shop" id="toast"></div>
+
+  <!-- ===== FOOTER (identique au catalogue) ===== -->
+  <footer class="main-footer">
+    <div class="auto-container">
+      <div class="widgets-section">
+        <div class="row clearfix">
+          <div class="column col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="footer-widget logo-widget">
+              <div class="widget-content">
+                <div class="logo">
+                  <a href="index.html"><img id="fLogo" src="img/logo png/Logo.png" alt="" /></a>
+                </div>
+                <div class="text">
+                  Fondée en 2018, H&K Services est une Société tunisienne de construction spécialisée dans les projets résidentiels et commerciaux.
+                </div>
+                <ul class="social-links clearfix">
+                  <li><a href="https://www.facebook.com/H&K Services"><span class="fab fa-facebook-square"></span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="footer-widget info-widget">
+              <div class="widget-content">
+                <ul class="contact-info">
+                  <li class="address">
+                    <span class="icon flaticon-pin-1"></span>
+                    <a href="https://maps.app.goo.gl/bmQuBY3xzbAUFrds8"></a>
+                  </li>
+                  <li><span class="icon flaticon-call"></span><a href="tel:+330605682407">+330605682407</a></li>
+                  <li><span class="icon flaticon-email-2"></span><a href="mailto:contact@hketservices.com">contact@hketservices.com</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="footer-widget info-widget">
+              <div class="widget-content">
+                <ul class="list-unstyled footer-widget__links">
+                  <li><span class="icon flaticon-web-design"></span><a href="mentionslegales.html">Mentions légales</a></li>
+                  <li><span class="icon flaticon-web-design"></span><a href="politique.html">Politique de confidentialité</a></li>
+                  <li><span class="icon flaticon-web-design"></span><a href="politiquedecookies.html">Politique de cookies</a></li>
+                  <li><span class="icon flaticon-web-design"></span><a href="societe-batiment.html">Qui somme nous</a></li>
+                  <li><span class="icon flaticon-web-design"></span><a href="contact.html">Contactez-nous</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="auto-container">
+        <div class="inner clearfix">
+          <div class="copyright">&copy; Copyright 2026 H&K Services</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+<a href="contact.html" class="fixed-contact-note">
+  <i class="fas fa-file-invoice-dollar"></i>
+  <span>OBTENIR UN DEVIS</span>
+</a>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="js/jquery.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/TweenMax.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery.fancybox.js"></script>
+<script src="js/owl.js"></script>
+<script src="js/mixitup.js"></script>
+<script src="js/appear.js"></script>
+<script src="js/wow.js"></script>
+<script src="js/jQuery.style.switcher.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/custom-script.js"></script>
+<script src="js/lang.js"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+/* ============================================================
+   BOUTIQUE — Produits, Filtrage, Panier (JavaScript uniquement)
+   ============================================================ */
+
+const products = [
+  // ---- MACONNERIE ----
+  {
+    id:1, cat:'maconnerie', name:'Ciment Portland',
+    desc:'Sac de 50 kg – Ciment résistant pour fondations et structures.',
+    priceTND:18.900, priceEUR:5.50,
+    badge:'populaire', badgeLabel:'Populaire',
+    img:'img/produits/ciment.jpg', emoji:'🏗️',
+    colors:[{bg:'#8a8a8a',label:'Gris'},{bg:'#f0f0f0',label:'Blanc'}]
+  },
+  {
+    id:2, cat:'maconnerie', name:'Brique Pleine',
+    desc:'Brique rouge 20×10×5 cm – Haute résistance compression.',
+    priceTND:4.900, priceEUR:1.40,
+    badge:null, badgeLabel:null,
+    img:'img/produits/brique.jpg', emoji:'🧱',
+    colors:[{bg:'#b91c1c',label:'Rouge'}]
+  },
+  {
+    id:3, cat:'maconnerie', name:'Parpaing Creux',
+    desc:'Bloc creux 20×20×40 cm – Pour murs porteurs &amp; cloisons.',
+    priceTND:3.900, priceEUR:1.10,
+    badge:null, badgeLabel:null,
+    img:'img/produits/parpaing.jpg', emoji:'🧱',
+    colors:[{bg:'#a8a8a8',label:'Gris'}]
+  },
+  {
+    id:4, cat:'maconnerie', name:'Fer à Béton',
+    desc:'Barre d\'acier torsadée diamètre 12 mm – Longueur 6 m.',
+    priceTND:12.500, priceEUR:3.60,
+    badge:'populaire', badgeLabel:'Populaire',
+    img:'img/produits/fer.jpg', emoji:'🔩',
+    colors:[{bg:'#6b7280',label:'Acier'}]
+  },
+  {
+    id:5, cat:'maconnerie', name:'Sable Fin Lavé',
+    desc:'Sac de 40 kg – Sable pour mortier et enduits.',
+    priceTND:5.400, priceEUR:1.60,
+    badge:null, badgeLabel:null,
+    img:'img/produits/sable.jpg', emoji:'⏳',
+    colors:[{bg:'#d4a373',label:'Jaune'}]
+  },
+  {
+    id:6, cat:'maconnerie', name:'Gravier Concassé',
+    desc:'Sac de 35 kg – Granulométrie 8/16 mm pour béton.',
+    priceTND:6.200, priceEUR:1.80,
+    badge:null, badgeLabel:null,
+    img:'img/produits/gravier.jpg', emoji:'🪨',
+    colors:[{bg:'#8a8a8a',label:'Gris'}]
+  },
+  {
+    id:7, cat:'maconnerie', name:'Chaux Hydraulique',
+    desc:'Sac de 25 kg – Chaux NHL 3.5 pour mortier de chaux.',
+    priceTND:15.900, priceEUR:4.60,
+    badge:null, badgeLabel:null,
+    img:'img/produits/chaux.jpg', emoji:'🥡',
+    colors:[{bg:'#f5f5f0',label:'Blanc'}]
+  },
+
+  // ---- REVETEMENT ----
+  {
+    id:8, cat:'revetement', name:'Carreaux Céramique',
+    desc:'Carreaux 60×60 cm – Finition brillante, pose facile.',
+    priceTND:32.900, priceEUR:9.50,
+    badge:'nouveau', badgeLabel:'Nouveau',
+    img:'img/produits/ceramique.jpg', emoji:'⬜',
+    colors:[{bg:'#f5f5f5',label:'Blanc'},{bg:'#2d2d2d',label:'Noir'},{bg:'#e8d5b7',label:'Beige'},{bg:'#b0b0b0',label:'Gris'}]
+  },
+  {
+    id:9, cat:'revetement', name:'Marbre Luxe',
+    desc:'Dalle marbre poli 80×80 cm – Élégance et durabilité.',
+    priceTND:59.900, priceEUR:17.40,
+    badge:'nouveau', badgeLabel:'Nouveau',
+    img:'img/produits/marbre.jpg', emoji:'💎',
+    colors:[{bg:'#fafafa',label:'Blanc'},{bg:'#1f1f1f',label:'Noir'},{bg:'#d4c5a9',label:'Beige'}]
+  },
+  {
+    id:10, cat:'revetement', name:'Parquet Contrecollé',
+    desc:'Lame 120×14 cm – Chêne verni, pose clipsable.',
+    priceTND:45.900, priceEUR:13.30,
+    badge:'nouveau', badgeLabel:'Nouveau',
+    img:'img/produits/parquet.jpg', emoji:'🪵',
+    colors:[{bg:'#c4a882',label:'Chêne clair'},{bg:'#8b6914',label:'Chêne foncé'},{bg:'#5c4033',label:'Noyer'}]
+  },
+  {
+    id:11, cat:'revetement', name:'Carreau Ciment',
+    desc:'Carreau 20×20 cm – Motif hexagonal, aspect ciré.',
+    priceTND:28.900, priceEUR:8.40,
+    badge:null, badgeLabel:null,
+    img:'img/produits/carreau-ciment.jpg', emoji:'🔷',
+    colors:[{bg:'#f0ebe3',label:'Blanc'},{bg:'#1a1a1a',label:'Noir'},{bg:'#c04040',label:'Terracota'}]
+  },
+  {
+    id:12, cat:'revetement', name:'Mosaïque Verre',
+    desc:'Grille 30×30 cm – Mosaïque émaillée pour salle de bain.',
+    priceTND:38.900, priceEUR:11.30,
+    badge:'nouveau', badgeLabel:'Nouveau',
+    img:'img/produits/mosaique.jpg', emoji:'✨',
+    colors:[{bg:'#1e93d1',label:'Bleu'},{bg:'#2d8a4e',label:'Vert'},{bg:'#9ca3af',label:'Gris'},{bg:'#d4a017',label:'Or'}]
+  },
+  {
+    id:13, cat:'revetement', name:'Pierre Naturelle',
+    desc:'Dalle 40×60 cm – Travertin brut, ép. 2 cm.',
+    priceTND:52.900, priceEUR:15.30,
+    badge:null, badgeLabel:null,
+    img:'img/produits/pierre.jpg', emoji:'🗿',
+    colors:[{bg:'#d4c5a9',label:'Beige'},{bg:'#9ca3af',label:'Gris'}]
+  },
+
+  // ---- PEINTURE ----
+  {
+    id:14, cat:'peinture', name:'Peinture Acrylique',
+    desc:'Pot de 5 L – Mate et lessivable, haute couvrance.',
+    priceTND:25.900, priceEUR:7.50,
+    badge:null, badgeLabel:null,
+    img:'img/produits/peinture-acrylique.jpg', emoji:'🎨',
+    colors:[{bg:'#ffffff',label:'Blanc'},{bg:'#2563eb',label:'Bleu'},{bg:'#16a34a',label:'Vert'},{bg:'#eab308',label:'Jaune'},{bg:'#dc2626',label:'Rouge'}]
+  },
+  {
+    id:15, cat:'peinture', name:'Enduit de Façade',
+    desc:'Seau 25 kg – Enduit projeté, finition grain fin.',
+    priceTND:34.900, priceEUR:10.10,
+    badge:'promotion', badgeLabel:'Promo',
+    img:'img/produits/enduit.jpg', emoji:'🧴',
+    colors:[{bg:'#f8f9fa',label:'Blanc'},{bg:'#d4c5a9',label:'Beige'},{bg:'#adb5bd',label:'Gris'}]
+  },
+  {
+    id:16, cat:'peinture', name:'Peinture Extérieure',
+    desc:'Pot 10 L – Micro-poreuse, anti-UV, résiste aux intempéries.',
+    priceTND:42.900, priceEUR:12.40,
+    badge:null, badgeLabel:null,
+    img:'img/produits/peinture-exterieure.jpg', emoji:'🪣',
+    colors:[{bg:'#f8f9fa',label:'Blanc'},{bg:'#adb5bd',label:'Gris'},{bg:'#d4c5a9',label:'Beige'},{bg:'#3b82f6',label:'Bleu'}]
+  },
+  {
+    id:17, cat:'peinture', name:'Vernis Bois Mat',
+    desc:'Pot 2.5 L – Vernis incolore, protection intérieur/extérieur.',
+    priceTND:22.900, priceEUR:6.60,
+    badge:null, badgeLabel:null,
+    img:'img/produits/vernis.jpg', emoji:'🧪',
+    colors:[{bg:'#e8e0d0',label:'Incolore'},{bg:'#d4c5a9',label:'Satiné'}]
+  },
+  {
+    id:18, cat:'peinture', name:'Sous-Couche Murale',
+    desc:'Pot 5 L – Fixateur et régulateur d\'absorption.',
+    priceTND:18.900, priceEUR:5.50,
+    badge:null, badgeLabel:null,
+    img:'img/produits/sous-couche.jpg', emoji:'🧴',
+    colors:[{bg:'#f5f5f5',label:'Blanc'}]
+  },
+  {
+    id:19, cat:'peinture', name:'Kit Pinceaux Pro',
+    desc:'Lot de 6 pinceaux – Tailles 1 à 4 pouces, soie synthétique.',
+    priceTND:14.900, priceEUR:4.30,
+    badge:'promotion', badgeLabel:'Promo',
+    img:'img/produits/pinceaux.jpg', emoji:'🖌️',
+    colors:[{bg:'#1f1f1f',label:'Noir'},{bg:'#1e3a5f',label:'Bleu'}]
+  },
+
+  // ---- PLOMBERIE ----
+  {
+    id:20, cat:'plomberie', name:'Tuyau PVC',
+    desc:'Tube PVC pression – Diamètre 32 mm, longueur 3 m.',
+    priceTND:8.900, priceEUR:2.60,
+    badge:null, badgeLabel:null,
+    img:'img/produits/tuyau-pvc.jpg', emoji:'🔧',
+    colors:[{bg:'#9ca3af',label:'Gris'},{bg:'#f3f4f6',label:'Blanc'}]
+  },
+  {
+    id:21, cat:'plomberie', name:'Raccord Cuivre',
+    desc:'Coude cuivre 90° – Diamètre 22 mm, soudable.',
+    priceTND:3.200, priceEUR:0.90,
+    badge:null, badgeLabel:null,
+    img:'img/produits/raccord.jpg', emoji:'⚙️',
+    colors:[{bg:'#b87333',label:'Cuivre'}]
+  },
+  {
+    id:22, cat:'plomberie', name:'Robinet Mitigeur',
+    desc:'Mitigeur chromé lavabo – Cartouche céramique, 1 entrée.',
+    priceTND:26.900, priceEUR:7.80,
+    badge:null, badgeLabel:null,
+    img:'img/produits/robinet.jpg', emoji:'🚿',
+    colors:[{bg:'#c0c0c0',label:'Chromé'},{bg:'#1a1a1a',label:'Noir'},{bg:'#c9a84c',label:'Or brossé'}]
+  },
+  {
+    id:23, cat:'plomberie', name:'Flexible Douche',
+    desc:'Flexible inox tressé 1.5 m – Anti-torsion, raccord universel.',
+    priceTND:8.900, priceEUR:2.60,
+    badge:null, badgeLabel:null,
+    img:'img/produits/flexible.jpg', emoji:'🌀',
+    colors:[{bg:'#d1d5db',label:'Argent'}]
+  },
+  {
+    id:24, cat:'plomberie', name:'Joint Sanitaire',
+    desc:'Tube silicone neutre 280 ml – Anti-moisissures, salle de bain.',
+    priceTND:6.900, priceEUR:2.00,
+    badge:null, badgeLabel:null,
+    img:'img/produits/joint.jpg', emoji:'🧴',
+    colors:[{bg:'#ffffff',label:'Blanc'},{bg:'#e0e0e0',label:'Transparent'},{bg:'#9ca3af',label:'Gris'}]
+  },
+  {
+    id:25, cat:'plomberie', name:'Chauffe-Eau 50L',
+    desc:'Ballon électrique 50 L – Classe A, thermostat réglable.',
+    priceTND:189.000, priceEUR:54.80,
+    badge:'populaire', badgeLabel:'Populaire',
+    img:'img/produits/chauffe-eau.jpg', emoji:'🛁',
+    colors:[{bg:'#f0f0f0',label:'Blanc'}]
+  },
+  {
+    id:26, cat:'plomberie', name:'WC Suspendu',
+    desc:'Pack WC suspendu avec abattant – Cuvette vitrifiée.',
+    priceTND:149.000, priceEUR:43.20,
+    badge:null, badgeLabel:null,
+    img:'img/produits/wc.jpg', emoji:'🚽',
+    colors:[{bg:'#f5f5f0',label:'Blanc'}]
+  },
+
+  // ---- ELECTRICITE ----
+  {
+    id:27, cat:'electricite', name:'Câble Électrique',
+    desc:'Rouleau 50 m – Section 2.5 mm², cuivre, gaine PVC.',
+    priceTND:22.900, priceEUR:6.60,
+    badge:null, badgeLabel:null,
+    img:'img/produits/cable.jpg', emoji:'🔌',
+    colors:[{bg:'#9ca3af',label:'Gris'},{bg:'#2d2d2d',label:'Noir'}]
+  },
+  {
+    id:28, cat:'electricite', name:'Interrupteur',
+    desc:'Interrupteur simple allumage – Encastrable, blanc.',
+    priceTND:5.900, priceEUR:1.70,
+    badge:null, badgeLabel:null,
+    img:'img/produits/interrupteur.jpg', emoji:'💡',
+    colors:[{bg:'#ffffff',label:'Blanc'},{bg:'#1a1a1a',label:'Noir'}]
+  },
+  {
+    id:29, cat:'electricite', name:'Disjoncteur 16A',
+    desc:'Disjoncteur divisionnaire 16A – Courbe C, modulaire.',
+    priceTND:9.900, priceEUR:2.90,
+    badge:null, badgeLabel:null,
+    img:'img/produits/disjoncteur.jpg', emoji:'⚡',
+    colors:[{bg:'#f0f0f0',label:'Blanc'}]
+  },
+
+  // ---- OUTILLAGE ----
+  {
+    id:30, cat:'outillage', name:'Perceuse Sans Fil',
+    desc:'Perceuse-visseuse 18V – Batterie Li-Ion 4Ah, mandrin auto.',
+    priceTND:119.000, priceEUR:34.50,
+    badge:'promotion', badgeLabel:'Promo',
+    img:'img/produits/perceuse.jpg', emoji:'🛠️',
+    colors:[{bg:'#b91c1c',label:'Rouge'},{bg:'#1f1f1f',label:'Noir'}]
+  },
+  {
+    id:31, cat:'outillage', name:'Niveau à Bulle',
+    desc:'Niveau magnétique 120 cm – Triple lentille, aluminium.',
+    priceTND:15.900, priceEUR:4.60,
+    badge:null, badgeLabel:null,
+    img:'img/produits/niveau.jpg', emoji:'📐',
+    colors:[{bg:'#fbbf24',label:'Jaune'}]
+  },
+  {
+    id:32, cat:'outillage', name:'Meuleuse Angulaire',
+    desc:'Meuleuse 125 mm – 850 W, protection surcharge, disque fourni.',
+    priceTND:89.900, priceEUR:26.10,
+    badge:null, badgeLabel:null,
+    img:'img/produits/meuleuse.jpg', emoji:'🔧',
+    colors:[{bg:'#1e40af',label:'Bleu'},{bg:'#1f1f1f',label:'Noir'}]
+  },
+  {
+    id:33, cat:'outillage', name:'Échafaudage Roulant',
+    desc:'Tour roulante alu 4 m – Plateforme 1.5×0.7 m, freins.',
+    priceTND:249.000, priceEUR:72.20,
+    badge:null, badgeLabel:null,
+    img:'img/produits/echafaudage.jpg', emoji:'🏗️',
+    colors:[{bg:'#a0a0a0',label:'Aluminium'}]
+  }
+];
+
+/* ---- Render products ---- */
+const grid = document.getElementById('productsGrid');
+
+function formatTND(v) {
+  return v.toFixed(3).replace('.', ',') + ' DT';
+}
+function formatEUR(v) {
+  return v.toFixed(2).replace('.', ',') + ' €';
+}
+
+function renderProducts(filterCat) {
+  grid.innerHTML = '';
+  products.forEach(p => {
+    if (filterCat && filterCat !== '*' && p.cat !== filterCat) return;
+
+    // Image: try <img>, fallback emoji
+    const imgHTML = `<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><span class="img-placeholder" style="display:none">${p.emoji}</span>`;
+
+    // Badge
+    let badgeHTML = '';
+    if (p.badge) {
+      const cls = 'badge-' + p.badge;
+      badgeHTML = `<span class="product-badge ${cls}">${p.badgeLabel}</span>`;
+    }
+
+    // Colors
+    let colorsHTML = '<span class="color-label">Couleur:</span>';
+    p.colors.forEach((c,i) => {
+      const active = i === 0 ? ' active' : '';
+      colorsHTML += `<span class="color-swatch${active}" style="background:${c.bg};${c.bg==='#ffffff'||c.bg==='#f5f5f5'||c.bg==='#f0f0f0'||c.bg==='#fafafa'||c.bg==='#f8f9fa'||c.bg==='#f0ebe3'||c.bg==='#e8e0d0'?'border-color:#ccc;':''}" data-tooltip="${c.label}" data-color="${c.bg}"></span>`;
+    });
+
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.dataset.cat = p.cat;
+    card.innerHTML = `
+      <div class="product-image">${badgeHTML}${imgHTML}</div>
+      <div class="product-body">
+        <span class="product-category">${p.cat}</span>
+        <h3 class="product-name">${p.name}</h3>
+        <p class="product-desc">${p.desc}</p>
+        <div class="product-colors">${colorsHTML}</div>
+        <div class="product-pricing"><span class="price-tnd">${formatTND(p.priceTND)}</span><span class="price-eur">${formatEUR(p.priceEUR)}</span></div>
+        <button class="btn-shop" data-id="${p.id}">Ajouter au panier</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+renderProducts('*');
+
+/* ---- Filter ---- */
+const filterBtns = document.querySelectorAll('.shop-filter-btn');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const cat = this.dataset.filter;
+    renderProducts(cat);
+  });
+});
+
+/* ---- Color swatch click ---- */
+document.addEventListener('click', function(e) {
+  const swatch = e.target.closest('.color-swatch');
+  if (swatch) {
+    swatch.parentElement.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+    swatch.classList.add('active');
+  }
+});
+
+/* ======================== CART ======================== */
+let cart = [];
+
+/* Cart DOM refs */
+const cartOverlay = document.getElementById('cartOverlay');
+const cartSidebar = document.getElementById('cartSidebar');
+const cartBody    = document.getElementById('cartBody');
+const cartTotalTND= document.getElementById('cartTotalTND');
+const cartTotalEUR= document.getElementById('cartTotalEUR');
+const cartCount   = document.getElementById('cartCount');
+const toast       = document.getElementById('toast');
+
+function openCart() {
+  cartOverlay.classList.add('open');
+  cartSidebar.classList.add('open');
+}
+function closeCart() {
+  cartOverlay.classList.remove('open');
+  cartSidebar.classList.remove('open');
+}
+
+document.getElementById('cartToggle').addEventListener('click', openCart);
+document.getElementById('cartClose').addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+
+function showToast(msg, type) {
+  toast.textContent = msg;
+  toast.className = 'toast-shop ' + (type||'');
+  toast.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+function findProduct(id) {
+  return products.find(p => p.id === id);
+}
+
+function updateCartUI() {
+  // Count
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  cartCount.textContent = totalQty;
+  cartCount.className = 'cart-count-badge' + (totalQty > 0 ? ' show' : '');
+
+  if (cart.length === 0) {
+    cartBody.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Votre panier est vide</p></div>`;
+    cartTotalTND.textContent = '0,000 DT';
+    cartTotalEUR.textContent = '0,00 €';
+    return;
+  }
+
+  let html = '';
+  let sumTND = 0, sumEUR = 0;
+  cart.forEach(item => {
+    const p = findProduct(item.id);
+    const lineTND = p.priceTND * item.qty;
+    const lineEUR = p.priceEUR * item.qty;
+    sumTND += lineTND; sumEUR += lineEUR;
+
+    const colorHTML = item.color ? `<div class="cart-item-color">Couleur: ${item.color}</div>` : '';
+
+    html += `
+      <div class="cart-item" data-cart-id="${item.id}">
+        <div class="cart-item-img">${p.emoji}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${p.name}</div>
+          ${colorHTML}
+          <div class="cart-item-bottom">
+            <div class="cart-item-qty">
+              <button class="qty-btn" data-action="dec">−</button>
+              <span class="qty-value">${item.qty}</span>
+              <button class="qty-btn" data-action="inc">+</button>
+            </div>
+            <span class="cart-item-total">${formatTND(lineTND)}</span>
+            <button class="cart-item-remove" data-action="remove"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+      </div>`;
+  });
+  cartBody.innerHTML = html;
+  cartTotalTND.textContent = formatTND(sumTND);
+  cartTotalEUR.textContent = formatEUR(sumEUR);
+}
+
+function addToCart(id, color) {
+  const existing = cart.find(i => i.id === id && i.color === color);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id, color, qty: 1 });
+  }
+  updateCartUI();
+  showToast('✓ Ajouté au panier', 'success');
+}
+
+/* Add-to-cart clicks */
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.btn-shop');
+  if (btn && btn.dataset.id) {
+    const id = parseInt(btn.dataset.id);
+    const card = btn.closest('.product-card');
+    const activeColor = card ? card.querySelector('.color-swatch.active') : null;
+    const color = activeColor ? activeColor.dataset.tooltip : undefined;
+    addToCart(id, color);
+    openCart();
+  }
+
+  // Cart qty
+  const qtyBtn = e.target.closest('.qty-btn');
+  if (qtyBtn) {
+    const item = qtyBtn.closest('.cart-item');
+    if (!item) return;
+    const id = parseInt(item.dataset.cartId);
+    const cartItem = cart.find(i => i.id === id);
+    if (!cartItem) return;
+    if (qtyBtn.dataset.action === 'inc') {
+      cartItem.qty++;
+    } else if (qtyBtn.dataset.action === 'dec') {
+      cartItem.qty--;
+      if (cartItem.qty <= 0) cart = cart.filter(i => i.id !== id);
+    }
+    updateCartUI();
+  }
+
+  // Remove
+  const rmBtn = e.target.closest('.cart-item-remove');
+  if (rmBtn) {
+    const item = rmBtn.closest('.cart-item');
+    if (!item) return;
+    const id = parseInt(item.dataset.cartId);
+    cart = cart.filter(i => i.id !== id);
+    updateCartUI();
+  }
+});
+
+/* Checkout */
+document.getElementById('checkoutBtn').addEventListener('click', function() {
+  if (cart.length === 0) {
+    showToast('Votre panier est vide', 'error');
+    return;
+  }
+  showToast('✅ Commande envoyée ! Nous vous contacterons.', 'success');
+  cart = [];
+  updateCartUI();
+  setTimeout(closeCart, 1200);
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réalisations - H&K Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-logo">
+                <div class="logo-3d">
+                    <div class="logo-front">H&K</div>
+                    <div class="logo-side">H&K</div>
+                </div>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-hard-hat"></i></div>
+                <span class="logo-text">H&K <span class="logo-accent">Services</span></span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="boutique.html" class="nav-link">Boutique</a></li>
+                    <li><a href="realisations.html" class="nav-link active">Réalisations</a></li>
+                    <li><a href="apropos.html" class="nav-link">À propos</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="panier.html" class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <a href="https://wa.me/330605682407" class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="contact.html" class="quote-btn">Devis Gratuit</a>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920" alt="Réalisations">
+            <div class="page-hero-overlay"></div>
+        </div>
+        <div class="page-hero-content" data-aos="fade-up">
+            <h1>Nos Réalisations</h1>
+            <p>Découvrez nos projets emblématiques</p>
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Réalisations</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="realisations-section">
+        <div class="gallery-filters" data-aos="fade-up">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="villas">Villas</button>
+            <button class="filter-btn" data-filter="toitures">Toitures</button>
+            <button class="filter-btn" data-filter="immeubles">Immeubles</button>
+            <button class="filter-btn" data-filter="renovations">Rénovations</button>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" data-category="villas" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800" alt="Villa Moderne">
+                <div class="gallery-overlay">
+                    <span class="gallery-category">Villa</span>
+                    <h4>Villa Moderne</h4>
+                    <p>La Teste-de-Buch</p>
+                    <div class="gallery-meta">
+                        <span><i class="fas fa-calendar"></i> 2025</span>
+                        <span><i class="fas fa-ruler-combined"></i> 250m²</span>
+                    </div>
+                    <a href="#" class="gallery-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="toitures" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=600" alt="Toiture">
+                <div class="gallery-overlay">
+                    <span class="gallery-category">Toiture</span>
+                    <h4>Rénovation Toiture</h4>
+                    <p>Arcachon</p>
+                    <div class="gallery-meta">
+                        <span><i class="fas fa-calendar"></i> 2025</span>
+                        <span><i class="fas fa-ruler-combined"></i> 180m²</span>
+                    </div>
+                    <a href="#" class="gallery-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="immeubles" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600" alt="Immeuble">
+                <div class="gallery-overlay">
+                    <span class="gallery-category">Immeuble</span>
+                    <h4>Immeuble R+3</h4>
+                    <p>Bordeaux</p>
+                    <div class="gallery-meta">
+                        <span><i class="fas fa-calendar"></i> 2024</span>
+                        <span><i class="fas fa-ruler-combined"></i> 1200m²</span>
+                    </div>
+                    <a href="#" class="gallery-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="renovations" data-aos="fade-up" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600" alt="Rénovation">
+                <div class="gallery-overlay">
+                    <span class="gallery-category">Rénovation</span>
+                    <h4>Rénovation Complète</h4>
+                    <p>Gujan-Mestras</p>
+                    <div class="gallery-meta">
+                        <span><i class="fas fa-calendar"></i> 2024</span>
+                        <span><i class="fas fa-ruler-combined"></i> 200m²</span>
+                    </div>
+                    <a href="#" class="gallery-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="villas" data-aos="fade-up" data-aos-delay="500">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Villa Bassin">
+                <div class="gallery-overlay">
+                    <span class="gallery-category">Villa</span>
+                    <h4>Villa Bassin</h4>
+                    <p>Cap-Ferret</p>
+                    <div class="gallery-meta">
+                        <span><i class="fas fa-calendar"></i> 2024</span>
+                        <span><i class="fas fa-ruler-combined"></i> 300m²</span>
+                    </div>
+                    <a href="#" class="gallery-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="toitures" data-aos="fade-up" data-aos-delay="600">
+                <img src="https://images.unsplash.com/photo-1621262753219-60d7a3443c4e?w=600" alt="Toiture Zinc">
+                <div class="gallery-overlay">
+                    <span class="gallery-category">Toiture</span>
+                    <h4>Toiture Zinc</h4>
+                    <p>Pyla-sur-Mer</p>
+                    <div class="gallery-meta">
+                        <span><i class="fas fa-calendar"></i> 2024</span>
+                        <span><i class="fas fa-ruler-combined"></i> 150m²</span>
+                    </div>
+                    <a href="#" class="gallery-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="renovations" data-aos="fade-up" data-aos-delay="700">
+                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600" alt="Rénovation facade">
+                <div class="gallery-overlay">
+                    <span class="gallery-category">Rénovation</span>
+                    <h4>Rénovation Facade</h4>
+                    <p>La Teste-de-Buch</p>
+                    <div class="gallery-meta">
+                        <span><i class="fas fa-calendar"></i> 2023</span>
+                        <span><i class="fas fa-ruler-combined"></i> 400m²</span>
+                    </div>
+                    <a href="#" class="gallery-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="immeubles" data-aos="fade-up" data-aos-delay="800">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600" alt="Bâtiment commercial">
+                <div class="gallery-overlay">
+                    <span class="gallery-category">Immeuble</span>
+                    <h4>Bâtiment Commercial</h4>
+                    <p>Arcachon</p>
+                    <div class="gallery-meta">
+                        <span><i class="fas fa-calendar"></i> 2023</span>
+                        <span><i class="fas fa-ruler-combined"></i> 800m²</span>
+                    </div>
+                    <a href="#" class="gallery-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="villas" data-aos="fade-up" data-aos-delay="900">
+                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600" alt="Villa piscine">
+                <div class="gallery-overlay">
+                    <span class="gallery-category">Villa</span>
+                    <h4>Villa avec Piscine</h4>
+                    <p>Mios</p>
+                    <div class="gallery-meta">
+                        <span><i class="fas fa-calendar"></i> 2023</span>
+                        <span><i class="fas fa-ruler-combined"></i> 280m²</span>
+                    </div>
+                    <a href="#" class="gallery-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item" data-count="250">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Projets réalisés</div>
+                </div>
+                <div class="stat-item" data-count="180">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Clients satisfaits</div>
+                </div>
+                <div class="stat-item" data-count="10">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Ans d'expérience</div>
+                </div>
+                <div class="stat-item" data-count="15">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Artisans qualifiés</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-container" data-aos="zoom-in">
+            <h2>Vous avez un projet?</h2>
+            <p>Parlons ensemble de votre prochaine réalisation</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn-primary">Contactez-nous</a>
+                <a href="tel:+330605682407" class="btn-secondary">
+                    <i class="fas fa-phone"></i> +33 06 05 68 24 07
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="index.html" class="footer-logo">
+                    <div class="logo-icon"><i class="fas fa-hard-hat"></i></div>
+                    <span class="logo-text">H&K <span class="logo-accent">Services</span></span>
+                </a>
+                <p>Entreprise de construction et roofing premium basée à La Teste-de-Buch.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Construction</a></li>
+                    <li><a href="services.html">Toiture</a></li>
+                    <li><a href="services.html">Rénovation</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Boutique</h4>
+                <ul>
+                    <li><a href="boutique.html">Matériaux</a></li>
+                    <li><a href="boutique.html">Outils</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +33 06 05 68 24 07</li>
+                    <li><i class="fas fa-map-marker-alt"></i> La Teste-de-Buch</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 H&K Services — Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/330605682407" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        updateCartCount();
+        initGalleryFilter();
+    </script>
+</body>
+</html>

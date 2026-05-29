@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Boutique Matériaux | H&K Services</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;family=Teko:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/fontawesome-all.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/ebfaecfa0a.js" crossorigin="anonymous"></script>
+  <link href="css/owl.css" rel="stylesheet" />
+  <link href="css/flaticon.css" rel="stylesheet" />
+  <link href="css/linoor-icons-2.css" rel="stylesheet" />
+  <link href="css/animate.css" rel="stylesheet" />
+  <link href="css/jquery-ui.css" rel="stylesheet" />
+  <link href="css/jquery.fancybox.min.css" rel="stylesheet" />
+  <link href="css/hover.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/jarallax.css" />
+  <link href="css/custom-animate.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/rtl.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" id="jssDefault" href="css/colors/color-default.css" />
+  <link rel="shortcut icon" href="img/logo png/Logo.png" id="fav-shortcut" type="image/x-icon" />
+  <link rel="icon" href="img/logo png/Logo.png" id="fav-icon" type="image/x-icon" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+  <style>
+    :root {
+      --accent: #312783;
+      --accent-dark: #1f1a5c;
+      --accent-light: #e8e6f7;
+    }
+
+    /* ===== SHOP ===== */
+    .shop-section { padding: 80px 0; }
+
+    /* --- Filter via radio --- */
+    .filter-radios { display: none; }
+
+    .shop-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .shop-filter-bar label {
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 500;
+      color: #6c757d;
+      background: transparent;
+      border: 1px solid #dee2e6;
+      transition: .3s;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+    }
+    .shop-filter-bar label:hover { border-color: var(--accent); color: var(--accent); }
+
+    #fTous:checked   ~ .shop-section .shop-filter-bar label[for="fTous"],
+    #fMac:checked    ~ .shop-section .shop-filter-bar label[for="fMac"],
+    #fRev:checked    ~ .shop-section .shop-filter-bar label[for="fRev"],
+    #fPeint:checked  ~ .shop-section .shop-filter-bar label[for="fPeint"],
+    #fPlom:checked   ~ .shop-section .shop-filter-bar label[for="fPlom"],
+    #fElec:checked   ~ .shop-section .shop-filter-bar label[for="fElec"],
+    #fOut:checked    ~ .shop-section .shop-filter-bar label[for="fOut"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(49,39,131,0.3);
+    }
+
+    /* Hide / show products */
+    .product-card { display: flex; flex-direction: column; }
+    #fTous:checked   ~ .shop-section .product-card { display: flex; }
+    #fMac:checked    ~ .shop-section .product-card[data-cat="maconnerie"] { display: flex; }
+    #fMac:checked    ~ .shop-section .product-card:not([data-cat="maconnerie"]) { display: none; }
+    #fRev:checked    ~ .shop-section .product-card[data-cat="revetement"] { display: flex; }
+    #fRev:checked    ~ .shop-section .product-card:not([data-cat="revetement"]) { display: none; }
+    #fPeint:checked  ~ .shop-section .product-card[data-cat="peinture"] { display: flex; }
+    #fPeint:checked  ~ .shop-section .product-card:not([data-cat="peinture"]) { display: none; }
+    #fPlom:checked   ~ .shop-section .product-card[data-cat="plomberie"] { display: flex; }
+    #fPlom:checked   ~ .shop-section .product-card:not([data-cat="plomberie"]) { display: none; }
+    #fElec:checked   ~ .shop-section .product-card[data-cat="electricite"] { display: flex; }
+    #fElec:checked   ~ .shop-section .product-card:not([data-cat="electricite"]) { display: none; }
+    #fOut:checked    ~ .shop-section .product-card[data-cat="outillage"] { display: flex; }
+    #fOut:checked    ~ .shop-section .product-card:not([data-cat="outillage"]) { display: none; }
+
+    /* --- Products Grid --- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: .3s;
+      height: 100%;
+      border: 1px solid transparent;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(49,39,131,0.12);
+      border-color: var(--accent);
+    }
+
+    .product-image {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9fa;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .product-card:hover .product-image img { transform: scale(1.05); }
+    .product-image .img-emoji {
+      font-size: 4.5rem;
+      line-height: 1;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      z-index: 2;
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .badge-nouveau { background: #10b981; color: #fff; }
+    .badge-promotion { background: var(--accent); color: #fff; }
+    .badge-populaire { background: var(--accent); color: #fff; }
+
+    .product-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .product-category {
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .product-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .product-desc {
+      font-size: .85rem;
+      color: #6c757d;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    /* Colors via radio */
+    .product-colors {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .color-label { font-size: .75rem; color: #6c757d; margin-right: 4px; }
+
+    .color-swatch {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: .3s;
+      flex-shrink: 0;
+      display: inline-block;
+      position: relative;
+    }
+    .color-swatch:hover { transform: scale(1.15); }
+
+    .color-swatch input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .color-swatch span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .color-swatch input:checked ~ span {
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent);
+    }
+
+    /* Pricing */
+    .product-pricing {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 10px 14px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+    .price-tnd { font-size: 1.3rem; font-weight: 700; color: #1a1a2e; }
+    .price-eur { font-size: .85rem; font-weight: 500; color: #6c757d; }
+    .price-eur::before { content: '~ '; }
+
+    .btn-shop {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, var(--accent), var(--accent-dark));
+      color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 300ms ease;
+      font-size: .9rem;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(49,39,131,0.2);
+    }
+    .btn-shop:hover { background: var(--accent-dark); transform: translateY(-2px); color: #fff; text-decoration: none; box-shadow: 0 6px 20px rgba(49,39,131,0.3); }
+
+    /* ===== Cart Toggle (checkbox hack) ===== */
+    #cartToggleInput { display: none; }
+
+    .cart-trigger-wrap { text-align: right; margin-bottom: 20px; }
+    .cart-trigger-wrap label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-size: .9rem;
+      padding: 10px 20px;
+      background: linear-gradient(to right, var(--accent), var(--accent-dark));
+      border-radius: 8px;
+      transition: all 300ms ease;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(49,39,131,0.2);
+    }
+    .cart-trigger-wrap label:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(49,39,131,0.3); }
+
+    .cart-count-badge {
+      position: absolute;
+      top: -6px; right: -6px;
+      width: 22px; height: 22px;
+      background: #dc2626;
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== Cart Overlay ===== */
+    .cart-overlay {
+      position: fixed; inset: 0; z-index: 9998;
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s;
+    }
+    #cartToggleInput:checked ~ .cart-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ===== Cart Sidebar ===== */
+    .cart-sidebar {
+      position: fixed; top: 0; right: 0; z-index: 9999;
+      width: 420px; max-width: 100vw; height: 100vh;
+      background: #fff;
+      border-left: 1px solid #e9ecef;
+      display: flex; flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .4s cubic-bezier(.4,0,.2,1);
+      box-shadow: -10px 0 40px rgba(0,0,0,.1);
+    }
+    #cartToggleInput:checked ~ .cart-sidebar {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    .cart-header h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      color: #1a1a2e;
+      margin: 0;
+      font-weight: 600;
+    }
+    .cart-header label {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: #6c757d;
+      cursor: pointer;
+      transition: .3s;
+    }
+    .cart-header label:hover { background: #f8f9fa; color: #1a1a2e; }
+
+    .cart-body { flex: 1; overflow-y: auto; padding: 16px 24px; }
+
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: #adb5bd;
+    }
+    .cart-empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .cart-empty p { font-weight: 600; color: #6c757d; }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f1f3f5;
+    }
+    .cart-item-img {
+      width: 60px; height: 60px;
+      border-radius: 8px;
+      background: #f8f9fa;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name {
+      font-weight: 600; font-size: .9rem;
+      color: #1a1a2e;
+      font-family: 'Poppins', sans-serif;
+    }
+    .cart-item-detail { font-size: .75rem; color: #6c757d; margin-bottom: 6px; }
+    .cart-item-price { font-weight: 700; font-size: .9rem; color: var(--accent); }
+
+    .cart-footer {
+      padding: 20px 24px;
+      border-top: 1px solid #e9ecef;
+      background: #f8f9fa;
+    }
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: .9rem;
+      color: #6c757d;
+    }
+    .cart-total-row:last-of-type { margin-bottom: 16px; }
+    .cart-total { font-weight: 800; font-size: 1.1rem; color: #1a1a2e; }
+
+    .btn-cart-checkout {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, var(--accent), var(--accent-dark));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 300ms ease;
+      font-family: 'Poppins', sans-serif;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(49,39,131,0.2);
+    }
+    .btn-cart-checkout:hover { background: var(--accent-dark); transform: translateY(-2px); color: #fff; text-decoration: none; box-shadow: 0 6px 20px rgba(49,39,131,0.3); }
+
+    /* ===== Banner heading brand color ===== */
+    .page-banner .banner-inner h1 span,
+    .sec-title h2 .dot {
+      color: var(--accent) !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+      .cart-sidebar { width: 100%; }
+      .shop-filter-bar label { font-size: .8rem; padding: 6px 14px; }
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .product-image { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader"><div class="icon"></div></div>
+
+  <!-- Header -->
+  <header class="main-header header-style-one">
+    <div class="header-upper">
+      <div class="inner-container clearfix">
+        <div class="logo-box">
+          <div class="logo">
+            <a href="index.html" title="H&K Services">
+              <img src="img/logo png/Logo.png" id="thm-logo" alt="H&K Services" title="H&K Services" />
+            </a>
+          </div>
+        </div>
+        <div class="nav-outer clearfix">
+          <div class="mobile-nav-toggler">
+            <span class="icon flaticon-menu-2"></span><span class="txt">Menu</span>
+          </div>
+          <nav class="main-menu navbar-expand-md navbar-light">
+            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+              <ul class="navigation clearfix">
+                <li><a href="index.html">Accueil</a></li>
+                <li class="dropdown">
+                  <a href="services-construction.html">Nos Services</a>
+                  <ul>
+                    <li><a href="services-construction.html#etude">Étude de Projet</a></li>
+                    <li><a href="services-construction.html#Construction">Travaux Génie Civil</a></li>
+                    <li><a href="services-construction.html#Gestion">Travaux Spécifiques</a></li>
+                  </ul>
+                </li>
+                <li><a href="projets-construction-batiments.html">Projets</a></li>
+                <li><a href="catalogue-construction.html">E-Catalogue</a></li>
+                <li><a href="societe-batiment.html">Qui Sommes Nous</a></li>
+                <li class="active"><a href="boutique.html">Boutique</a></li>
+                <li><a href="contact.html">Contactez-nous</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="other-links clearfix">
+          <div class="link-box">
+            <div class="call-us">
+              <a class="link" href="tel:+330605682407">
+                <span class="icon"></span>
+                <span class="sub-text">Appelez à tout moment</span>
+                <span class="number">+330605682407</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="side-menu__block">
+    <div class="side-menu__block-overlay custom-cursor__overlay">
+      <div class="cursor"></div>
+      <div class="cursor-follower"></div>
+    </div>
+    <div class="side-menu__block-inner">
+      <div class="side-menu__top justify-content-end">
+        <a href="#" class="side-menu__toggler side-menu__close-btn"><img src="images/icons/close-1-1.html" alt="" /></a>
+      </div>
+      <nav class="mobile-nav__container"></nav>
+      <div class="side-menu__sep"></div>
+      <div class="side-menu__content">
+        <p>H&K Services est une Société franco-tunisienne de construction spécialisée dans les projets résidentiels et commerciaux.</p>
+        <p><a href="mailto:contact@hketservices.com">contact@hketservices.com</a><br /><a href="tel:+330605682407">+330605682407</a></p>
+        <div class="side-menu__social">
+          <a href="https://www.facebook.com/H&K Services"><i class="fab fa-facebook-square"></i></a>
+          <a href="https://www.tiktok.com/@H&K Services"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <section class="page-banner">
+    <div class="image-layer" style="background-image: url('img/background/image-7.png')"></div>
+    <div class="shape-1"></div>
+    <div class="shape-2"></div>
+    <div class="banner-inner">
+      <div class="auto-container">
+        <div class="inner-container clearfix">
+          <h1>Notre <span>Boutique</span></h1>
+          <div class="page-nav">
+            <ul class="bread-crumb clearfix">
+              <li><a href="index.html">Page d'accueil</a></li>
+              <li class="active">Boutique</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FILTER RADIOS (invisibles, en dehors de .shop-section) ===== -->
+  <input type="radio" name="catFilter" id="fTous" class="filter-radios" checked />
+  <input type="radio" name="catFilter" id="fMac" class="filter-radios" />
+  <input type="radio" name="catFilter" id="fRev" class="filter-radios" />
+  <input type="radio" name="catFilter" id="fPeint" class="filter-radios" />
+  <input type="radio" name="catFilter" id="fPlom" class="filter-radios" />
+  <input type="radio" name="catFilter" id="fElec" class="filter-radios" />
+  <input type="radio" name="catFilter" id="fOut" class="filter-radios" />
+
+  <!-- ===== CART CHECKBOX ===== -->
+  <input type="checkbox" id="cartToggleInput" />
+
+  <!-- ===== SHOP SECTION ===== -->
+  <section class="shop-section">
+    <div class="auto-container">
+      <div class="sec-title centered">
+        <h2>Matériaux de <span class="dot">Construction</span></h2>
+        <p style="color:#6c757d; margin-top:8px;">Sélectionnez vos matériaux — Prix en <strong>DT</strong> et <strong>EUR</strong></p>
+      </div>
+
+      <!-- Cart trigger -->
+      <div class="cart-trigger-wrap">
+        <label for="cartToggleInput">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Panier</span>
+          <span class="cart-count-badge">3</span>
+        </label>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="shop-filter-bar">
+        <label for="fTous">Tous</label>
+        <label for="fMac">Maçonnerie</label>
+        <label for="fRev">Revêtement</label>
+        <label for="fPeint">Peinture</label>
+        <label for="fPlom">Plomberie</label>
+        <label for="fElec">Électricité</label>
+        <label for="fOut">Outillage</label>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid">
+
+        <!-- ===== MACONNERIE ===== -->
+        <div class="product-card" data-cat="maconnerie">
+          <div class="product-image">
+            <span class="product-badge badge-populaire">Populaire</span>
+            <img src="img/produits/ciment.jpg" alt="Ciment Portland" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🏗️</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Maçonnerie</span>
+            <h3 class="product-name">Ciment Portland</h3>
+            <p class="product-desc">Sac de 50 kg – Ciment résistant pour fondations et structures.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c1" checked /><span style="background:#8a8a8a"></span></label>
+              <label class="color-swatch"><input type="radio" name="c1" /><span style="background:#f0f0f0"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">18,900 DT</span>
+              <span class="price-eur">5,50 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="maconnerie">
+          <div class="product-image">
+            <img src="img/produits/brique.jpg" alt="Brique Pleine" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🧱</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Maçonnerie</span>
+            <h3 class="product-name">Brique Pleine</h3>
+            <p class="product-desc">Brique rouge 20×10×5 cm – Haute résistance compression.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c2" checked /><span style="background:#b91c1c"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">4,900 DT</span>
+              <span class="price-eur">1,40 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="maconnerie">
+          <div class="product-image">
+            <img src="img/produits/parpaing.jpg" alt="Parpaing Creux" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🧱</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Maçonnerie</span>
+            <h3 class="product-name">Parpaing Creux</h3>
+            <p class="product-desc">Bloc creux 20×20×40 cm – Pour murs porteurs &amp; cloisons.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c3" checked /><span style="background:#a8a8a8"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">3,900 DT</span>
+              <span class="price-eur">1,10 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="maconnerie">
+          <div class="product-image">
+            <span class="product-badge badge-populaire">Populaire</span>
+            <img src="img/produits/fer.jpg" alt="Fer à Béton" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🔩</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Maçonnerie</span>
+            <h3 class="product-name">Fer à Béton</h3>
+            <p class="product-desc">Barre d'acier torsadée ø12 mm – Longueur 6 m.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c4" checked /><span style="background:#6b7280"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">12,500 DT</span>
+              <span class="price-eur">3,60 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="maconnerie">
+          <div class="product-image">
+            <img src="img/produits/sable.jpg" alt="Sable Fin Lavé" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">⏳</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Maçonnerie</span>
+            <h3 class="product-name">Sable Fin Lavé</h3>
+            <p class="product-desc">Sac de 40 kg – Sable pour mortier et enduits.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c5" checked /><span style="background:#d4a373"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">5,400 DT</span>
+              <span class="price-eur">1,60 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="maconnerie">
+          <div class="product-image">
+            <img src="img/produits/gravier.jpg" alt="Gravier Concassé" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🪨</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Maçonnerie</span>
+            <h3 class="product-name">Gravier Concassé</h3>
+            <p class="product-desc">Sac de 35 kg – Granulométrie 8/16 mm pour béton.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c6" checked /><span style="background:#8a8a8a"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">6,200 DT</span>
+              <span class="price-eur">1,80 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="maconnerie">
+          <div class="product-image">
+            <img src="img/produits/chaux.jpg" alt="Chaux Hydraulique" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🥡</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Maçonnerie</span>
+            <h3 class="product-name">Chaux Hydraulique</h3>
+            <p class="product-desc">Sac de 25 kg – Chaux NHL 3.5 pour mortier de chaux.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c7" checked /><span style="background:#f5f5f0"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">15,900 DT</span>
+              <span class="price-eur">4,60 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <!-- ===== REVETEMENT ===== -->
+        <div class="product-card" data-cat="revetement">
+          <div class="product-image">
+            <span class="product-badge badge-nouveau">Nouveau</span>
+            <img src="img/produits/ceramique.jpg" alt="Carreaux Céramique" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">⬜</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Revêtement</span>
+            <h3 class="product-name">Carreaux Céramique</h3>
+            <p class="product-desc">Carreaux 60×60 cm – Finition brillante, pose facile.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c8" checked /><span style="background:#f5f5f5"></span></label>
+              <label class="color-swatch"><input type="radio" name="c8" /><span style="background:#2d2d2d"></span></label>
+              <label class="color-swatch"><input type="radio" name="c8" /><span style="background:#e8d5b7"></span></label>
+              <label class="color-swatch"><input type="radio" name="c8" /><span style="background:#b0b0b0"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">32,900 DT</span>
+              <span class="price-eur">9,50 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="revetement">
+          <div class="product-image">
+            <span class="product-badge badge-nouveau">Nouveau</span>
+            <img src="img/produits/marbre.jpg" alt="Marbre Luxe" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">💎</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Revêtement</span>
+            <h3 class="product-name">Marbre Luxe</h3>
+            <p class="product-desc">Dalle marbre poli 80×80 cm – Élégance et durabilité.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c9" checked /><span style="background:#fafafa"></span></label>
+              <label class="color-swatch"><input type="radio" name="c9" /><span style="background:#1f1f1f"></span></label>
+              <label class="color-swatch"><input type="radio" name="c9" /><span style="background:#d4c5a9"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">59,900 DT</span>
+              <span class="price-eur">17,40 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="revetement">
+          <div class="product-image">
+            <span class="product-badge badge-nouveau">Nouveau</span>
+            <img src="img/produits/parquet.jpg" alt="Parquet Contrecollé" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🪵</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Revêtement</span>
+            <h3 class="product-name">Parquet Contrecollé</h3>
+            <p class="product-desc">Lame 120×14 cm – Chêne verni, pose clipsable.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c10" checked /><span style="background:#c4a882"></span></label>
+              <label class="color-swatch"><input type="radio" name="c10" /><span style="background:#8b6914"></span></label>
+              <label class="color-swatch"><input type="radio" name="c10" /><span style="background:#5c4033"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">45,900 DT</span>
+              <span class="price-eur">13,30 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="revetement">
+          <div class="product-image">
+            <img src="img/produits/carreau-ciment.jpg" alt="Carreau Ciment" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🔷</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Revêtement</span>
+            <h3 class="product-name">Carreau Ciment</h3>
+            <p class="product-desc">Carreau 20×20 cm – Motif hexagonal, aspect ciré.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c11" checked /><span style="background:#f0ebe3"></span></label>
+              <label class="color-swatch"><input type="radio" name="c11" /><span style="background:#1a1a1a"></span></label>
+              <label class="color-swatch"><input type="radio" name="c11" /><span style="background:#c04040"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">28,900 DT</span>
+              <span class="price-eur">8,40 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="revetement">
+          <div class="product-image">
+            <span class="product-badge badge-nouveau">Nouveau</span>
+            <img src="img/produits/mosaique.jpg" alt="Mosaïque Verre" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">✨</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Revêtement</span>
+            <h3 class="product-name">Mosaïque Verre</h3>
+            <p class="product-desc">Grille 30×30 cm – Mosaïque émaillée pour salle de bain.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c12" checked /><span style="background:#1e93d1"></span></label>
+              <label class="color-swatch"><input type="radio" name="c12" /><span style="background:#2d8a4e"></span></label>
+              <label class="color-swatch"><input type="radio" name="c12" /><span style="background:#9ca3af"></span></label>
+              <label class="color-swatch"><input type="radio" name="c12" /><span style="background:#d4a017"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">38,900 DT</span>
+              <span class="price-eur">11,30 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="revetement">
+          <div class="product-image">
+            <img src="img/produits/pierre.jpg" alt="Pierre Naturelle" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🗿</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Revêtement</span>
+            <h3 class="product-name">Pierre Naturelle</h3>
+            <p class="product-desc">Dalle 40×60 cm – Travertin brut, ép. 2 cm.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c13" checked /><span style="background:#d4c5a9"></span></label>
+              <label class="color-swatch"><input type="radio" name="c13" /><span style="background:#9ca3af"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">52,900 DT</span>
+              <span class="price-eur">15,30 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <!-- ===== PEINTURE ===== -->
+        <div class="product-card" data-cat="peinture">
+          <div class="product-image">
+            <img src="img/produits/peinture-acrylique.jpg" alt="Peinture Acrylique" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🎨</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Peinture</span>
+            <h3 class="product-name">Peinture Acrylique</h3>
+            <p class="product-desc">Pot de 5 L – Mate et lessivable, haute couvrance.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c14" checked /><span style="background:#ffffff"></span></label>
+              <label class="color-swatch"><input type="radio" name="c14" /><span style="background:#2563eb"></span></label>
+              <label class="color-swatch"><input type="radio" name="c14" /><span style="background:#16a34a"></span></label>
+              <label class="color-swatch"><input type="radio" name="c14" /><span style="background:#eab308"></span></label>
+              <label class="color-swatch"><input type="radio" name="c14" /><span style="background:#dc2626"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">25,900 DT</span>
+              <span class="price-eur">7,50 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="peinture">
+          <div class="product-image">
+            <span class="product-badge badge-promotion">Promo</span>
+            <img src="img/produits/enduit.jpg" alt="Enduit de Façade" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🧴</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Peinture</span>
+            <h3 class="product-name">Enduit de Façade</h3>
+            <p class="product-desc">Seau 25 kg – Enduit projeté, finition grain fin.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c15" checked /><span style="background:#f8f9fa"></span></label>
+              <label class="color-swatch"><input type="radio" name="c15" /><span style="background:#d4c5a9"></span></label>
+              <label class="color-swatch"><input type="radio" name="c15" /><span style="background:#adb5bd"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">34,900 DT</span>
+              <span class="price-eur">10,10 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="peinture">
+          <div class="product-image">
+            <img src="img/produits/peinture-exterieure.jpg" alt="Peinture Extérieure" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🪣</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Peinture</span>
+            <h3 class="product-name">Peinture Extérieure</h3>
+            <p class="product-desc">Pot 10 L – Micro-poreuse, anti-UV, résiste aux intempéries.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c16" checked /><span style="background:#f8f9fa"></span></label>
+              <label class="color-swatch"><input type="radio" name="c16" /><span style="background:#adb5bd"></span></label>
+              <label class="color-swatch"><input type="radio" name="c16" /><span style="background:#d4c5a9"></span></label>
+              <label class="color-swatch"><input type="radio" name="c16" /><span style="background:#3b82f6"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">42,900 DT</span>
+              <span class="price-eur">12,40 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="peinture">
+          <div class="product-image">
+            <img src="img/produits/vernis.jpg" alt="Vernis Bois Mat" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🧪</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Peinture</span>
+            <h3 class="product-name">Vernis Bois Mat</h3>
+            <p class="product-desc">Pot 2.5 L – Vernis incolore, protection intérieur/extérieur.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c17" checked /><span style="background:#e8e0d0"></span></label>
+              <label class="color-swatch"><input type="radio" name="c17" /><span style="background:#d4c5a9"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">22,900 DT</span>
+              <span class="price-eur">6,60 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="peinture">
+          <div class="product-image">
+            <img src="img/produits/sous-couche.jpg" alt="Sous-Couche Murale" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🧴</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Peinture</span>
+            <h3 class="product-name">Sous-Couche Murale</h3>
+            <p class="product-desc">Pot 5 L – Fixateur et régulateur d'absorption.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c18" checked /><span style="background:#f5f5f5"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">18,900 DT</span>
+              <span class="price-eur">5,50 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="peinture">
+          <div class="product-image">
+            <span class="product-badge badge-promotion">Promo</span>
+            <img src="img/produits/pinceaux.jpg" alt="Kit Pinceaux Pro" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🖌️</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Peinture</span>
+            <h3 class="product-name">Kit Pinceaux Pro</h3>
+            <p class="product-desc">Lot de 6 pinceaux – Tailles 1 à 4 pouces, soie synthétique.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c19" checked /><span style="background:#1f1f1f"></span></label>
+              <label class="color-swatch"><input type="radio" name="c19" /><span style="background:#1e3a5f"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">14,900 DT</span>
+              <span class="price-eur">4,30 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <!-- ===== PLOMBERIE ===== -->
+        <div class="product-card" data-cat="plomberie">
+          <div class="product-image">
+            <img src="img/produits/tuyau-pvc.jpg" alt="Tuyau PVC" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🔧</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Plomberie</span>
+            <h3 class="product-name">Tuyau PVC</h3>
+            <p class="product-desc">Tube PVC pression – Diamètre 32 mm, longueur 3 m.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c20" checked /><span style="background:#9ca3af"></span></label>
+              <label class="color-swatch"><input type="radio" name="c20" /><span style="background:#f3f4f6"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">8,900 DT</span>
+              <span class="price-eur">2,60 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="plomberie">
+          <div class="product-image">
+            <img src="img/produits/raccord.jpg" alt="Raccord Cuivre" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">⚙️</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Plomberie</span>
+            <h3 class="product-name">Raccord Cuivre</h3>
+            <p class="product-desc">Coude cuivre 90° – Diamètre 22 mm, soudable.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c21" checked /><span style="background:#b87333"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">3,200 DT</span>
+              <span class="price-eur">0,90 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="plomberie">
+          <div class="product-image">
+            <img src="img/produits/robinet.jpg" alt="Robinet Mitigeur" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🚿</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Plomberie</span>
+            <h3 class="product-name">Robinet Mitigeur</h3>
+            <p class="product-desc">Mitigeur chromé lavabo – Cartouche céramique.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c22" checked /><span style="background:#c0c0c0"></span></label>
+              <label class="color-swatch"><input type="radio" name="c22" /><span style="background:#1a1a1a"></span></label>
+              <label class="color-swatch"><input type="radio" name="c22" /><span style="background:#c9a84c"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">26,900 DT</span>
+              <span class="price-eur">7,80 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="plomberie">
+          <div class="product-image">
+            <img src="img/produits/flexible.jpg" alt="Flexible Douche" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🌀</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Plomberie</span>
+            <h3 class="product-name">Flexible Douche</h3>
+            <p class="product-desc">Flexible inox tressé 1.5 m – Anti-torsion, raccord universel.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c23" checked /><span style="background:#d1d5db"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">8,900 DT</span>
+              <span class="price-eur">2,60 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="plomberie">
+          <div class="product-image">
+            <img src="img/produits/joint.jpg" alt="Joint Sanitaire" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🧴</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Plomberie</span>
+            <h3 class="product-name">Joint Sanitaire</h3>
+            <p class="product-desc">Tube silicone neutre 280 ml – Anti-moisissures.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c24" checked /><span style="background:#ffffff"></span></label>
+              <label class="color-swatch"><input type="radio" name="c24" /><span style="background:#e0e0e0"></span></label>
+              <label class="color-swatch"><input type="radio" name="c24" /><span style="background:#9ca3af"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">6,900 DT</span>
+              <span class="price-eur">2,00 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="plomberie">
+          <div class="product-image">
+            <span class="product-badge badge-populaire">Populaire</span>
+            <img src="img/produits/chauffe-eau.jpg" alt="Chauffe-Eau 50L" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🛁</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Plomberie</span>
+            <h3 class="product-name">Chauffe-Eau 50L</h3>
+            <p class="product-desc">Ballon électrique 50 L – Classe A, thermostat réglable.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c25" checked /><span style="background:#f0f0f0"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">189,000 DT</span>
+              <span class="price-eur">54,80 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="plomberie">
+          <div class="product-image">
+            <img src="img/produits/wc.jpg" alt="WC Suspendu" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🚽</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Plomberie</span>
+            <h3 class="product-name">WC Suspendu</h3>
+            <p class="product-desc">Pack WC suspendu avec abattant – Cuvette vitrifiée.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c26" checked /><span style="background:#f5f5f0"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">149,000 DT</span>
+              <span class="price-eur">43,20 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <!-- ===== ELECTRICITE ===== -->
+        <div class="product-card" data-cat="electricite">
+          <div class="product-image">
+            <img src="img/produits/cable.jpg" alt="Câble Électrique" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🔌</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Électricité</span>
+            <h3 class="product-name">Câble Électrique</h3>
+            <p class="product-desc">Rouleau 50 m – Section 2.5 mm², cuivre, gaine PVC.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c27" checked /><span style="background:#9ca3af"></span></label>
+              <label class="color-swatch"><input type="radio" name="c27" /><span style="background:#2d2d2d"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">22,900 DT</span>
+              <span class="price-eur">6,60 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="electricite">
+          <div class="product-image">
+            <img src="img/produits/interrupteur.jpg" alt="Interrupteur" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">💡</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Électricité</span>
+            <h3 class="product-name">Interrupteur</h3>
+            <p class="product-desc">Interrupteur simple allumage – Encastrable, blanc.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c28" checked /><span style="background:#ffffff"></span></label>
+              <label class="color-swatch"><input type="radio" name="c28" /><span style="background:#1a1a1a"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">5,900 DT</span>
+              <span class="price-eur">1,70 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="electricite">
+          <div class="product-image">
+            <img src="img/produits/disjoncteur.jpg" alt="Disjoncteur 16A" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">⚡</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Électricité</span>
+            <h3 class="product-name">Disjoncteur 16A</h3>
+            <p class="product-desc">Disjoncteur divisionnaire 16A – Courbe C, modulaire.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c29" checked /><span style="background:#f0f0f0"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">9,900 DT</span>
+              <span class="price-eur">2,90 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <!-- ===== OUTILLAGE ===== -->
+        <div class="product-card" data-cat="outillage">
+          <div class="product-image">
+            <span class="product-badge badge-promotion">Promo</span>
+            <img src="img/produits/perceuse.jpg" alt="Perceuse Sans Fil" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🛠️</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Outillage</span>
+            <h3 class="product-name">Perceuse Sans Fil</h3>
+            <p class="product-desc">Perceuse-visseuse 18V – Batterie Li-Ion 4Ah.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c30" checked /><span style="background:#b91c1c"></span></label>
+              <label class="color-swatch"><input type="radio" name="c30" /><span style="background:#1f1f1f"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">119,000 DT</span>
+              <span class="price-eur">34,50 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="outillage">
+          <div class="product-image">
+            <img src="img/produits/niveau.jpg" alt="Niveau à Bulle" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">📐</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Outillage</span>
+            <h3 class="product-name">Niveau à Bulle</h3>
+            <p class="product-desc">Niveau magnétique 120 cm – Triple lentille, aluminium.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c31" checked /><span style="background:#fbbf24"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">15,900 DT</span>
+              <span class="price-eur">4,60 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="outillage">
+          <div class="product-image">
+            <img src="img/produits/meuleuse.jpg" alt="Meuleuse Angulaire" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🔧</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Outillage</span>
+            <h3 class="product-name">Meuleuse Angulaire</h3>
+            <p class="product-desc">Meuleuse 125 mm – 850 W, protection surcharge.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c32" checked /><span style="background:#1e40af"></span></label>
+              <label class="color-swatch"><input type="radio" name="c32" /><span style="background:#1f1f1f"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">89,900 DT</span>
+              <span class="price-eur">26,10 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="outillage">
+          <div class="product-image">
+            <img src="img/produits/echafaudage.jpg" alt="Échafaudage Roulant" onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+            <span class="img-emoji" style="display:none">🏗️</span>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Outillage</span>
+            <h3 class="product-name">Échafaudage Roulant</h3>
+            <p class="product-desc">Tour roulante alu 4 m – Plateforme 1.5×0.7 m.</p>
+            <div class="product-colors">
+              <span class="color-label">Couleur:</span>
+              <label class="color-swatch"><input type="radio" name="c33" checked /><span style="background:#a0a0a0"></span></label>
+            </div>
+            <div class="product-pricing">
+              <span class="price-tnd">249,000 DT</span>
+              <span class="price-eur">72,20 €</span>
+            </div>
+            <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          </div>
+        </div>
+
+      </div><!-- /.products-grid -->
+    </div>
+  </section>
+
+  <!-- ===== CART OVERLAY ===== -->
+  <label class="cart-overlay" for="cartToggleInput"></label>
+
+  <!-- ===== CART SIDEBAR ===== -->
+  <aside class="cart-sidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-cart" style="color:var(--accent);margin-right:8px;"></i>Votre Panier</h3>
+      <label for="cartToggleInput">&times;</label>
+    </div>
+    <div class="cart-body">
+      <!-- Exemple d'articles dans le panier -->
+      <div class="cart-item">
+        <div class="cart-item-img">🧱</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">Ciment Portland</div>
+          <div class="cart-item-detail">Qté: 2 × 18,900 DT</div>
+          <div class="cart-item-price">37,800 DT</div>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="cart-item-img">🎨</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">Peinture Acrylique</div>
+          <div class="cart-item-detail">Qté: 1 × 25,900 DT</div>
+          <div class="cart-item-price">25,900 DT</div>
+        </div>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total (DT)</span>
+        <span class="cart-total">63,700 DT</span>
+      </div>
+      <div class="cart-total-row">
+        <span>Total (EUR)</span>
+        <span class="cart-total">18,50 €</span>
+      </div>
+      <a href="contact.html" class="btn-cart-checkout"><i class="fas fa-check-circle" style="margin-right:8px;"></i>Commander</a>
+    </div>
+  </aside>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="main-footer">
+    <div class="auto-container">
+      <div class="widgets-section">
+        <div class="row clearfix">
+          <div class="column col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="footer-widget logo-widget">
+              <div class="widget-content">
+                <div class="logo">
+                  <a href="index.html"><img id="fLogo" src="img/logo-white.png" alt="" /></a>
+                </div>
+                <div class="text">
+                  Fondée en 2020, H&K Services est une Société tunisienne de construction spécialisée dans les projets résidentiels et commerciaux.
+                </div>
+                <ul class="social-links clearfix">
+                  <li><a href="https://www.facebook.com/H&K Services"><span class="fab fa-facebook-square"></span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="footer-widget info-widget">
+              <div class="widget-content">
+                <ul class="contact-info">
+                  <li class="address"><span class="icon flaticon-pin-1"></span><a href="https://maps.app.goo.gl/bmQuBY3xzbAUFrds8"></a></li>
+                  <li><span class="icon flaticon-call"></span><a href="tel:+330605682407">+330605682407</a></li>
+                  <li><span class="icon flaticon-email-2"></span><a href="mailto:contact@hketservices.com">contact@hketservices.com</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="footer-widget info-widget">
+              <div class="widget-content">
+                <ul class="list-unstyled footer-widget__links">
+                  <li><span class="icon flaticon-web-design"></span><a href="mentionslegales.html">Mentions légales</a></li>
+                  <li><span class="icon flaticon-web-design"></span><a href="politique.html">Politique de confidentialité</a></li>
+                  <li><span class="icon flaticon-web-design"></span><a href="politiquedecookies.html">Politique de cookies</a></li>
+                  <li><span class="icon flaticon-web-design"></span><a href="societe-batiment.html">Qui somme nous</a></li>
+                  <li><span class="icon flaticon-web-design"></span><a href="contact.html">Contactez-nous</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="auto-container">
+        <div class="inner clearfix">
+          <div class="copyright">&copy; Copyright 2026 H&K Services</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+<a href="contact.html" class="fixed-contact-note">
+  <i class="fas fa-file-invoice-dollar"></i>
+  <span>OBTENIR UN DEVIS</span>
+</a>
+
+<!-- CSS / JS librairies du thème (nécessaires pour le style du site) -->
+<script src="js/jquery.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/TweenMax.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery.fancybox.js"></script>
+<script src="js/owl.js"></script>
+<script src="js/mixitup.js"></script>
+<script src="js/appear.js"></script>
+<script src="js/wow.js"></script>
+<script src="js/jQuery.style.switcher.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/custom-script.js"></script>
+<script src="js/lang.js"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

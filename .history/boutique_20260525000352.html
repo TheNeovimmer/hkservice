@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="title" content="Boutique Matériaux - H&K Services" />
+  <meta name="description" content="Boutique en ligne de matériaux de construction H&K Services. Ciment, peinture, plomberie, outillage - Prix TND et EUR." />
+  <title>Boutique Matériaux | H&K Services</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com/" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;family=Teko:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+  <style>
+    /* ===== H&K Services Theme Overrides ===== */
+    :root {
+      --hk-gold: #d4af37;
+      --hk-gold-dark: #b8962f;
+      --hk-dark: #1a1a2e;
+      --hk-darker: #0f0f1a;
+      --hk-card-bg: #1e1e36;
+      --hk-text: #e0e0e0;
+      --hk-text-muted: #9a9ab0;
+      --hk-border: rgba(212, 175, 55, 0.2);
+      --hk-radius: 12px;
+      --hk-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: var(--hk-darker);
+      color: var(--hk-text);
+      overflow-x: hidden;
+    }
+
+    /* ===== Header (H&K style) ===== */
+    .main-header {
+      background: var(--hk-dark);
+      border-bottom: 2px solid var(--hk-border);
+    }
+    .header-upper .logo-box .logo img {
+      max-height: 60px;
+    }
+    .header-upper .nav-outer .main-menu .navigation > li > a {
+      color: var(--hk-text) !important;
+      font-weight: 500;
+      transition: var(--hk-transition);
+    }
+    .header-upper .nav-outer .main-menu .navigation > li > a:hover {
+      color: var(--hk-gold) !important;
+    }
+    .header-upper .other-links .call-us .link {
+      color: var(--hk-text);
+    }
+    .header-upper .other-links .call-us .link .number {
+      color: var(--hk-gold);
+    }
+
+    /* ===== Page Header ===== */
+    .page-header {
+      position: relative;
+      padding: 140px 0 60px;
+      background: linear-gradient(135deg, var(--hk-darker) 0%, var(--hk-dark) 100%);
+      text-align: center;
+      border-bottom: 1px solid var(--hk-border);
+    }
+    .page-header h1 {
+      font-family: 'Teko', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .page-header h1 span { color: var(--hk-gold); }
+    .page-header p {
+      color: var(--hk-text-muted);
+      font-size: 1.1rem;
+      margin-top: 8px;
+    }
+
+    /* ===== Section ===== */
+    .section-shop {
+      padding: 60px 0 80px;
+    }
+
+    /* ===== Filter ===== */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--hk-text-muted);
+      background: transparent;
+      border: 1px solid var(--hk-border);
+      transition: var(--hk-transition);
+      font-family: 'Rubik', sans-serif;
+    }
+    .filter-btn:hover {
+      border-color: var(--hk-gold);
+      color: var(--hk-gold);
+    }
+    .filter-btn.active {
+      background: var(--hk-gold);
+      border-color: var(--hk-gold);
+      color: var(--hk-dark);
+      font-weight: 600;
+    }
+
+    /* ===== Product Card ===== */
+    .product-card {
+      background: var(--hk-card-bg);
+      border-radius: var(--hk-radius);
+      border: 1px solid var(--hk-border);
+      overflow: hidden;
+      transition: var(--hk-transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--hk-gold);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
+    }
+    .product-card.hidden { display: none; }
+
+    .product-image {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+    .product-image .product-emoji {
+      font-size: 4.5rem;
+      transition: transform .4s ease;
+      line-height: 1;
+    }
+    .product-card:hover .product-emoji {
+      transform: scale(1.1) rotate(-3deg);
+    }
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-family: 'Rubik', sans-serif;
+    }
+    .badge-nouveau { background: #10b981; color: #fff; }
+    .badge-promotion { background: var(--hk-gold); color: var(--hk-dark); }
+    .badge-populaire { background: #6366f1; color: #fff; }
+
+    .product-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .product-category {
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--hk-gold);
+      margin-bottom: 4px;
+    }
+    .product-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .product-desc {
+      font-size: .85rem;
+      color: var(--hk-text-muted);
+      line-height: 1.5;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    /* Colors */
+    .product-colors {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .color-label {
+      font-size: .75rem;
+      color: var(--hk-text-muted);
+      margin-right: 4px;
+    }
+    .color-swatch {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: var(--hk-transition);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .color-swatch:hover { transform: scale(1.15); }
+    .color-swatch.active {
+      border-color: var(--hk-gold);
+      box-shadow: 0 0 0 2px var(--hk-card-bg), 0 0 0 4px var(--hk-gold);
+    }
+    .color-swatch::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%) scale(.8);
+      background: #333;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: .65rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--hk-transition);
+    }
+    .color-swatch:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+
+    /* Pricing */
+    .product-pricing {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .price-tnd {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .price-eur {
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--hk-text-muted);
+    }
+    .price-eur::before { content: '~ '; }
+
+    /* Add to cart */
+    .add-to-cart {
+      width: 100%;
+      padding: 12px;
+      background: var(--hk-gold);
+      color: var(--hk-dark);
+      font-weight: 600;
+      border-radius: 8px;
+      transition: var(--hk-transition);
+      font-size: .9rem;
+      border: none;
+      font-family: 'Rubik', sans-serif;
+      cursor: pointer;
+    }
+    .add-to-cart:hover {
+      background: var(--hk-gold-dark);
+      transform: translateY(-1px);
+    }
+    .add-to-cart:active { transform: scale(.97); }
+
+    /* ===== Cart Sidebar ===== */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--hk-transition);
+    }
+    .cart-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 10000;
+      width: 420px;
+      max-width: 100vw;
+      height: 100vh;
+      background: var(--hk-card-bg);
+      border-left: 1px solid var(--hk-border);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .4s cubic-bezier(.4,0,.2,1);
+    }
+    .cart-sidebar.open { transform: translateX(0); }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--hk-border);
+    }
+    .cart-header h3 {
+      font-family: 'Teko', sans-serif;
+      font-size: 1.6rem;
+      color: #fff;
+      margin: 0;
+    }
+    .cart-close {
+      width: 36px; height: 36px;
+      display: flex;
+      align-items: center; justify-content: center;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: var(--hk-text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--hk-transition);
+    }
+    .cart-close:hover { background: rgba(255,255,255,0.05); color: #fff; }
+
+    .cart-body { flex: 1; overflow-y: auto; padding: 16px 24px; }
+
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: var(--hk-text-muted);
+    }
+    .cart-empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .cart-empty p { font-weight: 600; color: var(--hk-text); }
+    .cart-empty small { font-size: .8rem; }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--hk-border);
+    }
+    .cart-item-img {
+      width: 60px; height: 60px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name {
+      font-weight: 600; font-size: .9rem;
+      color: #fff;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .cart-item-color {
+      font-size: .75rem; color: var(--hk-text-muted);
+      margin-bottom: 6px;
+    }
+    .cart-item-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cart-item-qty {
+      display: flex; align-items: center;
+      border: 1px solid var(--hk-border);
+      border-radius: 6px; overflow: hidden;
+    }
+    .qty-btn {
+      width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 600;
+      color: var(--hk-text); background: none; border: none; cursor: pointer;
+      transition: var(--hk-transition);
+    }
+    .qty-btn:hover { background: rgba(255,255,255,0.05); color: var(--hk-gold); }
+    .qty-value {
+      width: 32px; text-align: center;
+      font-size: .85rem; font-weight: 600; color: #fff;
+    }
+    .cart-item-total { font-weight: 700; font-size: .9rem; color: var(--hk-gold); }
+    .cart-item-remove {
+      color: var(--hk-text-muted); font-size: .8rem;
+      background: none; border: none; cursor: pointer;
+      transition: var(--hk-transition); padding: 4px 8px;
+    }
+    .cart-item-remove:hover { color: #ef4444; }
+
+    .cart-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--hk-border);
+      background: rgba(0,0,0,.2);
+    }
+    .cart-total-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 8px; font-size: .9rem; color: var(--hk-text-muted);
+    }
+    .cart-total-row:last-of-type { margin-bottom: 16px; }
+    .cart-total { font-weight: 700; font-size: 1.1rem; color: var(--hk-gold); }
+    .btn-cart-checkout {
+      width: 100%;
+      padding: 14px;
+      background: var(--hk-gold);
+      color: var(--hk-dark);
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--hk-transition);
+      font-family: 'Rubik', sans-serif;
+    }
+    .btn-cart-checkout:hover { background: var(--hk-gold-dark); }
+
+    /* ===== Cart Icon in Header ===== */
+    .cart-icon-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--hk-text) !important;
+      font-size: .95rem;
+      padding: 6px 14px;
+      border: 1px solid var(--hk-border);
+      border-radius: 8px;
+      transition: var(--hk-transition);
+      background: none;
+      cursor: pointer;
+      font-family: 'Rubik', sans-serif;
+    }
+    .cart-icon-btn:hover {
+      border-color: var(--hk-gold);
+      color: var(--hk-gold) !important;
+    }
+    .cart-icon-btn .cart-count-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 20px;
+      height: 20px;
+      background: var(--hk-gold);
+      color: var(--hk-dark);
+      font-size: .65rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .cart-icon-btn .cart-count-badge.show { transform: scale(1); }
+
+    /* ===== Toast ===== */
+    .toast-shop {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      z-index: 99999;
+      padding: 14px 28px;
+      border-radius: 8px;
+      background: var(--hk-card-bg);
+      border: 1px solid var(--hk-border);
+      color: #fff;
+      font-weight: 500;
+      font-size: .9rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,.4);
+      opacity: 0;
+      transition: all .4s cubic-bezier(.4,0,.2,1);
+      pointer-events: none;
+    }
+    .toast-shop.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast-shop.success { border-color: #10b981; }
+    .toast-shop.error { border-color: #ef4444; }
+
+    /* ===== Section Title ===== */
+    .sec-title-shop {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .sec-title-shop h2 {
+      font-family: 'Teko', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .sec-title-shop h2 span { color: var(--hk-gold); }
+    .sec-title-shop p {
+      color: var(--hk-text-muted);
+      font-size: 1.05rem;
+      margin-top: 4px;
+    }
+
+    /* ===== Products Grid ===== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* ===== Footer ===== */
+    .main-footer {
+      background: var(--hk-dark);
+      border-top: 2px solid var(--hk-border);
+      padding: 50px 0 0;
+    }
+    .main-footer .logo-widget .logo img { max-height: 60px; }
+    .main-footer .widget-content .text {
+      color: var(--hk-text-muted);
+      font-size: .9rem;
+      margin-top: 12px;
+    }
+    .main-footer .contact-info li {
+      color: var(--hk-text);
+      margin-bottom: 10px;
+    }
+    .main-footer .contact-info li a {
+      color: var(--hk-text-muted);
+      text-decoration: none;
+      transition: var(--hk-transition);
+    }
+    .main-footer .contact-info li a:hover { color: var(--hk-gold); }
+    .main-footer .contact-info li .icon { color: var(--hk-gold); margin-right: 8px; }
+    .main-footer .footer-widget__links li { margin-bottom: 8px; }
+    .main-footer .footer-widget__links li a {
+      color: var(--hk-text-muted);
+      text-decoration: none;
+      transition: var(--hk-transition);
+    }
+    .main-footer .footer-widget__links li a:hover { color: var(--hk-gold); }
+    .footer-bottom {
+      border-top: 1px solid var(--hk-border);
+      padding: 20px 0;
+      margin-top: 30px;
+    }
+    .footer-bottom .copyright {
+      color: var(--hk-text-muted);
+      font-size: .85rem;
+      text-align: center;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 2.4rem; }
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+      .cart-sidebar { width: 100%; }
+      .sec-title-shop h2 { font-size: 2rem; }
+      .filter-bar { gap: 8px; }
+      .filter-btn { font-size: .8rem; padding: 6px 14px; }
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ===== HEADER (H&K Services style) ===== -->
+  <!-- Main Header -->
+        <header class="main-header header-style-one">
+            <!-- Header Upper -->
+            <div class="header-upper">
+                <div class="inner-container clearfix">
+                    <!--Logo-->
+                    <div class="logo-box">
+                        <div class="logo">
+                            <a href="index-2.html" title="H&K Services"><img
+                                    src="img\logo png\Logo.png" id="thm-logo"
+                                    alt="Logo de l'entreprise de construction H&K Services"
+                                    title="H&K Services" /></a>
+                        </div>
+                    </div>
+                    <div class="nav-outer clearfix">
+                        <!--Mobile Navigation Toggler-->
+                        <div class="mobile-nav-toggler">
+                            <span class="icon flaticon-menu-2"></span><span class="txt">Menu</span>
+                        </div>
+
+                        <!-- Main Menu -->
+                        <nav class="main-menu navbar-expand-md navbar-light">
+                            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                <ul class="navigation clearfix">
+                                    <li>
+                                        <a href="index-2.html">Accueil</a>
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a href="services-construction.html">Nos Services</a>
+                                        <ul>
+                                            <li>
+                                                <a href="services-construction.html#etude">Construction de Maisons </a>
+                                            </li>
+                                            <li>
+                                                <a href="services-construction.html#Construction">Peinture et Décoration
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="services-construction.html#Gestion">Maintenance Générale
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="projets-construction-batiments.html">Projets</a>
+                                    </li>
+                                    <li>
+                                        <a href="catalogue-construction.html">E-Catalogue</a>
+                                    </li>
+                                    <li>
+                                        <a href="societe-batiment.html">Qui Sommes Nous</a>
+                                    </li>
+                                    <li>
+                                        <a href="boutique.html">boutique</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="contact.html">Contactez-nous</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div class="other-links clearfix">
+                        <!--Social Links-->
+                        <div class="link-box">
+                            <div class="call-us">
+                                <a class="link" href="tel:+330605682407">
+                                    <span class="icon"></span>
+                                    <span class="sub-text">Appelez à tout moment</span>
+                                    <span class="number">+330605682407</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Header Upper-->
+        </header>
+        <!-- End Main Header -->
+
+        <!-- Popup Window -->
+
+        <!--Mobile Menu-->
+        <div class="side-menu__block">
+            <div class="side-menu__block-overlay custom-cursor__overlay">
+                <div class="cursor"></div>
+                <div class="cursor-follower"></div>
+            </div>
+            <!-- /.side-menu__block-overlay -->
+            <div class="side-menu__block-inner">
+                <div class="side-menu__top justify-content-end">
+                    <a href="#" class="side-menu__toggler side-menu__close-btn"><img src="images/icons/close-1-1.html"
+                            alt="H&K Services" /></a>
+                </div>
+                <!-- /.side-menu__top -->
+
+                <nav class="mobile-nav__container">
+                    <!-- content is loading via js -->
+                </nav>
+                <div class="side-menu__sep"></div>
+         
+            </div>
+            <!-- /.side-menu__block-inner -->
+        </div>
+        <!-- /.side-menu__block -->
+
+        <!--Search Popup-->
+        <div class="search-popup">
+            <div class="search-popup__overlay custom-cursor__overlay">
+                <div class="cursor"></div>
+                <div class="cursor-follower"></div>
+            </div>
+            <!-- /.search-popup__overlay -->
+            <div class="search-popup__inner">
+                <form action="#" class="search-popup__form">
+                    <input type="text" name="search" placeholder="Entrez ici pour rechercher...." />
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <!-- /.search-popup__inner -->
+        </div>
+        <!-- /.search-popup -->
+
+        <!-- Banner Section -->
+        <section class="banner-section banner-one">
+            <div class="left-based-text">
+                <div class="base-inner">
+                    <!-- <div class="hours">
+                        <ul class="clearfix">
+                            <li><span>mon - fri</span></li>
+                            <li><span>9am - 7pm</span></li>
+                        </ul>
+                    </div> -->
+                
+                </div>
+            </div>
+
+            
+            </div>
+            <button class="cart-icon-btn" id="cartToggle">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Panier</span>
+              <span class="cart-count-badge" id="cartCount">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Notre <span>Boutique</span></h1>
+      <p>Matériaux de construction de qualité — Prix en TND et EUR</p>
+    </div>
+  </section>
+
+  <!-- ===== SHOP SECTION ===== -->
+  <section class="section-shop">
+    <div class="container">
+      <div class="sec-title-shop">
+        <h2>Nos <span>Produits</span></h2>
+        <p>Sélectionnez vos matériaux et ajoutez-les au panier</p>
+      </div>
+
+      <!-- Filter -->
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="*">Tous</button>
+        <button class="filter-btn" data-filter="maçonnerie">Maçonnerie</button>
+        <button class="filter-btn" data-filter="revetement">Revêtement</button>
+        <button class="filter-btn" data-filter="peinture">Peinture</button>
+        <button class="filter-btn" data-filter="plomberie">Plomberie</button>
+        <button class="filter-btn" data-filter="electricite">Électricité</button>
+        <button class="filter-btn" data-filter="outillage">Outillage</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== CART SIDEBAR ===== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-cart me-2" style="color:var(--hk-gold);"></i>Votre Panier</h3>
+      <button class="cart-close" id="cartClose">&times;</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <p>Votre panier est vide</p>
+        <small>Ajoutez des produits depuis la boutique</small>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-total-row">
+        <span>Total (TND)</span>
+        <span class="cart-total" id="cartTotalTND">0,000 TND</span>
+      </div>
+      <div class="cart-total-row">
+        <span>Total (EUR)</span>
+        <span class="cart-total" id="cartTotalEUR">0,00 €</span>
+      </div>
+      <button class="btn-cart-checkout" id="checkoutBtn">
+        <i class="fas fa-check-circle me-2"></i>Commander
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast-shop" id="toast"></div>
+
+  <!-- Main Footer -->
+    <footer class="main-footer">
+      <div class="auto-container">
+        <!--Widgets Section-->
+        <div class="widgets-section">
+          <div class="row clearfix">
+            <!--Column (logo-widget spanning two columns)-->
+            <div class="column col-xl-6 col-lg-6 col-md-12 col-sm-12">
+              <div class="footer-widget logo-widget">
+                <div class="widget-content">
+                  <div class="logo">
+                    <a href="index-2.html"><img id="fLogo" src="img/logo png/Logo.png" alt="" /></a>
+                  </div>
+                  <div class="text">
+                    Fondée en 2018, H&K Services est une Société franco-tunisienne de construction
+                    spécialisée dans les projets résidentiels et commerciaux.
+
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+
+
+            <!--Column (Contact)-->
+            <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-widget info-widget">
+                <div class="widget-content">
+                  <ul class="contact-info">
+                    <li class="address">
+                      <span class="icon flaticon-pin-1"></span> <a href="https://www.google.com/maps/place/La+Teste-de-Buch,+France">
+                        La Teste-de-Buch, France</a>
+
+                    </li>
+                    <li>
+                      <span class="icon flaticon-call"></span><a href="tel:+330605682407">+330605682407</a>
+                    </li>
+                    <li>
+                      <span class="icon flaticon-email-2"></span><a
+                        href="mailto:contact@H&K Services.com">contact@H&K Services.com</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+
+            <!--Column (Contact)-->
+            <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-widget info-widget">
+                <div class="widget-content">
+                  <ul class="list-unstyled footer-widget__links">
+                    <li>
+                      <span class="icon flaticon-web-design"></span>
+                      <a href="mentionslegales.html">Mentions légales</a>
+                    </li>
+
+                    <li>
+                      <span class="icon flaticon-web-design"></span>
+                      <a href="politique.html">Politique de confidentialité</a>
+                    </li>
+
+                    <li>
+                      <span class="icon flaticon-web-design"></span>
+                      <a href="politiquedecookies.html">Politique de cookies</a>
+                    </li>
+
+                    <li>
+                      <span class="icon flaticon-web-design"></span>
+                      <a href="info.html">Qui somme nous</a>
+                    </li>
+
+                    <li>
+                      <span class="icon flaticon-web-design"></span>
+                      <a href="contact.html">Contactez-nous</a>
+                    </li>
+
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!--Column (Newsletter)-->
+            <!-- <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                      <div class="footer-widget newsletter-widget">
+                          <div class="widget-content">
+                              <h6>Newsletter</h6>
+                              <div class="newsletter-form">
+                                  <form method="post">
+                                      <div class="form-group clearfix">
+                                          <input type="email" name="email" value="" placeholder="Email Address"
+                                              required="" />
+                                          <button type="submit" class="theme-btn">
+                                              <span class="fa fa-envelope"></span>
+                                          </button>
+                                      </div>
+                                  </form>
+                              </div>
+                              <div class="text">
+                                  Inscrivez-vous pour recevoir nos dernières nouvelles.
+                              </div>
+                          </div>
+                      </div>
+                  </div> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="auto-container">
+          <div class="inner clearfix">
+            <div class="copyright">
+              &copy; Copyright 2025 By H&K Services
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+ <!--End pagewrapper-->
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- Fixed Contact Note -->
+    <a href="contact.html" class="fixed-contact-note">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <span>OBTENIR UN DEVIS</span>
+    </a>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/TweenMax.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.fancybox.js"></script>
+    <script src="js/owl.js"></script>
+    <script src="js/mixitup.js"></script>
+    <script src="js/appear.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/jQuery.style.switcher.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jarallax.min.js"></script>
+    <script src="js/custom-script.js"></script>
+
+    <script src="js/lang.js"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="js/color-switcher.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                items: 1, // Nombre d'images à afficher
+                loop: true, // Boucle infinie
+                margin: 10, // Marge entre les images
+                nav: true, // Utiliser les flèches personnalisées
+                navText: [
+                    "<i class='fa-solid fa-circle-chevron-left' style='color: #d4af37; font-size: 35px;'></i>",
+                    "<i class='fa-solid fa-circle-chevron-right' style='color: #d4af37; font-size: 35px;'></i>",
+                ], // Texte des flèches
+                autoplay: true, // Défilement automatique
+                autoplayTimeout: 5000, // Temps entre les défilements en ms
+                autoplayHoverPause: true, // Pause sur survol
+            });
+        });
+    </script>
+
+    <script>
+        // script.js
+
+        window.onload = function () {
+            const popup = document.getElementById("popup");
+            const popupContent = document.querySelector(".popup-content");
+
+            popup.style.display = "flex";
+
+            setTimeout(() => {
+                popup.classList.add("show");
+                popupContent.classList.add("show");
+            }, 10);
+        };
+
+        // Fonction pour fermer le popup et rediriger vers la section "événement"
+        function closePopupAndRedirect() {
+            const popup = document.getElementById("popup");
+            const popupContent = document.querySelector(".popup-content");
+
+            popup.classList.remove("show");
+            popupContent.classList.remove("show");
+
+            setTimeout(() => {
+                popup.style.display = "none";
+                // Rediriger vers la section "événement"
+                window.location.href = "#evenement";
+            }, 500);
+        }
+
+        function closePopup() {
+            const popup = document.getElementById("popup");
+            const popupContent = document.querySelector(".popup-content");
+
+            popup.classList.remove("show");
+            popupContent.classList.remove("show");
+
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 500);
+        }
+
+        // Attacher l'événement au bouton pour fermer le popup et rediriger
+        document.querySelector(".close-btn").onclick = closePopup;
+
+        // Optionnel : Fermer le popup si l'utilisateur clique en dehors
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("popup")) {
+                closePopupAndRedirect();
+            }
+        };
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+
+</html>
