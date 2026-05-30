@@ -226,7 +226,7 @@ $categories = $db->query("SELECT DISTINCT category FROM projects WHERE active=1 
         <div class="filter-tabs">
             <button class="filter-tab active" data-filter="all">Tous</button>
             <?php foreach ($categories as $cat): ?>
-            <button class="filter-tab" data-filter="<?= sanitize($cat) ?>"><?= ucfirst(sanitize($cat)) ?></button>
+            <button class="filter-tab" data-filter=".<?= sanitize($cat) ?>"><?= ucfirst(sanitize($cat)) ?></button>
             <?php endforeach; ?>
         </div>
 
@@ -240,7 +240,7 @@ $categories = $db->query("SELECT DISTINCT category FROM projects WHERE active=1 
                     $detailLink = '/projets/' . urlencode($slug);
                     $catClass = $p['category'] ?: 'non-classe';
                 ?>
-                <div class="col-lg-4 col-md-6 col-sm-12 mix <?= sanitize($catClass) ?>" style="display:inline-block;padding:12px;">
+                <div class="col-lg-4 col-md-6 col-sm-12 mix <?= sanitize($catClass) ?>" style="padding:12px;">
                     <div class="project-card-enhanced">
                         <a href="<?= $detailLink ?>" class="card-image d-block">
                             <img src="<?= sanitize($cover) ?>" alt="<?= sanitize($p['title']) ?>" loading="lazy">
@@ -291,7 +291,6 @@ $categories = $db->query("SELECT DISTINCT category FROM projects WHERE active=1 
 </div>
 
 <?php include 'includes/site-scripts.php'; ?>
-<script src="js/mixitup.js"></script>
 <script>
 $(document).ready(function () {
     var mixer = mixitup('.filter-list', {
