@@ -293,13 +293,17 @@ $categories = $db->query("SELECT DISTINCT category FROM projects WHERE active=1 
 <?php include 'includes/site-scripts.php'; ?>
 <script>
 $(document).ready(function () {
-    var mixer = mixitup('.filter-list', {
-        animation: { duration: 400, effects: 'fade scale(0.9)' }
-    });
-
     $('.filter-tab').on('click', function () {
+        var filterVal = $(this).data('filter');
         $('.filter-tab').removeClass('active');
         $(this).addClass('active');
+
+        if (filterVal === 'all') {
+            $('.filter-list > .mix').fadeIn(400);
+        } else {
+            $('.filter-list > .mix').fadeOut(300);
+            $('.filter-list > .mix' + filterVal).delay(100).fadeIn(400);
+        }
     });
 });
 </script>
