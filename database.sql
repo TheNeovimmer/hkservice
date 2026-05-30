@@ -5,8 +5,8 @@
 -- Import via phpMyAdmin or: mysql -u root -p < database.sql
 -- ============================================
 
-CREATE DATABASE IF NOT EXISTS `abir` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci;
-USE `abir`;
+CREATE DATABASE IF NOT EXISTS `hkservice` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci;
+USE `hkservice`;
 
 -- --------------------------------------------------------
 -- Table: admin_users
@@ -62,7 +62,6 @@ CREATE TABLE `products` (
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
-  `price_tnd` decimal(10,3) NOT NULL DEFAULT 0.000,
   `price_eur` decimal(10,2) NOT NULL DEFAULT 0.00,
   `image` varchar(255) DEFAULT NULL,
   `badge_type` enum('none','nouveau','promotion','populaire') DEFAULT 'none',
@@ -78,40 +77,40 @@ CREATE TABLE `products` (
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
-INSERT INTO `products` (`id`, `category_id`, `name`, `slug`, `description`, `price_tnd`, `price_eur`, `image`, `badge_type`, `colors`, `featured`, `active`, `order_index`) VALUES
-(1, 1, 'Ciment Portland', 'ciment-portland', 'Sac de 50 kg – Ciment résistant pour fondations et structures.', 18.900, 5.50, NULL, 'populaire', '[{\"hex\":\"#8a8a8a\",\"name\":\"Gris\"},{\"hex\":\"#f0f0f0\",\"name\":\"Blanc\"}]', 1, 1, 1),
-(2, 1, 'Brique Pleine', 'brique-pleine', 'Brique rouge 20×10×5 cm – Haute résistance compression.', 4.900, 1.40, NULL, 'none', '[{\"hex\":\"#b91c1c\",\"name\":\"Rouge\"}]', 0, 1, 2),
-(3, 1, 'Parpaing Creux', 'parpaing-creux', 'Bloc creux 20×20×40 cm – Pour murs porteurs & cloisons.', 3.900, 1.10, NULL, 'none', '[{\"hex\":\"#a8a8a8\",\"name\":\"Gris\"}]', 0, 1, 3),
-(4, 1, 'Fer à Béton', 'fer-a-beton', 'Barre d\'acier torsadée ø12 mm – Longueur 6 m.', 12.500, 3.60, NULL, 'populaire', '[{\"hex\":\"#6b7280\",\"name\":\"Acier\"}]', 0, 1, 4),
-(5, 1, 'Sable Fin Lavé', 'sable-fin-lave', 'Sac de 40 kg – Sable pour mortier et enduits.', 5.400, 1.60, NULL, 'none', '[{\"hex\":\"#d4a373\",\"name\":\"Beige\"}]', 0, 1, 5),
-(6, 1, 'Gravier Concassé', 'gravier-concasse', 'Sac de 35 kg – Granulométrie 8/16 mm pour béton.', 6.200, 1.80, NULL, 'none', '[{\"hex\":\"#8a8a8a\",\"name\":\"Gris\"}]', 0, 1, 6),
-(7, 1, 'Chaux Hydraulique', 'chaux-hydraulique', 'Sac de 25 kg – Chaux NHL 3.5 pour mortier de chaux.', 15.900, 4.60, NULL, 'none', '[{\"hex\":\"#f5f5f0\",\"name\":\"Blanc cassé\"}]', 0, 1, 7),
-(8, 2, 'Carreaux Céramique', 'carreaux-ceramique', 'Carreaux 60×60 cm – Finition brillante, pose facile.', 32.900, 9.50, NULL, 'nouveau', '[{\"hex\":\"#f5f5f5\",\"name\":\"Blanc\"},{\"hex\":\"#2d2d2d\",\"name\":\"Noir\"},{\"hex\":\"#e8d5b7\",\"name\":\"Beige\"},{\"hex\":\"#b0b0b0\",\"name\":\"Gris\"}]', 1, 1, 1),
-(9, 2, 'Marbre Luxe', 'marbre-luxe', 'Dalle marbre poli 80×80 cm – Élégance et durabilité.', 59.900, 17.40, NULL, 'nouveau', '[{\"hex\":\"#fafafa\",\"name\":\"Blanc\"},{\"hex\":\"#1f1f1f\",\"name\":\"Noir\"},{\"hex\":\"#d4c5a9\",\"name\":\"Beige\"}]', 0, 1, 2),
-(10, 2, 'Parquet Contrecollé', 'parquet-contrecollé', 'Lame 120×14 cm – Chêne verni, pose clipsable.', 45.900, 13.30, NULL, 'nouveau', '[{\"hex\":\"#c4a882\",\"name\":\"Chêne clair\"},{\"hex\":\"#8b6914\",\"name\":\"Chêne doré\"},{\"hex\":\"#5c4033\",\"name\":\"Chêne foncé\"}]', 0, 1, 3),
-(11, 2, 'Carreau Ciment', 'carreau-ciment', 'Carreau 20×20 cm – Motif hexagonal, aspect ciré.', 28.900, 8.40, NULL, 'none', '[{\"hex\":\"#f0ebe3\",\"name\":\"Naturel\"},{\"hex\":\"#1a1a1a\",\"name\":\"Noir\"},{\"hex\":\"#c04040\",\"name\":\"Rouge\"}]', 0, 1, 4),
-(12, 2, 'Mosaïque Verre', 'mosaique-verre', 'Grille 30×30 cm – Mosaïque émaillée pour salle de bain.', 38.900, 11.30, NULL, 'nouveau', '[{\"hex\":\"#1e93d1\",\"name\":\"Bleu\"},{\"hex\":\"#2d8a4e\",\"name\":\"Vert\"},{\"hex\":\"#9ca3af\",\"name\":\"Gris\"},{\"hex\":\"#d4a017\",\"name\":\"Or\"}]', 0, 1, 5),
-(13, 2, 'Pierre Naturelle', 'pierre-naturelle', 'Dalle 40×60 cm – Travertin brut, ép. 2 cm.', 52.900, 15.30, NULL, 'none', '[{\"hex\":\"#d4c5a9\",\"name\":\"Travertin\"},{\"hex\":\"#9ca3af\",\"name\":\"Gris\"}]', 0, 1, 6),
-(14, 3, 'Peinture Acrylique', 'peinture-acrylique', 'Pot de 5 L – Mate et lessivable, haute couvrance.', 25.900, 7.50, NULL, 'none', '[{\"hex\":\"#ffffff\",\"name\":\"Blanc\"},{\"hex\":\"#2563eb\",\"name\":\"Bleu\"},{\"hex\":\"#16a34a\",\"name\":\"Vert\"},{\"hex\":\"#eab308\",\"name\":\"Jaune\"},{\"hex\":\"#dc2626\",\"name\":\"Rouge\"}]', 1, 1, 1),
-(15, 3, 'Enduit de Façade', 'enduit-de-facade', 'Seau 25 kg – Enduit projeté, finition grain fin.', 34.900, 10.10, NULL, 'promotion', '[{\"hex\":\"#f8f9fa\",\"name\":\"Blanc\"},{\"hex\":\"#d4c5a9\",\"name\":\"Beige\"},{\"hex\":\"#adb5bd\",\"name\":\"Gris\"}]', 0, 1, 2),
-(16, 3, 'Peinture Extérieure', 'peinture-exterieure', 'Pot 10 L – Micro-poreuse, anti-UV, résiste aux intempéries.', 42.900, 12.40, NULL, 'none', '[{\"hex\":\"#f8f9fa\",\"name\":\"Blanc\"},{\"hex\":\"#adb5bd\",\"name\":\"Gris\"},{\"hex\":\"#d4c5a9\",\"name\":\"Beige\"},{\"hex\":\"#3b82f6\",\"name\":\"Bleu\"}]', 0, 1, 3),
-(17, 3, 'Vernis Bois Mat', 'vernis-bois-mat', 'Pot 2.5 L – Vernis incolore, protection intérieur/extérieur.', 22.900, 6.60, NULL, 'none', '[{\"hex\":\"#e8e0d0\",\"name\":\"Naturel\"},{\"hex\":\"#d4c5a9\",\"name\":\"Chêne\"}]', 0, 1, 4),
-(18, 3, 'Sous-Couche Murale', 'sous-couche-murale', 'Pot 5 L – Fixateur et régulateur d\'absorption.', 18.900, 5.50, NULL, 'none', '[{\"hex\":\"#f5f5f5\",\"name\":\"Blanc\"}]', 0, 1, 5),
-(19, 3, 'Kit Pinceaux Pro', 'kit-pinceaux-pro', 'Lot de 6 pinceaux – Tailles 1 à 4 pouces, soie synthétique.', 14.900, 4.30, NULL, 'promotion', '[{\"hex\":\"#1f1f1f\",\"name\":\"Noir\"},{\"hex\":\"#1e3a5f\",\"name\":\"Bleu\"}]', 0, 1, 6),
-(20, 4, 'Tuyau PVC', 'tuyau-pvc', 'Tube PVC pression – Diamètre 32 mm, longueur 3 m.', 8.900, 2.60, NULL, 'none', '[{\"hex\":\"#9ca3af\",\"name\":\"Gris\"},{\"hex\":\"#f3f4f6\",\"name\":\"Blanc\"}]', 0, 1, 1),
-(21, 4, 'Raccord Cuivre', 'raccord-cuivre', 'Coude cuivre 90° – Diamètre 22 mm, soudable.', 3.200, 0.90, NULL, 'none', '[{\"hex\":\"#b87333\",\"name\":\"Cuivre\"}]', 0, 1, 2),
-(22, 4, 'Robinet Mitigeur', 'robinet-mitigeur', 'Mitigeur chromé lavabo – Cartouche céramique.', 26.900, 7.80, NULL, 'none', '[{\"hex\":\"#c0c0c0\",\"name\":\"Chrome\"},{\"hex\":\"#1a1a1a\",\"name\":\"Noir\"},{\"hex\":\"#c9a84c\",\"name\":\"Or\"}]', 1, 1, 3),
-(23, 4, 'Flexible Douche', 'flexible-douche', 'Flexible inox tressé 1.5 m – Anti-torsion, raccord universel.', 8.900, 2.60, NULL, 'none', '[{\"hex\":\"#d1d5db\",\"name\":\"Inox\"}]', 0, 1, 4),
-(24, 4, 'Joint Sanitaire', 'joint-sanitaire', 'Tube silicone neutre 280 ml – Anti-moisissures.', 6.900, 2.00, NULL, 'none', '[{\"hex\":\"#ffffff\",\"name\":\"Blanc\"},{\"hex\":\"#e0e0e0\",\"name\":\"Gris\"},{\"hex\":\"#9ca3af\",\"name\":\"Transparent\"}]', 0, 1, 5),
-(25, 4, 'Chauffe-Eau 50L', 'chauffe-eau-50l', 'Ballon électrique 50 L – Classe A, thermostat réglable.', 189.000, 54.80, NULL, 'populaire', '[{\"hex\":\"#f0f0f0\",\"name\":\"Blanc\"}]', 0, 1, 6),
-(26, 4, 'WC Suspendu', 'wc-suspendu', 'Pack WC suspendu avec abattant – Cuvette vitrifiée.', 149.000, 43.20, NULL, 'none', '[{\"hex\":\"#f5f5f0\",\"name\":\"Blanc\"}]', 0, 1, 7),
-(27, 5, 'Câble Électrique', 'cable-electrique', 'Rouleau 50 m – Section 2.5 mm², cuivre, gaine PVC.', 22.900, 6.60, NULL, 'none', '[{\"hex\":\"#9ca3af\",\"name\":\"Gris\"},{\"hex\":\"#2d2d2d\",\"name\":\"Noir\"}]', 0, 1, 1),
-(28, 5, 'Interrupteur', 'interrupteur', 'Interrupteur simple allumage – Encastrable, blanc.', 5.900, 1.70, NULL, 'none', '[{\"hex\":\"#ffffff\",\"name\":\"Blanc\"},{\"hex\":\"#1a1a1a\",\"name\":\"Noir\"}]', 0, 1, 2),
-(29, 5, 'Disjoncteur 16A', 'disjoncteur-16a', 'Disjoncteur divisionnaire 16A – Courbe C, modulaire.', 9.900, 2.90, NULL, 'none', '[{\"hex\":\"#f0f0f0\",\"name\":\"Blanc\"}]', 0, 1, 3),
-(30, 6, 'Perceuse Sans Fil', 'perceuse-sans-fil', 'Perceuse-visseuse 18V – Batterie Li-Ion 4Ah.', 119.000, 34.50, NULL, 'promotion', '[{\"hex\":\"#b91c1c\",\"name\":\"Rouge\"},{\"hex\":\"#1f1f1f\",\"name\":\"Noir\"}]', 1, 1, 1),
-(31, 6, 'Niveau à Bulle', 'niveau-a-bulle', 'Niveau magnétique 120 cm – Triple lentille, aluminium.', 15.900, 4.60, NULL, 'none', '[{\"hex\":\"#fbbf24\",\"name\":\"Jaune\"}]', 0, 1, 2),
-(32, 6, 'Meuleuse Angulaire', 'meuleuse-angulaire', 'Meuleuse 125 mm – 850 W, protection surcharge.', 89.900, 26.10, NULL, 'none', '[{\"hex\":\"#1e40af\",\"name\":\"Bleu\"},{\"hex\":\"#1f1f1f\",\"name\":\"Noir\"}]', 0, 1, 3),
-(33, 6, 'Échafaudage Roulant', 'echafaudage-roulant', 'Tour roulante alu 4 m – Plateforme 1.5×0.7 m.', 249.000, 72.20, NULL, 'none', '[{\"hex\":\"#a0a0a0\",\"name\":\"Aluminium\"}]', 0, 1, 4);
+INSERT INTO `products` (`id`, `category_id`, `name`, `slug`, `description`, `price_eur`, `image`, `badge_type`, `colors`, `featured`, `active`, `order_index`) VALUES
+(1, 1, 'Ciment Portland', 'ciment-portland', 'Sac de 50 kg – Ciment résistant pour fondations et structures.', 5.50, NULL, 'populaire', '[{\"hex\":\"#8a8a8a\",\"name\":\"Gris\"},{\"hex\":\"#f0f0f0\",\"name\":\"Blanc\"}]', 1, 1, 1),
+(2, 1, 'Brique Pleine', 'brique-pleine', 'Brique rouge 20×10×5 cm – Haute résistance compression.', 1.40, NULL, 'none', '[{\"hex\":\"#b91c1c\",\"name\":\"Rouge\"}]', 0, 1, 2),
+(3, 1, 'Parpaing Creux', 'parpaing-creux', 'Bloc creux 20×20×40 cm – Pour murs porteurs & cloisons.', 1.10, NULL, 'none', '[{\"hex\":\"#a8a8a8\",\"name\":\"Gris\"}]', 0, 1, 3),
+(4, 1, 'Fer à Béton', 'fer-a-beton', 'Barre d\'acier torsadée ø12 mm – Longueur 6 m.', 3.60, NULL, 'populaire', '[{\"hex\":\"#6b7280\",\"name\":\"Acier\"}]', 0, 1, 4),
+(5, 1, 'Sable Fin Lavé', 'sable-fin-lave', 'Sac de 40 kg – Sable pour mortier et enduits.', 1.60, NULL, 'none', '[{\"hex\":\"#d4a373\",\"name\":\"Beige\"}]', 0, 1, 5),
+(6, 1, 'Gravier Concassé', 'gravier-concasse', 'Sac de 35 kg – Granulométrie 8/16 mm pour béton.', 1.80, NULL, 'none', '[{\"hex\":\"#8a8a8a\",\"name\":\"Gris\"}]', 0, 1, 6),
+(7, 1, 'Chaux Hydraulique', 'chaux-hydraulique', 'Sac de 25 kg – Chaux NHL 3.5 pour mortier de chaux.', 4.60, NULL, 'none', '[{\"hex\":\"#f5f5f0\",\"name\":\"Blanc cassé\"}]', 0, 1, 7),
+(8, 2, 'Carreaux Céramique', 'carreaux-ceramique', 'Carreaux 60×60 cm – Finition brillante, pose facile.', 9.50, NULL, 'nouveau', '[{\"hex\":\"#f5f5f5\",\"name\":\"Blanc\"},{\"hex\":\"#2d2d2d\",\"name\":\"Noir\"},{\"hex\":\"#e8d5b7\",\"name\":\"Beige\"},{\"hex\":\"#b0b0b0\",\"name\":\"Gris\"}]', 1, 1, 1),
+(9, 2, 'Marbre Luxe', 'marbre-luxe', 'Dalle marbre poli 80×80 cm – Élégance et durabilité.', 17.40, NULL, 'nouveau', '[{\"hex\":\"#fafafa\",\"name\":\"Blanc\"},{\"hex\":\"#1f1f1f\",\"name\":\"Noir\"},{\"hex\":\"#d4c5a9\",\"name\":\"Beige\"}]', 0, 1, 2),
+(10, 2, 'Parquet Contrecollé', 'parquet-contrecollé', 'Lame 120×14 cm – Chêne verni, pose clipsable.', 13.30, NULL, 'nouveau', '[{\"hex\":\"#c4a882\",\"name\":\"Chêne clair\"},{\"hex\":\"#8b6914\",\"name\":\"Chêne doré\"},{\"hex\":\"#5c4033\",\"name\":\"Chêne foncé\"}]', 0, 1, 3),
+(11, 2, 'Carreau Ciment', 'carreau-ciment', 'Carreau 20×20 cm – Motif hexagonal, aspect ciré.', 8.40, NULL, 'none', '[{\"hex\":\"#f0ebe3\",\"name\":\"Naturel\"},{\"hex\":\"#1a1a1a\",\"name\":\"Noir\"},{\"hex\":\"#c04040\",\"name\":\"Rouge\"}]', 0, 1, 4),
+(12, 2, 'Mosaïque Verre', 'mosaique-verre', 'Grille 30×30 cm – Mosaïque émaillée pour salle de bain.', 11.30, NULL, 'nouveau', '[{\"hex\":\"#1e93d1\",\"name\":\"Bleu\"},{\"hex\":\"#2d8a4e\",\"name\":\"Vert\"},{\"hex\":\"#9ca3af\",\"name\":\"Gris\"},{\"hex\":\"#d4a017\",\"name\":\"Or\"}]', 0, 1, 5),
+(13, 2, 'Pierre Naturelle', 'pierre-naturelle', 'Dalle 40×60 cm – Travertin brut, ép. 2 cm.', 15.30, NULL, 'none', '[{\"hex\":\"#d4c5a9\",\"name\":\"Travertin\"},{\"hex\":\"#9ca3af\",\"name\":\"Gris\"}]', 0, 1, 6),
+(14, 3, 'Peinture Acrylique', 'peinture-acrylique', 'Pot de 5 L – Mate et lessivable, haute couvrance.', 7.50, NULL, 'none', '[{\"hex\":\"#ffffff\",\"name\":\"Blanc\"},{\"hex\":\"#2563eb\",\"name\":\"Bleu\"},{\"hex\":\"#16a34a\",\"name\":\"Vert\"},{\"hex\":\"#eab308\",\"name\":\"Jaune\"},{\"hex\":\"#dc2626\",\"name\":\"Rouge\"}]', 1, 1, 1),
+(15, 3, 'Enduit de Façade', 'enduit-de-facade', 'Seau 25 kg – Enduit projeté, finition grain fin.', 10.10, NULL, 'promotion', '[{\"hex\":\"#f8f9fa\",\"name\":\"Blanc\"},{\"hex\":\"#d4c5a9\",\"name\":\"Beige\"},{\"hex\":\"#adb5bd\",\"name\":\"Gris\"}]', 0, 1, 2),
+(16, 3, 'Peinture Extérieure', 'peinture-exterieure', 'Pot 10 L – Micro-poreuse, anti-UV, résiste aux intempéries.', 12.40, NULL, 'none', '[{\"hex\":\"#f8f9fa\",\"name\":\"Blanc\"},{\"hex\":\"#adb5bd\",\"name\":\"Gris\"},{\"hex\":\"#d4c5a9\",\"name\":\"Beige\"},{\"hex\":\"#3b82f6\",\"name\":\"Bleu\"}]', 0, 1, 3),
+(17, 3, 'Vernis Bois Mat', 'vernis-bois-mat', 'Pot 2.5 L – Vernis incolore, protection intérieur/extérieur.', 6.60, NULL, 'none', '[{\"hex\":\"#e8e0d0\",\"name\":\"Naturel\"},{\"hex\":\"#d4c5a9\",\"name\":\"Chêne\"}]', 0, 1, 4),
+(18, 3, 'Sous-Couche Murale', 'sous-couche-murale', 'Pot 5 L – Fixateur et régulateur d\'absorption.', 5.50, NULL, 'none', '[{\"hex\":\"#f5f5f5\",\"name\":\"Blanc\"}]', 0, 1, 5),
+(19, 3, 'Kit Pinceaux Pro', 'kit-pinceaux-pro', 'Lot de 6 pinceaux – Tailles 1 à 4 pouces, soie synthétique.', 4.30, NULL, 'promotion', '[{\"hex\":\"#1f1f1f\",\"name\":\"Noir\"},{\"hex\":\"#1e3a5f\",\"name\":\"Bleu\"}]', 0, 1, 6),
+(20, 4, 'Tuyau PVC', 'tuyau-pvc', 'Tube PVC pression – Diamètre 32 mm, longueur 3 m.', 2.60, NULL, 'none', '[{\"hex\":\"#9ca3af\",\"name\":\"Gris\"},{\"hex\":\"#f3f4f6\",\"name\":\"Blanc\"}]', 0, 1, 1),
+(21, 4, 'Raccord Cuivre', 'raccord-cuivre', 'Coude cuivre 90° – Diamètre 22 mm, soudable.', 0.90, NULL, 'none', '[{\"hex\":\"#b87333\",\"name\":\"Cuivre\"}]', 0, 1, 2),
+(22, 4, 'Robinet Mitigeur', 'robinet-mitigeur', 'Mitigeur chromé lavabo – Cartouche céramique.', 7.80, NULL, 'none', '[{\"hex\":\"#c0c0c0\",\"name\":\"Chrome\"},{\"hex\":\"#1a1a1a\",\"name\":\"Noir\"},{\"hex\":\"#c9a84c\",\"name\":\"Or\"}]', 1, 1, 3),
+(23, 4, 'Flexible Douche', 'flexible-douche', 'Flexible inox tressé 1.5 m – Anti-torsion, raccord universel.', 2.60, NULL, 'none', '[{\"hex\":\"#d1d5db\",\"name\":\"Inox\"}]', 0, 1, 4),
+(24, 4, 'Joint Sanitaire', 'joint-sanitaire', 'Tube silicone neutre 280 ml – Anti-moisissures.', 2.00, NULL, 'none', '[{\"hex\":\"#ffffff\",\"name\":\"Blanc\"},{\"hex\":\"#e0e0e0\",\"name\":\"Gris\"},{\"hex\":\"#9ca3af\",\"name\":\"Transparent\"}]', 0, 1, 5),
+(25, 4, 'Chauffe-Eau 50L', 'chauffe-eau-50l', 'Ballon électrique 50 L – Classe A, thermostat réglable.', 54.80, NULL, 'populaire', '[{\"hex\":\"#f0f0f0\",\"name\":\"Blanc\"}]', 0, 1, 6),
+(26, 4, 'WC Suspendu', 'wc-suspendu', 'Pack WC suspendu avec abattant – Cuvette vitrifiée.', 43.20, NULL, 'none', '[{\"hex\":\"#f5f5f0\",\"name\":\"Blanc\"}]', 0, 1, 7),
+(27, 5, 'Câble Électrique', 'cable-electrique', 'Rouleau 50 m – Section 2.5 mm², cuivre, gaine PVC.', 6.60, NULL, 'none', '[{\"hex\":\"#9ca3af\",\"name\":\"Gris\"},{\"hex\":\"#2d2d2d\",\"name\":\"Noir\"}]', 0, 1, 1),
+(28, 5, 'Interrupteur', 'interrupteur', 'Interrupteur simple allumage – Encastrable, blanc.', 1.70, NULL, 'none', '[{\"hex\":\"#ffffff\",\"name\":\"Blanc\"},{\"hex\":\"#1a1a1a\",\"name\":\"Noir\"}]', 0, 1, 2),
+(29, 5, 'Disjoncteur 16A', 'disjoncteur-16a', 'Disjoncteur divisionnaire 16A – Courbe C, modulaire.', 2.90, NULL, 'none', '[{\"hex\":\"#f0f0f0\",\"name\":\"Blanc\"}]', 0, 1, 3),
+(30, 6, 'Perceuse Sans Fil', 'perceuse-sans-fil', 'Perceuse-visseuse 18V – Batterie Li-Ion 4Ah.', 34.50, NULL, 'promotion', '[{\"hex\":\"#b91c1c\",\"name\":\"Rouge\"},{\"hex\":\"#1f1f1f\",\"name\":\"Noir\"}]', 1, 1, 1),
+(31, 6, 'Niveau à Bulle', 'niveau-a-bulle', 'Niveau magnétique 120 cm – Triple lentille, aluminium.', 4.60, NULL, 'none', '[{\"hex\":\"#fbbf24\",\"name\":\"Jaune\"}]', 0, 1, 2),
+(32, 6, 'Meuleuse Angulaire', 'meuleuse-angulaire', 'Meuleuse 125 mm – 850 W, protection surcharge.', 26.10, NULL, 'none', '[{\"hex\":\"#1e40af\",\"name\":\"Bleu\"},{\"hex\":\"#1f1f1f\",\"name\":\"Noir\"}]', 0, 1, 3),
+(33, 6, 'Échafaudage Roulant', 'echafaudage-roulant', 'Tour roulante alu 4 m – Plateforme 1.5×0.7 m.', 72.20, NULL, 'none', '[{\"hex\":\"#a0a0a0\",\"name\":\"Aluminium\"}]', 0, 1, 4);
 
 -- --------------------------------------------------------
 -- Table: catalog_items

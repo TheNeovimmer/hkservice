@@ -1,7 +1,7 @@
 <?php
 $activeNav = 'societe';
-$pageTitle = "une entreprise franco-tunisienne specialise dans le batiment : H&K Services";
-$pageMeta = ['title' => 'H&K Services - Société de bâtiment', 'desc' => "Découvrez notre société de bâtiment en franco-Tunisie, notre équipe, nos clients et notre engagement envers l'excellence dans le secteur de la construction."];
+$pageTitle = "une entreprise française spécialisée dans le bâtiment : H&K Services";
+$pageMeta = ['title' => 'H&K Services - Société de bâtiment', 'desc' => "Découvrez notre société de bâtiment en France, notre équipe, nos clients et notre engagement envers l'excellence dans le secteur de la construction."];
 require_once 'includes/site-head.php';
 ?>
 </head>
@@ -54,9 +54,9 @@ require_once 'includes/site-head.php';
             <div class="right-col col-lg-6 col-md-12 col-sm-12">
                 <div class="inner">
                     <div class="sec-title">
-                        <h2>Votre Partenaire de Confiance pour les Travaux de Bâtiment en Tunisie <span class="dot">.</span></h2>
+                        <h2>Votre Partenaire de Confiance pour les Travaux de Bâtiment en France <span class="dot">.</span></h2>
                         <div class="lower-text">
-                            Depuis 2018, H&K Services accompagne ses clients dans la réalisation de projets de construction résidentiels et commerciaux en Tunisie et en France.<br /><br />
+                            Depuis 2018, H&K Services accompagne ses clients dans la réalisation de projets de construction résidentiels et commerciaux en France.<br /><br />
                             Forte d'une solide expérience dans le secteur du bâtiment, notre entreprise conçoit et réalise des espaces modernes, fonctionnels et durables, répondant aux exigences les plus élevées en matière de qualité et de sécurité.<br /><br />
                             Grâce à une équipe qualifiée et passionnée, nous intervenons dans la construction de villas, maisons individuelles, immeubles résidentiels ainsi que locaux et espaces commerciaux.<br /><br />
                             Notre priorité est d'offrir à chaque client un accompagnement personnalisé, un suivi rigoureux des travaux et le respect des délais convenus, afin de garantir des réalisations à la hauteur de leurs attentes.
@@ -148,7 +148,7 @@ require_once 'includes/site-head.php';
                             <div class="name">Mohamed</div>
                             <div class="designation">Client</div>
                         </div>
-                        <div class="text">H&K Services est une société spécialisée dans la construction de bâtiments résidentiels et commerciaux en Tunisie et en France. Depuis sa création, l'entreprise s'engage à offrir des solutions de construction modernes, fiables et durables, répondant aux besoins et aux exigences de chaque client.</div>
+                        <div class="text">H&K Services est une société spécialisée dans la construction de bâtiments résidentiels et commerciaux en France. Depuis sa création, l'entreprise s'engage à offrir des solutions de construction modernes, fiables et durables, répondant aux besoins et aux exigences de chaque client.</div>
                         <div class="whatsapp-icon"><i class="fab fa-facebook"></i></div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@ require_once 'includes/site-head.php';
                             <div class="name">Haikel Moussa</div>
                             <div class="designation">Client</div>
                         </div>
-                        <div class="text">En tant que tunisien vivant à l'étranger, j'aime avoir confiance pour la construction de ma maison et pas toujours me dire si ça a été bien ou mal fait. Avec H&K Services, j'ai trouvé des personnes à l'écoute qui m'ont donné envie de faire confiance.</div>
+                        <div class="text">En tant que client exigeant, j'aime avoir confiance pour la construction de ma maison et pas toujours me dire si ça a été bien ou mal fait. Avec H&K Services, j'ai trouvé des personnes à l'écoute qui m'ont donné envie de faire confiance.</div>
                         <div class="whatsapp-icon"><i class="fab fa-facebook"></i></div>
                     </div>
                 </div>

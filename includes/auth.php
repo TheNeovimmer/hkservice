@@ -22,7 +22,7 @@ function isLoggedIn(): bool {
 
 function requireLogin(): void {
     if (!isLoggedIn()) {
-        header('Location: /admin/index.php');
+        header('Location: ' . BASE_PATH . '/admin/index.php');
         exit;
     }
 }

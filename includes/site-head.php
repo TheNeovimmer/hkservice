@@ -1,14 +1,13 @@
 <?php
 require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/db.php';
-$baseUrl = '/';
 ?><!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <base href="/">
-  <meta name="title" content="<?= sanitize($pageMeta['title'] ?? 'H&K Services - Construction Bâtiment Tunisie & France') ?>">
-  <meta name="description" content="<?= sanitize($pageMeta['desc'] ?? "Besoin d'une entreprise générale du bâtiment en Tunisie ou en France ? H&K Services transforme vos idées en projets modernes et durables.") ?>">
+  <base href="<?= BASE_PATH ?>/">
+  <meta name="title" content="<?= sanitize($pageMeta['title'] ?? 'H&K Services - Construction Bâtiment en France') ?>">
+  <meta name="description" content="<?= sanitize($pageMeta['desc'] ?? "Besoin d'une entreprise générale du bâtiment en France ? H&K Services transforme vos idées en projets modernes et durables.") ?>">
   <title><?= sanitize($pageTitle ?? 'H&K Services') ?></title>
   <link rel="preconnect" href="https://fonts.gstatic.com/" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;family=Teko:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />

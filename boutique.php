@@ -197,9 +197,7 @@ require_once 'includes/site-head.php';
       border-radius: 8px;
       border: 1px solid #e9ecef;
     }
-    .price-tnd { font-size: 1.3rem; font-weight: 700; color: #1a1a2e; }
-    .price-eur { font-size: .85rem; font-weight: 500; color: #6c757d; }
-    .price-eur::before { content: '~ '; }
+    .price-eur { font-size: 1.3rem; font-weight: 700; color: #1a1a2e; }
 
     .btn-shop {
       width: 100%;
@@ -442,7 +440,7 @@ require_once 'includes/site-head.php';
   <div class="auto-container">
     <div class="sec-title centered">
       <h2>Matériaux de <span class="dot">Construction</span></h2>
-      <p style="color:#6c757d; margin-top:8px;">Sélectionnez vos matériaux — Prix en <strong>DT</strong> et <strong>EUR</strong></p>
+      <p style="color:#6c757d; margin-top:8px;">Sélectionnez vos matériaux — Prix en <strong>EUR</strong></p>
     </div>
 
     <!-- Cart trigger -->
@@ -500,7 +498,6 @@ require_once 'includes/site-head.php';
           </div>
           <?php endif; ?>
           <div class="product-pricing">
-            <span class="price-tnd"><?= number_format($p['price_tnd'], 3, ',', '') ?> DT</span>
             <span class="price-eur"><?= number_format($p['price_eur'], 2, ',', '') ?> €</span>
           </div>
           <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
@@ -525,27 +522,23 @@ require_once 'includes/site-head.php';
       <div class="cart-item-img">🧱</div>
       <div class="cart-item-info">
         <div class="cart-item-name">Ciment Portland</div>
-        <div class="cart-item-detail">Qté: 2 × 18,900 DT</div>
-        <div class="cart-item-price">37,800 DT</div>
+        <div class="cart-item-detail">Qté: 2 × 5,50 €</div>
+        <div class="cart-item-price">11,00 €</div>
       </div>
     </div>
     <div class="cart-item">
       <div class="cart-item-img">🎨</div>
       <div class="cart-item-info">
         <div class="cart-item-name">Peinture Acrylique</div>
-        <div class="cart-item-detail">Qté: 1 × 25,900 DT</div>
-        <div class="cart-item-price">25,900 DT</div>
+        <div class="cart-item-detail">Qté: 1 × 7,50 €</div>
+        <div class="cart-item-price">7,50 €</div>
       </div>
     </div>
   </div>
   <div class="cart-footer">
     <div class="cart-total-row">
-      <span>Total (DT)</span>
-      <span class="cart-total">63,700 DT</span>
-    </div>
-    <div class="cart-total-row">
-      <span>Total (EUR)</span>
-      <span class="cart-total">18,50 €</span>
+      <span>Total</span>
+      <span class="cart-total" id="cartTotalEUR">0,00 €</span>
     </div>
     <a href="contact.html" class="btn-cart-checkout"><i class="fas fa-check-circle" style="margin-right:8px;"></i>Commander</a>
   </div>

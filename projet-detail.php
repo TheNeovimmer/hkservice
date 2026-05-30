@@ -188,7 +188,7 @@ require_once __DIR__ . '/includes/site-head.php';
                 $rNum = $r['project_number'] ?? '';
             ?>
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                <a href="/projets/<?= sanitize($r['slug']) ?>" class="project-card-link" style="text-decoration:none;display:block;height:100%;">
+                <a href="<?= BASE_PATH ?>/projets/<?= sanitize($r['slug']) ?>" class="project-card-link" style="text-decoration:none;display:block;height:100%;">
                     <div class="project-card" style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);transition:all .3s;height:100%;">
                         <?php if ($rImg && file_exists(__DIR__ . '/' . $rImg)): ?>
                         <img src="<?= sanitize($rImg) ?>" alt="<?= sanitize($r['title']) ?>" style="width:100%;height:200px;object-fit:cover;">
@@ -217,7 +217,7 @@ require_once __DIR__ . '/includes/site-head.php';
         <div class="row justify-content-between">
             <div class="col-md-5 mb-3 mb-md-0">
                 <?php if ($prevProj): ?>
-                <a href="/projets/<?= sanitize($prevProj['slug']) ?>" class="d-flex align-items-center gap-3 text-decoration-none p-3 rounded-3 bg-light transition-all" style="transition:all .3s;" onmouseover="this.style.backgroundColor='#312783'" onmouseout="this.style.backgroundColor=''">
+                <a href="<?= BASE_PATH ?>/projets/<?= sanitize($prevProj['slug']) ?>" class="d-flex align-items-center gap-3 text-decoration-none p-3 rounded-3 bg-light transition-all" style="transition:all .3s;" onmouseover="this.style.backgroundColor='#312783'" onmouseout="this.style.backgroundColor=''">
                     <i class="fas fa-chevron-left" style="font-size:1.5rem;color:#312783;flex-shrink:0;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#312783'"></i>
                     <div class="flex-grow-1">
                         <div style="font-size:.75rem;color:#999;text-transform:uppercase;letter-spacing:1px;transition:color .3s;">Projet pr&eacute;c&eacute;dent</div>
@@ -234,7 +234,7 @@ require_once __DIR__ . '/includes/site-head.php';
             </div>
             <div class="col-md-5 text-md-end">
                 <?php if ($nextProj): ?>
-                <a href="/projets/<?= sanitize($nextProj['slug']) ?>" class="d-flex align-items-center gap-3 text-decoration-none p-3 rounded-3 bg-light transition-all" style="transition:all .3s;" onmouseover="this.style.backgroundColor='#312783'" onmouseout="this.style.backgroundColor=''">
+                <a href="<?= BASE_PATH ?>/projets/<?= sanitize($nextProj['slug']) ?>" class="d-flex align-items-center gap-3 text-decoration-none p-3 rounded-3 bg-light transition-all" style="transition:all .3s;" onmouseover="this.style.backgroundColor='#312783'" onmouseout="this.style.backgroundColor=''">
                     <?php
                     $nextThumb = $nextProj['thumbnail'] ?: '';
                     if ($nextThumb):

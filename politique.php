@@ -1,7 +1,7 @@
 <?php
 $activeNav = '';
 $pageTitle = 'H&K Services - Politique de confidentialité';
-$pageMeta = ['title' => 'H&K Services - Politique de confidentialité', 'desc' => 'Politique de confidentialité de H&K Services, société franco-tunisienne de construction.'];
+$pageMeta = ['title' => 'H&K Services - Politique de confidentialité', 'desc' => 'Politique de confidentialité de H&K Services, société française de construction.'];
 require_once 'includes/site-head.php';
 ?>
 <style>

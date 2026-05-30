@@ -1,7 +1,7 @@
 <?php
 $activeNav = 'contact';
 $pageTitle = "H&K Services - Contact";
-$pageMeta = ['title' => 'H&K Services - Contact', 'desc' => "Contactez H&K Services pour vos projets de construction, renovation et amenagement en Tunisie et en France."];
+$pageMeta = ['title' => 'H&K Services - Contact', 'desc' => "Contactez H&K Services pour vos projets de construction, renovation et amenagement en France."];
 require_once __DIR__ . '/includes/site-head.php';
 ?>
 </head>

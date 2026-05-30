@@ -3,7 +3,7 @@ $activeNav = 'projets';
 $pageTitle = 'Projets Construction | H&K Services';
 $pageMeta = [
     'title' => 'Projets Construction | H&K Services',
-    'desc'  => "Besoin d'une entreprise générale du bâtiment en Tunisie ou en France ? H&K Services transforme vos idées en projets modernes et durables.",
+    'desc'  => "Besoin d'une entreprise générale du bâtiment en France ? H&K Services transforme vos idées en projets modernes et durables.",
 ];
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/site-head.php';
@@ -237,7 +237,7 @@ $categories = $db->query("SELECT DISTINCT category FROM projects WHERE active=1 
                     $cover = $p['thumbnail'] ?: ($images[0] ?? 'img/logo png/Logo.png');
                     $slug = $p['slug'] ?: slugify($p['title']);
                     $projNum = $p['project_number'] ?? ('PROJET N°' . $p['order_index']);
-                    $detailLink = '/projets/' . urlencode($slug);
+                    $detailLink = BASE_PATH . '/projets/' . urlencode($slug);
                     $catClass = $p['category'] ?: 'non-classe';
                 ?>
                 <div class="col-lg-4 col-md-6 col-sm-12 mix <?= sanitize($catClass) ?>" style="padding:12px;">

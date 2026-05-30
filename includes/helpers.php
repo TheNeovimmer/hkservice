@@ -1,4 +1,9 @@
 <?php
+$projectRoot = dirname(__DIR__);
+$docRoot = $_SERVER['DOCUMENT_ROOT'];
+$basePath = rtrim(str_replace('\\', '/', substr($projectRoot, strlen($docRoot))), '/');
+define('BASE_PATH', $basePath);
+
 function slugify($text): string {
     $text = preg_replace('~[^\pL\d]+~u', '-', $text);
     $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);

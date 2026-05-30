@@ -1,7 +1,7 @@
 <?php
 $activeNav = 'accueil';
-$pageTitle = 'Entreprise de Construction Bâtiment en Tunisie et en France | H&K Services';
-$pageMeta = ['title' => 'Entreprise de Construction Bâtiment en Tunisie H&K Services', 'desc' => "Besoin d'une entreprise générale du bâtiment en Tunisie ou en france ? H&K Services transforme vos idées en projets modernes et durables."];
+$pageTitle = 'Entreprise de Construction Bâtiment en France | H&K Services';
+$pageMeta = ['title' => 'Entreprise de Construction Bâtiment en France | H&K Services', 'desc' => "Besoin d'une entreprise générale du bâtiment en France ? H&K Services transforme vos idées en projets modernes et durables."];
 require_once 'includes/site-head.php';
 ?>
 <style>
@@ -44,7 +44,7 @@ require_once 'includes/site-head.php';
     </div>
     <div class="banner-carousel owl-theme owl-carousel">
         <div class="slide-item">
-            <div class="image-layer" style="background-image: url('img/resource/Home/a1.jpg')" role="img" aria-label="Société générale de construction en Tunisie et en France"></div>
+            <div class="image-layer" style="background-image: url('img/resource/Home/a1.jpg')" role="img" aria-label="Société générale de construction en France"></div>
             <div class="auto-container">
                 <div class="content-box">
                     <div class="content">
@@ -60,7 +60,7 @@ require_once 'includes/site-head.php';
             </div>
         </div>
         <div class="slide-item">
-            <div class="image-layer" style="background-image: url('img/resource/Home/a2.jpg')" role="img" aria-label="Promoteur et constructeur immobilier en Tunisie et en France"></div>
+            <div class="image-layer" style="background-image: url('img/resource/Home/a2.jpg')" role="img" aria-label="Promoteur et constructeur immobilier en France"></div>
             <div class="auto-container">
                 <div class="content-box">
                     <div class="content">
@@ -76,7 +76,7 @@ require_once 'includes/site-head.php';
             </div>
         </div>
         <div class="slide-item">
-            <div class="image-layer" style="background-image: url('img/resource/Home/a3.jpg')" role="img" aria-label="Construction de projets en Tunisie et en France"></div>
+            <div class="image-layer" style="background-image: url('img/resource/Home/a3.jpg')" role="img" aria-label="Construction de projets en France"></div>
             <div class="auto-container">
                 <div class="content-box">
                     <div class="content">
@@ -137,10 +137,10 @@ require_once 'includes/site-head.php';
             <div class="image-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
                 <div class="inner">
                     <div class="image-block wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                        <img src="img/gallery/im2.png" alt="Entreprise de Construction en Tunisie" />
+                        <img src="img/gallery/im2.png" alt="Entreprise de Construction" />
                     </div>
                     <div class="image-block wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                        <img src="img/gallery/im1.png" alt="Entreprise de bâtiment en Tunisie" />
+                        <img src="img/gallery/im1.png" alt="Entreprise de bâtiment" />
                     </div>
                 </div>
             </div>
@@ -152,7 +152,7 @@ require_once 'includes/site-head.php';
                     <div class="text">
                         <p>
                             Experts en construction résidentielle et commerciale, H&K Services est une entreprise fondée en 2018, spécialisée dans la réalisation de projets de bâtiments résidentiels et commerciaux.<br /><br />
-                            Nous intervenons en Tunisie et en France, en offrant des solutions complètes dans le domaine du bâtiment, alliant qualité, fiabilité et respect des normes les plus strictes en matière de budget et de délais.<br /><br />
+                            Nous intervenons partout en France, en offrant des solutions complètes dans le domaine du bâtiment, alliant qualité, fiabilité et respect des normes les plus strictes en matière de budget et de délais.<br /><br />
                             Notre engagement est simple : garantir la satisfaction totale de nos clients à travers un travail sérieux, soigné et durable.<br /><br />
                             Chez H&K Services, nous combinons le savoir-faire traditionnel avec les technologies modernes de construction afin de vous offrir des projets solides, esthétiques et durables.<br />
                             Chaque projet est pour nous une promesse de qualité, de précision et de confiance.<br /><br />
@@ -196,7 +196,7 @@ require_once 'includes/site-head.php';
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="inner">
                     <div class="sec-title">
-                        <h2>Les raisons de choisir H&K Services pour vos projets de construction en Tunisie et en France ?<span class="dot">.</span></h2>
+                        <h2>Les raisons de choisir H&K Services pour vos projets de construction en France ?<span class="dot">.</span></h2>
                     </div>
                 </div>
                 <div class="col-md-12 col-sm-12">
@@ -296,11 +296,11 @@ require_once 'includes/site-head.php';
                 ?>
                 <div class="gallery-item mix all Residentiel col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
-                        <a href="/projets/<?= sanitize($hpSlug) ?>"><figure class="image"><img src="/<?= sanitize($hpCover) ?>" alt="<?= sanitize($hp['title']) ?>" /></figure></a>
+                        <a href="<?= BASE_PATH ?>/projets/<?= sanitize($hpSlug) ?>"><figure class="image"><img src="<?= BASE_PATH ?>/<?= sanitize($hpCover) ?>" alt="<?= sanitize($hp['title']) ?>" /></figure></a>
                         <div class="cap-box">
                             <div class="cap-inner">
                                 <div class="cat"><span><?= sanitize($hpNum) ?></span></div>
-                                <div class="title"><h5><a href="/projets/<?= sanitize($hpSlug) ?>"><?= sanitize($hp['title']) ?></a></h5></div>
+                                <div class="title"><h5><a href="<?= BASE_PATH ?>/projets/<?= sanitize($hpSlug) ?>"><?= sanitize($hp['title']) ?></a></h5></div>
                             </div>
                         </div>
                     </div>
@@ -315,7 +315,7 @@ require_once 'includes/site-head.php';
 </section>
 
 <section class="facts-section jarallax" data-jarallax data-speed="0.3" data-imgPosition="50% 80%">
-    <img src="img/resource/Home/a6.png" alt="Société de construction de batiments en Tunisie" class="jarallax-img" />
+    <img src="img/resource/Home/a6.png" alt="Société de construction de bâtiments" class="jarallax-img" />
     <div class="auto-container">
         <div class="inner-container">
             <div class="fact-counter">
@@ -359,7 +359,7 @@ require_once 'includes/site-head.php';
 </section>
 
 <section class="parallax-section jarallax" data-jarallax data-speed="0.3" data-imgPosition="50% 80%">
-    <img src="img/resource/Home/a4.png" alt="Société de bâtiment en Tunisie" class="jarallax-img" />
+    <img src="img/resource/Home/a4.png" alt="Société de bâtiment" class="jarallax-img" />
     <div class="auto-container">
         <div class="content-box">
             <h2>H&K Services. Votre projet, notre expertise, un résultat exceptionnel.</h2>

@@ -9,7 +9,7 @@
                   <a href="index.php"><img id="fLogo" src="img/logo-white.png" alt="" /></a>
                 </div>
                 <div class="text">
-                  Fondée en 2020, H&K Services est une Société tunisienne de construction spécialisée dans les projets résidentiels et commerciaux.
+                  Fondée en 2020, H&K Services est une Société française de construction spécialisée dans les projets résidentiels et commerciaux.
                 </div>
                 <ul class="social-links clearfix">
                   <li><a href="https://www.facebook.com/H&K Services"><span class="fab fa-facebook-square"></span></a></li>

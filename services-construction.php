@@ -3,7 +3,7 @@ $activeNav = 'services';
 $pageTitle = 'Services Construction | H&K Services';
 $pageMeta = [
     'title' => 'Services Construction | H&K Services',
-    'desc'  => 'Explorez nos services en construction et rénovation de bâtiments en Tunisie. Du plan à l\'exécution, travaux génie civil, architecture et étude de projet!',
+    'desc'  => 'Explorez nos services en construction et rénovation de bâtiments en France. Du plan à l\'exécution, travaux génie civil, architecture et étude de projet!',
 ];
 require_once 'includes/site-head.php';
 ?>

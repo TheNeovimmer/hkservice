@@ -14,7 +14,7 @@ $error = $_GET['error'] ?? '';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/admin/assets/admin.css">
+    <link rel="stylesheet" href="<?= BASE_PATH ?>/admin/assets/admin.css">
 </head>
 <body class="login-page">
     <div class="login-bg">
@@ -29,7 +29,7 @@ $error = $_GET['error'] ?? '';
             <div class="login-card-inner">
                 <div class="login-header">
                     <div class="login-logo">
-                        <img src="/admin/assets/logo.png" alt="H&K Services">
+                        <img src="<?= BASE_PATH ?>/admin/assets/logo.png" alt="H&K Services">
                     </div>
                     <h1>Bienvenue</h1>
                     <p>Accédez à votre tableau de bord</p>
@@ -42,7 +42,7 @@ $error = $_GET['error'] ?? '';
                 </div>
                 <?php endif; ?>
 
-                <form method="post" action="/admin/login.php" class="login-form" autocomplete="off">
+                <form method="post" action="<?= BASE_PATH ?>/admin/login.php" class="login-form" autocomplete="off">
                     <div class="input-group">
                         <div class="input-field">
                             <input type="email" name="email" id="email" class="form-input" placeholder=" " required autocomplete="off" value="">

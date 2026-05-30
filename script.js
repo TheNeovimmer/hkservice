@@ -138,7 +138,7 @@ function addToCart(id, name, color, price, emoji) {
   if (existing) {
     existing.qty += 1;
   } else {
-    cart.push({ id, name, color, priceTnd: price.tnd, priceEur: price.eur, qty: 1, emoji });
+    cart.push({ id, name, color, price, qty: 1, emoji });
   }
   saveCart(cart);
   updateCartCount();
@@ -166,23 +166,20 @@ function updateQty(id, color, delta) {
 
 function renderCartSidebar() {
   const body = document.getElementById('cartBody');
-  const totalTND = document.getElementById('cartTotalTND');
   const totalEUR = document.getElementById('cartTotalEUR');
   if (!body) return;
 
   const cart = getCart();
   if (cart.length === 0) {
     body.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Votre panier est vide</p></div>`;
-    if (totalTND) totalTND.textContent = '0,000 TND';
     if (totalEUR) totalEUR.textContent = '0,00 €';
     return;
   }
 
-  let html = '', tTND = 0, tEUR = 0;
+  let html = '', tEUR = 0;
   cart.forEach(item => {
-    const iTND = item.priceTnd * item.qty;
-    const iEUR = item.priceEur * item.qty;
-    tTND += iTND; tEUR += iEUR;
+    const iEUR = item.price * item.qty;
+    tEUR += iEUR;
     html += `<div class="cart-item">
       <div class="cart-item-img">${item.emoji || '📦'}</div>
       <div class="cart-item-info">
@@ -194,14 +191,13 @@ function renderCartSidebar() {
             <span class="qty-value">${item.qty}</span>
             <button class="qty-btn" onclick="updateQty('${item.id}','${item.color}',1)">+</button>
           </div>
-          <span class="cart-item-total">${fmtTND(iTND)}</span>
+          <span class="cart-item-total">${fmtEUR(iEUR)}</span>
         </div>
         <button class="cart-item-remove" onclick="removeFromCart('${item.id}','${item.color}')">Supprimer</button>
       </div>
     </div>`;
   });
   body.innerHTML = html;
-  if (totalTND) totalTND.textContent = fmtTND(tTND);
   if (totalEUR) totalEUR.textContent = fmtEUR(tEUR);
 }
 
@@ -222,16 +218,15 @@ function renderCartPage() {
     return;
   }
 
-  let html = '', tTND = 0, tEUR = 0;
+  let html = '', tEUR = 0;
   cart.forEach(item => {
-    const iTND = item.priceTnd * item.qty;
-    const iEUR = item.priceEur * item.qty;
-    tTND += iTND; tEUR += iEUR;
+    const iEUR = item.price * item.qty;
+    tEUR += iEUR;
     html += `<div class="cart-page-item">
       <div class="cart-page-img">${item.emoji || '📦'}</div>
       <div class="cart-page-info">
         <h4>${item.name}</h4>
-        <p>Couleur: ${item.color} — ${fmtTND(item.priceTnd)} / unité</p>
+        <p>Couleur: ${item.color} — ${fmtEUR(item.price)} / unité</p>
         <div class="cart-page-actions">
           <div class="cart-page-qty">
             <button onclick="updateQty('${item.id}','${item.color}',-1)">−</button>
@@ -241,7 +236,7 @@ function renderCartPage() {
           <button class="cart-page-remove" onclick="removeFromCart('${item.id}','${item.color}')"><i class="fas fa-trash-alt"></i> Supprimer</button>
         </div>
       </div>
-      <div class="cart-page-total">${fmtTND(iTND)}</div>
+      <div class="cart-page-total">${fmtEUR(iEUR)}</div>
     </div>`;
   });
   container.innerHTML = html;
@@ -249,16 +244,13 @@ function renderCartPage() {
   const summary = document.getElementById('cartPageSummary');
   if (summary) {
     summary.style.display = 'block';
-    document.getElementById('cartSubtotalTND').textContent = fmtTND(tTND);
     document.getElementById('cartSubtotalEUR').textContent = fmtEUR(tEUR);
-    document.getElementById('cartTotalTNDPage').textContent = fmtTND(tTND);
     document.getElementById('cartTotalEURPage').textContent = fmtEUR(tEUR);
   }
 }
 
-/* ===== FORMATTERS ===== */
-function fmtTND(v) { return (v / 1000).toLocaleString('fr-TN', { minimumFractionDigits: 3, maximumFractionDigits: 3 }) + ' TND'; }
-function fmtEUR(v) { return (v / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+/* ===== FORMATTER ===== */
+function fmtEUR(v) { return v.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
 
 /* ===== TOAST ===== */
 let toastTimer = null;
@@ -290,8 +282,8 @@ function closeCartSidebar() {
 document.getElementById('checkoutBtn')?.addEventListener('click', () => {
   const cart = getCart();
   if (cart.length === 0) { showToast('Votre panier est vide', 'error'); return; }
-  const total = cart.reduce((s, i) => s + i.priceTnd * i.qty, 0);
-  showToast(`Commande de ${fmtTND(total)} confirmée ! Merci.`, 'success');
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  showToast(`Commande de ${fmtEUR(total)} confirmée ! Merci.`, 'success');
   localStorage.removeItem(CART_KEY);
   updateCartCount();
   renderCartSidebar();

@@ -11,7 +11,7 @@
       <nav class="mobile-nav__container"></nav>
       <div class="side-menu__sep"></div>
       <div class="side-menu__content">
-        <p>H&K Services est une Société franco-tunisienne de construction spécialisée dans les projets résidentiels et commerciaux.</p>
+        <p>H&K Services est une Société française de construction spécialisée dans les projets résidentiels et commerciaux.</p>
         <p><a href="mailto:contact@hketservices.com">contact@hketservices.com</a><br /><a href="tel:+330605682407">+330605682407</a></p>
         <div class="side-menu__social">
           <a href="https://www.facebook.com/H&K Services"><i class="fab fa-facebook-square"></i></a>

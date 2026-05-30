@@ -543,9 +543,7 @@ textarea.form-control { min-height: 140px; resize: vertical; }
   background: var(--gray-50); border-radius: 8px;
   border: 1px solid var(--gray-100);
 }
-.price-tnd { font-family: var(--font-secondary); font-size: 1.3rem; font-weight: 700; color: var(--black); }
-.price-eur { font-size: 0.85rem; font-weight: 500; color: var(--gray-600); }
-.price-eur::before { content: '~ '; }
+.price-eur { font-family: var(--font-secondary); font-size: 1.3rem; font-weight: 700; color: var(--black); }
 .add-to-cart {
   width: 100%; padding: 12px; background: var(--primary);
   color: var(--white); font-weight: 600; border-radius: 8px;

@@ -17,18 +17,18 @@ function isActive($path): string {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/admin/assets/admin.css">
-    <link rel="icon" href="/admin/assets/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="<?= BASE_PATH ?>/admin/assets/admin.css">
+    <link rel="icon" href="<?= BASE_PATH ?>/admin/assets/logo.png" type="image/x-icon">
 </head>
 <body>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
-        <a href="/admin/dashboard.php"><img src="/admin/assets/logo.png" alt="H&K Services"></a>
+        <a href="<?= BASE_PATH ?>/admin/dashboard.php"><img src="<?= BASE_PATH ?>/admin/assets/logo.png" alt="H&K Services"></a>
     </div>
     <nav class="sidebar-nav">
         <div class="nav-item">
-            <a href="/admin/dashboard.php" class="nav-link<?= $currentPage === 'dashboard.php' ? ' active' : '' ?>">
+            <a href="<?= BASE_PATH ?>/admin/dashboard.php" class="nav-link<?= $currentPage === 'dashboard.php' ? ' active' : '' ?>">
                 <i class="fas fa-chart-simple"></i>
                 <span class="nav-text">Dashboard</span>
             </a>
@@ -40,11 +40,11 @@ function isActive($path): string {
                 <i class="fas fa-chevron-right nav-arrow"></i>
             </a>
             <div class="sub-menu">
-                <a href="/admin/categories/index.php" class="nav-link<?= isActive('/categories/') ?>">
+                <a href="<?= BASE_PATH ?>/admin/categories/index.php" class="nav-link<?= isActive('/categories/') ?>">
                     <i class="fas fa-tags"></i>
                     <span class="nav-text">Categories</span>
                 </a>
-                <a href="/admin/products/index.php" class="nav-link<?= isActive('/products/') ?>">
+                <a href="<?= BASE_PATH ?>/admin/products/index.php" class="nav-link<?= isActive('/products/') ?>">
                     <i class="fas fa-cube"></i>
                     <span class="nav-text">Produits</span>
                 </a>
@@ -57,7 +57,7 @@ function isActive($path): string {
                 <i class="fas fa-chevron-right nav-arrow"></i>
             </a>
             <div class="sub-menu">
-                <a href="/admin/services/index.php" class="nav-link<?= isActive('/services/') ?>">
+                <a href="<?= BASE_PATH ?>/admin/services/index.php" class="nav-link<?= isActive('/services/') ?>">
                     <i class="fas fa-list"></i>
                     <span class="nav-text">Tous les services</span>
                 </a>
@@ -70,7 +70,7 @@ function isActive($path): string {
                 <i class="fas fa-chevron-right nav-arrow"></i>
             </a>
             <div class="sub-menu">
-                <a href="/admin/projects/index.php" class="nav-link<?= isActive('/projects/') ?>">
+                <a href="<?= BASE_PATH ?>/admin/projects/index.php" class="nav-link<?= isActive('/projects/') ?>">
                     <i class="fas fa-list"></i>
                     <span class="nav-text">Tous les projets</span>
                 </a>
@@ -83,7 +83,7 @@ function isActive($path): string {
                 <i class="fas fa-chevron-right nav-arrow"></i>
             </a>
             <div class="sub-menu">
-                <a href="/admin/catalog/index.php" class="nav-link<?= isActive('/catalog/') ?>">
+                <a href="<?= BASE_PATH ?>/admin/catalog/index.php" class="nav-link<?= isActive('/catalog/') ?>">
                     <i class="fas fa-list"></i>
                     <span class="nav-text">Elements du catalogue</span>
                 </a>
@@ -96,21 +96,21 @@ function isActive($path): string {
                 <i class="fas fa-chevron-right nav-arrow"></i>
             </a>
             <div class="sub-menu">
-                <a href="/admin/contacts/index.php?status=new" class="nav-link<?= isActive('/contacts/') ?>">
+                <a href="<?= BASE_PATH ?>/admin/contacts/index.php?status=new" class="nav-link<?= isActive('/contacts/') ?>">
                     <i class="fas fa-inbox"></i>
                     <span class="nav-text">Demandes</span>
                 </a>
             </div>
         </div>
         <div class="nav-item">
-            <a href="/admin/profile.php" class="nav-link<?= isActive('profile.php') ?>">
+            <a href="<?= BASE_PATH ?>/admin/profile.php" class="nav-link<?= isActive('profile.php') ?>">
                 <i class="fas fa-user-cog"></i>
                 <span class="nav-text">Mon Profil</span>
             </a>
         </div>
     </nav>
     <div class="sidebar-footer">
-        <a href="/" target="_blank">
+        <a href="<?= BASE_PATH ?>/" target="_blank">
             <i class="fas fa-external-link-alt"></i>
             <span class="nav-text">Voir le site</span>
         </a>
@@ -128,13 +128,13 @@ function isActive($path): string {
             $av = $_SESSION['admin_avatar'] ?? '';
             if ($av && file_exists(__DIR__ . '/../../' . $av)):
             ?>
-            <img src="/<?= sanitize($av) ?>" class="topbar-avatar-img">
+            <img src="<?= BASE_PATH ?>/<?= sanitize($av) ?>" class="topbar-avatar-img">
             <?php else: ?>
             <div class="topbar-avatar"><?= strtoupper(substr(adminName(), 0, 1)) ?></div>
             <?php endif; ?>
             <span class="d-none d-md-inline"><?= sanitize(adminName()) ?></span>
         </div>
-        <a href="/admin/logout.php" class="topbar-logout" title="Deconnexion"><i class="fas fa-sign-out-alt"></i></a>
+        <a href="<?= BASE_PATH ?>/admin/logout.php" class="topbar-logout" title="Deconnexion"><i class="fas fa-sign-out-alt"></i></a>
     </div>
 </header>
 <main class="content">

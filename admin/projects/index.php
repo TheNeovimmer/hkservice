@@ -22,7 +22,7 @@ $projectCategories = ['villas', 'toitures', 'immeubles', 'renovations', 'amenage
                     <tr>
                         <td>
                             <?php if ($cover && file_exists(__DIR__ . '/../../' . $cover)): ?>
-                            <img src="/<?= $cover ?>" class="img-thumb-sm">
+                            <img src="<?= BASE_PATH ?>/<?= $cover ?>" class="img-thumb-sm">
                             <?php else: ?>
                             <div class="img-thumb-sm d-flex align-items-center justify-content-center bg-light rounded text-muted"><i class="fas fa-building"></i></div>
                             <?php endif; ?>
@@ -76,7 +76,7 @@ $projectCategories = ['villas', 'toitures', 'immeubles', 'renovations', 'amenage
                                             <div class="d-flex flex-wrap gap-2">
                                                 <?php foreach ($images as $idx => $img): ?>
                                                 <div class="position-relative">
-                                                    <img src="/<?= $img ?>" class="img-thumb-sm border <?= $img === $p['thumbnail'] ? 'border-primary border-2' : '' ?>" title="<?= $img === $p['thumbnail'] ? 'Vignette principale' : '' ?>">
+                                                    <img src="<?= BASE_PATH ?>/<?= $img ?>" class="img-thumb-sm border <?= $img === $p['thumbnail'] ? 'border-primary border-2' : '' ?>" title="<?= $img === $p['thumbnail'] ? 'Vignette principale' : '' ?>">
                                                 </div>
                                                 <?php endforeach; ?>
                                             </div>

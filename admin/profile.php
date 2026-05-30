@@ -16,7 +16,7 @@ $admin = $stmt->fetch();
                         <div class="position-relative d-inline-block">
                             <div class="profile-avatar-wrapper">
                                 <?php if ($admin['avatar'] && file_exists(__DIR__ . '/../' . $admin['avatar'])): ?>
-                                <img src="/<?= sanitize($admin['avatar']) ?>" alt="Avatar" class="profile-avatar" id="avatarPreview">
+                                <img src="<?= BASE_PATH ?>/<?= sanitize($admin['avatar']) ?>" alt="Avatar" class="profile-avatar" id="avatarPreview">
                                 <?php else: ?>
                                 <div class="profile-avatar profile-avatar-initials" id="avatarPreview"><?= strtoupper(substr($admin['username'], 0, 2)) ?></div>
                                 <?php endif; ?>
