@@ -1044,7 +1044,7 @@
   }
 
   //Contact Form Validation
-  if ($("#contact-form").length) {
+  if ($("#contact-form").length && $.fn.validate) {
     $("#contact-form").validate({
       rules: {
         username: {
