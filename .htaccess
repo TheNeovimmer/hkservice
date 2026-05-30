@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^projets/([a-zA-Z0-9-]+)$ projet-detail.php?slug=$1 [L,QSA]

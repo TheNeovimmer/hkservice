@@ -1,5 +1,5 @@
 <?php
-$slug = $_GET['slug'] ?? '';
+$slug = strtolower($_GET['slug'] ?? '');
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/db.php';
 $db = getDB();
