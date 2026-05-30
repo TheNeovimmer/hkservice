@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../includes/db.php';
 require_once __DIR__ . '/../../includes/helpers.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) session_start();
 $name = $_POST['name'] ?? '';
 $slug = $_POST['slug'] ?: slugify($name);
 $icon = $_POST['icon'] ?? 'tag';

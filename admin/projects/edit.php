@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../includes/db.php';
 require_once __DIR__ . '/../../includes/helpers.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) session_start();
 $db = getDB();
 $id = (int)($_POST['id'] ?? 0);
 $title = $_POST['title'] ?? '';
@@ -14,7 +14,9 @@ $description = $_POST['description'] ?? '';
 $orderIndex = (int)($_POST['order_index'] ?? 0);
 $projectNumber = $_POST['project_number'] ?? '';
 $active = isset($_POST['active']) ? 1 : 0;
-$existing = $db->prepare("SELECT * FROM projects WHERE id=?")->execute([$id])->fetch();
+$stmt = $db->prepare("SELECT * FROM projects WHERE id=?");
+$stmt->execute([$id]);
+$existing = $stmt->fetch();
 $images = $existing ? json_decode($existing['images'], true) : [];
 $thumbnail = $_POST['existing_thumbnail'] ?? ($images[0] ?? '');
 if (!empty($_FILES['images']['name'][0])) {

@@ -386,7 +386,7 @@ require_once __DIR__ . '/includes/site-head.php';
             ?>
             <a href="/projets/<?= sanitize($r['slug']) ?>" style="text-decoration:none;display:block;">
                 <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);transition:all .3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 25px rgba(49,39,131,.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-                    <?php if ($rImg && file_exists(__DIR__ . '/../' . $rImg)): ?>
+                    <?php if ($rImg && file_exists(__DIR__ . '/' . $rImg)): ?>
                     <img src="/<?= sanitize($rImg) ?>" alt="<?= sanitize($r['title']) ?>" style="width:100%;height:180px;object-fit:cover;">
                     <?php else: ?>
                     <div style="width:100%;height:180px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;color:#ccc;"><i class="fas fa-building" style="font-size:2.5rem;"></i></div>

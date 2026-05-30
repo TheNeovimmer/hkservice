@@ -285,72 +285,27 @@ require_once 'includes/site-head.php';
                 <div class="sec-title"><h2>Nos derniers bâtiments et projets réalisés</h2></div>
             </div>
             <div class="filter-list row">
+                <?php
+                $db = getDB();
+                $homeProjects = $db->query("SELECT * FROM projects WHERE active=1 ORDER BY order_index ASC LIMIT 6")->fetchAll();
+                foreach ($homeProjects as $hp):
+                    $hpImages = json_decode($hp['images'] ?? '[]', true);
+                    $hpCover = $hp['thumbnail'] ?: ($hpImages[0] ?? '');
+                    $hpNum = $hp['project_number'] ?? ('PROJET N°' . $hp['order_index']);
+                    $hpSlug = $hp['slug'] ?: slugify($hp['title']);
+                ?>
                 <div class="gallery-item mix all Residentiel col-lg-4 col-md-6 col-sm-12">
                     <div class="inner-box">
-                        <a href="projet1.php"><figure class="image"><img src="img/project/Project1/b1.jpg" alt="" /></figure></a>
+                        <a href="/projets/<?= sanitize($hpSlug) ?>"><figure class="image"><img src="/<?= sanitize($hpCover) ?>" alt="<?= sanitize($hp['title']) ?>" /></figure></a>
                         <div class="cap-box">
                             <div class="cap-inner">
-                                <div class="cat"><span>PROJET N°1</span></div>
-                                <div class="title"><h5><a href="projet1.php">bureaux</a></h5></div>
+                                <div class="cat"><span><?= sanitize($hpNum) ?></span></div>
+                                <div class="title"><h5><a href="/projets/<?= sanitize($hpSlug) ?>"><?= sanitize($hp['title']) ?></a></h5></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="gallery-item mix all Residentiel col-lg-4 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <a href="projet2.php"><figure class="image"><img src="img/project/Project2/p2.jpg" alt="" /></figure></a>
-                        <div class="cap-box">
-                            <div class="cap-inner">
-                                <div class="cat"><span>PROJET N°2</span></div>
-                                <div class="title"><h5><a href="projet2.php">Piscine</a></h5></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item mix all Residentiel col-lg-4 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <a href="projet3.php"><figure class="image"><img src="img/project/Project3/t2.jpg" alt="" /></figure></a>
-                        <div class="cap-box">
-                            <div class="cap-inner">
-                                <div class="cat"><span>PROJET N°3</span></div>
-                                <div class="title"><h5><a href="projet3.php">Terrasse</a></h5></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item mix all Residentiel col-lg-4 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <a href="projet4.php"><figure class="image"><img src="img/project/Project4/b1.png" alt="" /></figure></a>
-                        <div class="cap-box">
-                            <div class="cap-inner">
-                                <div class="cat"><span>PROJET N°4</span></div>
-                                <div class="title"><h5><a href="projet4.php">Balcon</a></h5></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item mix all Residentiel col-lg-4 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <a href="projet5.php"><figure class="image"><img src="img/project/projet5/c6.jpg" alt="" /></figure></a>
-                        <div class="cap-box">
-                            <div class="cap-inner">
-                                <div class="cat"><span>PROJET N°5</span></div>
-                                <div class="title"><h5><a href="projet5.php">Cuisine</a></h5></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item mix all Residentiel col-lg-4 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <a href="projet6.php"><figure class="image"><img src="img/project/projet6/s2.jpg" alt="" /></figure></a>
-                        <div class="cap-box">
-                            <div class="cap-inner">
-                                <div class="cat"><span>PROJET N°6</span></div>
-                                <div class="title"><h5><a href="projet6.php">salles de bain</a></h5></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
                 <div class="link-box centered">
                     <a class="theme-btn btn-style-one" href="projets-construction-batiments.php"><i class="btn-curve"></i><span class="btn-title">Voir tous les projets</span></a>
                 </div>

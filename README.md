@@ -9,9 +9,18 @@ Site web de H&K Services — Société franco-tunisienne de construction, rénov
 ### 📋 Prérequis
 
 - [XAMPP](https://www.apachefriends.org/fr/index.html) (Apache + PHP 8.x + MySQL)
+- ou [DDEV](https://ddev.com/) (environnement Docker recommandé pour le développement)
 - Navigateur web (Chrome, Firefox, Edge)
 
-### 🚀 Installation pas à pas
+### 🚀 Installation rapide avec DDEV (recommandé)
+
+```bash
+ddev start
+ddev mysql < sql/schema.sql
+ddev mysql < sql/seed.sql
+```
+
+### 🚀 Installation pas à pas (XAMPP)
 
 #### 1. Installer XAMPP
 
@@ -33,9 +42,9 @@ C:\xampp\htdocs\H&K Services\
 3. Nommez-la `abir`, choisissez `utf8mb4_general_ci` comme collation
 4. Cliquez sur **"Créer"**
 5. Allez dans l'onglet **"SQL"**
-6. Ouvrez le fichier `sql/schema.sql` (avec le Bloc-notes), copiez tout son contenu et collez-le dans phpMyAdmin
+6. Ouvrez le fichier `sql/schema.sql`, copiez tout son contenu et collez-le dans phpMyAdmin
 7. Cliquez sur **"Exécuter"**
-8. Répétez la même opération avec le fichier `sql/seed.sql` pour importer les données de démonstration
+8. Répétez la même opération avec le fichier `sql/seed.sql`
 
 #### 4. Configurer le projet
 
@@ -54,10 +63,13 @@ define('BASE_URL', 'http://localhost/H&K Services');
 define('UPLOAD_DIR', __DIR__ . '/../uploads/');
 ```
 
+Pour DDEV, les valeurs sont déjà configurées dans `includes/config.php`.
+
 #### 5. Accéder au site
 
-- **Site public** : http://localhost/H&K Services
-- **Panneau d'administration** : http://localhost/H&K Services/admin
+- **Site public** : http://localhost/H&K Services (XAMPP) ou https://abir.ddev.site (DDEV)
+- **Panneau d'administration** : http://localhost/H&K Services/admin (XAMPP) ou https://abir.ddev.site/admin (DDEV)
+- **Projets** : http://localhost/H&K Services/realisations.php
 
 #### 6. Identifiants administrateur
 
@@ -65,6 +77,28 @@ define('UPLOAD_DIR', __DIR__ . '/../uploads/');
 |--------------|----------------------------------------|
 | Email        | `admin@hketservices.com`               |
 | Mot de passe | `admin123`                             |
+
+#### 7. Migrations (base existante uniquement)
+
+Si vous mettez à jour une base de données existante, exécutez :
+
+```sql
+ALTER TABLE admin_users ADD COLUMN avatar VARCHAR(255) DEFAULT NULL AFTER email;
+ALTER TABLE projects ADD COLUMN category VARCHAR(100) DEFAULT 'amenagement' AFTER slug;
+```
+
+Ou via DDEV :
+
+```bash
+ddev mysql < sql/migration.sql
+```
+
+### ✨ Fonctionnalités
+
+- **Projets** : galerie avec filtre par catégorie (Villas, Toitures, Immeubles, Rénovations, Aménagement, Commercial)
+- **Pages détail** : carrousel Owl Carousel, fancybox, navigation projet précédent/suivant, projets similaires
+- **Administration** : CRUD projets avec catégorie et ordre, gestion du profil admin (avatar, email, mot de passe)
+- **URLs propres** : `/projets/{slug}` redirigé vers `projet-detail.php`
 
 ---
 
@@ -97,7 +131,7 @@ C:\xampp\htdocs\H&K Services\
 3. اسم قاعدة البيانات : `abir` ، اختر `utf8mb4_general_ci` كترميز
 4. انقر على **"إنشاء" (Create)**
 5. اذهب إلى لسان **"SQL"**
-6. افتح ملف `sql/schema.sql` بالمفكرة (Notepad)، انسخ كل محتواه والصقه في phpMyAdmin
+6. افتح ملف `sql/schema.sql` بالمفكرة، انسخ كل محتواه والصقه في phpMyAdmin
 7. انقر على **"تنفيذ" (Go)**
 8. كرر نفس العملية مع ملف `sql/seed.sql` لاستيراد بيانات العرض
 
@@ -137,20 +171,31 @@ define('UPLOAD_DIR', __DIR__ . '/../uploads/');
 ```
 H&K Services/
 ├── admin/              # Panneau d'administration / لوحة التحكم
+│   ├── assets/         # CSS, JS, logo
+│   ├── catalog/        # Gestion du catalogue
+│   ├── categories/     # Gestion des catégories
 │   ├── contacts/       # Gestion des demandes de contact
-│   ├── produits/       # Gestion des produits
+│   ├── partials/       # Header/footer partagés
+│   ├── products/       # Gestion des produits
+│   ├── projects/       # Gestion des projets
 │   ├── services/       # Gestion des services
-│   ├── projets/        # Gestion des projets
-│   └── catalogue/      # Gestion du catalogue
+│   ├── dashboard.php   # Tableau de bord
+│   ├── profile.php     # Profil administrateur (avatar, email, mot de passe)
+│   └── profile-update.php
 ├── css/                # Feuilles de style
 ├── fonts/              # Polices
 ├── img/                # Images
-├── includes/           # Fichiers inclus (config, helpers, db)
+├── includes/           # Fichiers inclus (config, helpers, db, auth)
 ├── js/                 # Scripts JavaScript
-├── sql/                # Fichiers SQL (schema + seed)
-├── uploads/            # Fichiers uploadés
+├── sql/                # Fichiers SQL (schema + seed + migration)
+│   ├── schema.sql      # Structure complète + données initiales
+│   ├── seed.sql        # Données de démonstration
+│   └── migration.sql   # Migrations pour bases existantes
+├── uploads/            # Fichiers uploadés (avatars, projets, produits)
 ├── contact.php         # Page de contact
 ├── index.php           # Page d'accueil
+├── projet-detail.php   # Page détail projet (dynamique, slug-based)
+├── realisations.php    # Galerie projets avec filtres
 └── README.md           # Ce fichier
 ```
 
@@ -162,3 +207,4 @@ H&K Services/
 | Erreur de connexion DB / خطأ اتصال بقاعدة البيانات | Vérifiez les identifiants dans `includes/config.php` / تحقق من بيانات الاتصال في ملف الإعدادات |
 | 404 Not Found / الصفحة غير موجودة            | Vérifiez que le dossier est bien dans `htdocs` / تأكد من وجود المجلد في المسار الصحيح |
 | Images manquantes / الصور لا تظهر             | Vérifiez le chemin `BASE_URL` dans `config.php` / تحقق من مسار `BASE_URL` في ملف الإعدادات |
+| URLs propres / /projets/xxx ne fonctionne pas | Vérifiez la configuration nginx (`.ddev/nginx_full/nginx-site.conf`) ou les règles de réécriture Apache (`.htaccess`) |
