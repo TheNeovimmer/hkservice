@@ -2,9 +2,11 @@
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/db.php';
 
+$isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: contact.php');
-    exit;
+    if ($isAjax) { header('Content-Type: application/json'); echo '{"ok":false}'; exit; }
+    header('Location: contact.php'); exit;
 }
 
 $errors = [];
@@ -26,12 +28,17 @@ $budget        = trim($_POST['budget_estime'] ?? '');
 $delais        = trim($_POST['delais_souhaite'] ?? '');
 $message       = trim($_POST['message'] ?? '');
 
-if ($from_name === '') $errors[] = 'Le nom ou la société est requis.';
-if ($tel === '') $errors[] = 'Le numéro de téléphone est requis.';
+if ($from_name === '') $errors[] = 'Le nom ou la societe est requis.';
+if ($tel === '') $errors[] = 'Le numero de telephone est requis.';
 if ($email_id !== '' && !filter_var($email_id, FILTER_VALIDATE_EMAIL)) $errors[] = "L'adresse email n'est pas valide.";
 
 if (!empty($errors)) {
     $errorStr = implode(' | ', $errors);
+    if ($isAjax) {
+        header('Content-Type: application/json');
+        echo json_encode(['ok' => false, 'error' => $errorStr]);
+        exit;
+    }
     header('Location: contact.php?error=' . urlencode($errorStr));
     exit;
 }
@@ -59,8 +66,18 @@ try {
         $message,
     ]);
 
+    if ($isAjax) {
+        header('Content-Type: application/json');
+        echo json_encode(['ok' => true, 'message' => 'Votre message a ete envoye avec succes !']);
+        exit;
+    }
     header('Location: contact.php?sent=ok');
 } catch (Throwable $e) {
+    if ($isAjax) {
+        header('Content-Type: application/json');
+        echo json_encode(['ok' => false, 'error' => $e->getMessage()]);
+        exit;
+    }
     header('Location: contact.php?error=' . urlencode($e->getMessage()));
 }
 exit;

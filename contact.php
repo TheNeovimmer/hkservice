@@ -291,6 +291,18 @@ require_once __DIR__ . '/includes/site-head.php';
 <?php include __DIR__ . '/includes/site-scripts.php'; ?>
 <div id="toast"></div>
 <script>
+function showToast(msg, type) {
+    var el = document.getElementById('toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.style.background = type === 'error' ? '#dc2626' : '#059669';
+    el.style.opacity = '1';
+    el.style.transform = 'translateX(-50%) translateY(0)';
+    setTimeout(function() {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(-50%) translateY(20px)';
+    }, 3500);
+}
 (function() {
     var renovation = document.getElementById('renovation-extension');
     var amenagement = document.getElementById('amenagement-interieur');
@@ -320,17 +332,16 @@ require_once __DIR__ . '/includes/site-head.php';
             var data = new FormData(form);
             fetch('contact-submit.php', {
                 method: 'POST',
-                body: data
+                body: data,
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
             }).then(function(r) {
-                if (r.redirected) {
-                    if (r.url.indexOf('sent=ok') !== -1) {
-                        showToast('Votre message a ete envoye avec succes ! Nous vous repondrons dans les plus brefs delais.', 'success');
-                        form.reset();
-                    } else {
-                        window.location.href = r.url;
-                    }
+                return r.json();
+            }).then(function(j) {
+                if (j.ok) {
+                    showToast(j.message, 'success');
+                    form.reset();
                 } else {
-                    showToast('Erreur lors de l\'envoi. Veuillez reessayer.', 'error');
+                    showToast(j.error || 'Erreur lors de l\'envoi.', 'error');
                 }
             }).catch(function() {
                 showToast('Erreur de connexion. Veuillez reessayer.', 'error');
