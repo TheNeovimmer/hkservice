@@ -6,6 +6,7 @@ $baseUrl = '/';
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
+  <base href="/">
   <meta name="title" content="<?= sanitize($pageMeta['title'] ?? 'H&K Services - Construction Bâtiment Tunisie & France') ?>">
   <meta name="description" content="<?= sanitize($pageMeta['desc'] ?? "Besoin d'une entreprise générale du bâtiment en Tunisie ou en France ? H&K Services transforme vos idées en projets modernes et durables.") ?>">
   <title><?= sanitize($pageTitle ?? 'H&K Services') ?></title>
