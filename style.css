@@ -544,6 +544,7 @@ textarea.form-control { min-height: 140px; resize: vertical; }
   border: 1px solid var(--gray-100);
 }
 .price-eur { font-family: var(--font-secondary); font-size: 1.3rem; font-weight: 700; color: var(--black); }
+.price-tnd { font-family: var(--font-primary); font-size: .85rem; font-weight: 500; color: var(--gray-500); margin-left: 6px; }
 .add-to-cart {
   width: 100%; padding: 12px; background: var(--primary);
   color: var(--white); font-weight: 600; border-radius: 8px;

@@ -33,7 +33,7 @@ $categories = $db->query("SELECT * FROM categories ORDER BY name ASC")->fetchAll
                             <?php endif; ?>
                         </td>
                         <td><?= sanitize($p['cat']) ?></td>
-                        <td><strong><?= number_format($p['price_eur'], 2) ?> €</strong></td>
+                        <td><strong><?= number_format($p['price_eur'], 2) ?> €</strong> / <span class="text-muted"><?= number_format($p['price_tnd'], 3) ?> TND</span></td>
                         <td>
                             <?php if ($p['badge_type'] && $p['badge_type'] !== 'none'): ?>
                             <span class="badge bg-<?= $p['badge_type'] === 'nouveau' ? 'info' : ($p['badge_type'] === 'promotion' ? 'danger' : 'success') ?>"><?= ucfirst($p['badge_type']) ?></span>
@@ -59,6 +59,7 @@ $categories = $db->query("SELECT * FROM categories ORDER BY name ASC")->fetchAll
                                             <select name="category_id" class="form-select"><?php foreach ($categories as $c): ?><option value="<?= $c['id'] ?>" <?= $c['id'] == $p['category_id'] ? 'selected' : '' ?>><?= sanitize($c['name']) ?></option><?php endforeach; ?></select>
                                         </div>
                                         <div class="col-md-3"><label class="form-label">Prix (€)</label><input name="price" type="number" step="0.01" class="form-control" value="<?= $p['price_eur'] ?>"></div>
+                                        <div class="col-md-3"><label class="form-label">Prix (TND)</label><input name="price_tnd" type="number" step="0.001" class="form-control" value="<?= $p['price_tnd'] ?>"></div>
                                         <div class="col-12"><label class="form-label">Description</label><textarea name="description" class="form-control" rows="3"><?= sanitize($p['description']) ?></textarea></div>
                                         <div class="col-md-4"><label class="form-label">Badge</label>
                                             <select name="badge_type" class="form-select"><option value="none" <?= $p['badge_type'] === 'none' ? 'selected' : '' ?>>Aucun</option><option value="nouveau" <?= $p['badge_type'] === 'nouveau' ? 'selected' : '' ?>>Nouveau</option><option value="populaire" <?= $p['badge_type'] === 'populaire' ? 'selected' : '' ?>>Populaire</option><option value="promotion" <?= $p['badge_type'] === 'promotion' ? 'selected' : '' ?>>Promotion</option></select>
@@ -113,6 +114,7 @@ $categories = $db->query("SELECT * FROM categories ORDER BY name ASC")->fetchAll
                         <select name="category_id" class="form-select"><?php foreach ($categories as $c): ?><option value="<?= $c['id'] ?>"><?= sanitize($c['name']) ?></option><?php endforeach; ?></select>
                     </div>
                     <div class="col-md-3"><label class="form-label">Prix (€)</label><input name="price" type="number" step="0.01" class="form-control" value="0"></div>
+                    <div class="col-md-3"><label class="form-label">Prix (TND)</label><input name="price_tnd" type="number" step="0.001" class="form-control" value="0"></div>
                     <div class="col-12"><label class="form-label">Description</label><textarea name="description" class="form-control" rows="3"></textarea></div>
                     <div class="col-md-4"><label class="form-label">Badge</label>
                         <select name="badge_type" class="form-select"><option value="none">Aucun</option><option value="nouveau">Nouveau</option><option value="populaire">Populaire</option><option value="promotion">Promotion</option></select>

@@ -9,7 +9,7 @@ $stats = [
     'projects'   => $db->query("SELECT COUNT(*) FROM projects WHERE active=1")->fetchColumn(),
 ];
 $catDist = $db->query("SELECT c.name, COUNT(p.id) as cnt FROM categories c LEFT JOIN products p ON p.category_id=c.id GROUP BY c.id ORDER BY cnt DESC")->fetchAll();
-$recentProducts = $db->query("SELECT p.id, p.name, p.price_eur as price, c.name as cat FROM products p LEFT JOIN categories c ON c.id=p.category_id ORDER BY p.id DESC LIMIT 5")->fetchAll();
+$recentProducts = $db->query("SELECT p.id, p.name, p.price_eur, p.price_tnd, c.name as cat FROM products p LEFT JOIN categories c ON c.id=p.category_id ORDER BY p.id DESC LIMIT 5")->fetchAll();
 $recentProjects = $db->query("SELECT id, title, location, created_at FROM projects WHERE active=1 ORDER BY id DESC LIMIT 5")->fetchAll();
 ?>
 <div class="row g-4 mb-4">
@@ -65,7 +65,7 @@ $recentProjects = $db->query("SELECT id, title, location, created_at FROM projec
                         <thead><tr><th>Produit</th><th>Catégorie</th><th>Prix</th></tr></thead>
                         <tbody>
                             <?php foreach ($recentProducts as $p): ?>
-                            <tr><td><?= sanitize($p['name']) ?></td><td><?= sanitize($p['cat']) ?></td><td><?= number_format($p['price'], 2) ?> €</td></tr>
+                            <tr><td><?= sanitize($p['name']) ?></td><td><?= sanitize($p['cat']) ?></td><td><?= number_format($p['price_eur'], 2) ?> € / <?= number_format($p['price_tnd'], 3) ?> TND</td></tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>

@@ -198,6 +198,7 @@ require_once 'includes/site-head.php';
       border: 1px solid #e9ecef;
     }
     .price-eur { font-size: 1.3rem; font-weight: 700; color: #1a1a2e; }
+    .price-tnd { font-size: .85rem; font-weight: 500; color: #6c757d; }
 
     .btn-shop {
       width: 100%;
@@ -440,7 +441,7 @@ require_once 'includes/site-head.php';
   <div class="auto-container">
     <div class="sec-title centered">
       <h2>Matériaux de <span class="dot">Construction</span></h2>
-      <p style="color:#6c757d; margin-top:8px;">Sélectionnez vos matériaux — Prix en <strong>EUR</strong></p>
+      <p style="color:#6c757d; margin-top:8px;">Sélectionnez vos matériaux — Prix en <strong>EUR</strong> / <strong>TND</strong></p>
     </div>
 
     <!-- Cart trigger -->
@@ -499,8 +500,9 @@ require_once 'includes/site-head.php';
           <?php endif; ?>
           <div class="product-pricing">
             <span class="price-eur"><?= number_format($p['price_eur'], 2, ',', '') ?> €</span>
+            <span class="price-tnd">/ <?= number_format($p['price_tnd'], 3, ',', '') ?> TND</span>
           </div>
-          <a href="#cartToggleInput" class="btn-shop">Ajouter au panier</a>
+          <a href="#cartToggleInput" class="btn-shop" data-id="<?= $p['id'] ?>" data-name="<?= sanitize($p['name']) ?>" data-price="<?= $p['price_eur'] ?>" data-price-tnd="<?= $p['price_tnd'] ?>" data-emoji="📦">Ajouter au panier</a>
         </div>
       </div>
       <?php endforeach; ?>
@@ -537,8 +539,12 @@ require_once 'includes/site-head.php';
   </div>
   <div class="cart-footer">
     <div class="cart-total-row">
-      <span>Total</span>
+      <span>Total (EUR)</span>
       <span class="cart-total" id="cartTotalEUR">0,00 €</span>
+    </div>
+    <div class="cart-total-row">
+      <span>Total (TND)</span>
+      <span class="cart-total" id="cartTotalTND">0,000 TND</span>
     </div>
     <a href="contact.html" class="btn-cart-checkout"><i class="fas fa-check-circle" style="margin-right:8px;"></i>Commander</a>
   </div>

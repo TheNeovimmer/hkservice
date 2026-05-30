@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS products (
     slug VARCHAR(255) NOT NULL UNIQUE,
     description TEXT,
     price_eur DECIMAL(10,2) NOT NULL DEFAULT 0,
+    price_tnd DECIMAL(10,3) NOT NULL DEFAULT 0,
     image VARCHAR(255) DEFAULT NULL,
     badge_type ENUM('none','nouveau','promotion','populaire') DEFAULT 'none',
     colors JSON DEFAULT NULL,

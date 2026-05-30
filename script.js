@@ -132,13 +132,13 @@ function updateCartCount() {
   });
 }
 
-function addToCart(id, name, color, price, emoji) {
+function addToCart(id, name, color, price, priceTnd, emoji) {
   let cart = getCart();
   const existing = cart.find(i => i.id === id && i.color === color);
   if (existing) {
     existing.qty += 1;
   } else {
-    cart.push({ id, name, color, price, qty: 1, emoji });
+    cart.push({ id, name, color, price, priceTnd, qty: 1, emoji });
   }
   saveCart(cart);
   updateCartCount();
@@ -167,19 +167,23 @@ function updateQty(id, color, delta) {
 function renderCartSidebar() {
   const body = document.getElementById('cartBody');
   const totalEUR = document.getElementById('cartTotalEUR');
+  const totalTND = document.getElementById('cartTotalTND');
   if (!body) return;
 
   const cart = getCart();
   if (cart.length === 0) {
     body.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Votre panier est vide</p></div>`;
     if (totalEUR) totalEUR.textContent = '0,00 €';
+    if (totalTND) totalTND.textContent = '0,000 TND';
     return;
   }
 
-  let html = '', tEUR = 0;
+  let html = '', tEUR = 0, tTND = 0;
   cart.forEach(item => {
     const iEUR = item.price * item.qty;
+    const iTND = (item.priceTnd || item.price * 3.3) * item.qty;
     tEUR += iEUR;
+    tTND += iTND;
     html += `<div class="cart-item">
       <div class="cart-item-img">${item.emoji || '📦'}</div>
       <div class="cart-item-info">
@@ -191,7 +195,7 @@ function renderCartSidebar() {
             <span class="qty-value">${item.qty}</span>
             <button class="qty-btn" onclick="updateQty('${item.id}','${item.color}',1)">+</button>
           </div>
-          <span class="cart-item-total">${fmtEUR(iEUR)}</span>
+          <span class="cart-item-total">${fmtEUR(iEUR)} / ${fmtTND(iTND)}</span>
         </div>
         <button class="cart-item-remove" onclick="removeFromCart('${item.id}','${item.color}')">Supprimer</button>
       </div>
@@ -199,6 +203,7 @@ function renderCartSidebar() {
   });
   body.innerHTML = html;
   if (totalEUR) totalEUR.textContent = fmtEUR(tEUR);
+  if (totalTND) totalTND.textContent = fmtTND(tTND);
 }
 
 function renderCartPage() {
@@ -218,15 +223,17 @@ function renderCartPage() {
     return;
   }
 
-  let html = '', tEUR = 0;
+  let html = '', tEUR = 0, tTND = 0;
   cart.forEach(item => {
     const iEUR = item.price * item.qty;
+    const iTND = (item.priceTnd || item.price * 3.3) * item.qty;
     tEUR += iEUR;
+    tTND += iTND;
     html += `<div class="cart-page-item">
       <div class="cart-page-img">${item.emoji || '📦'}</div>
       <div class="cart-page-info">
         <h4>${item.name}</h4>
-        <p>Couleur: ${item.color} — ${fmtEUR(item.price)} / unité</p>
+        <p>Couleur: ${item.color} — ${fmtEUR(item.price)} / ${fmtTND(item.priceTnd || item.price * 3.3)} par unité</p>
         <div class="cart-page-actions">
           <div class="cart-page-qty">
             <button onclick="updateQty('${item.id}','${item.color}',-1)">−</button>
@@ -236,7 +243,7 @@ function renderCartPage() {
           <button class="cart-page-remove" onclick="removeFromCart('${item.id}','${item.color}')"><i class="fas fa-trash-alt"></i> Supprimer</button>
         </div>
       </div>
-      <div class="cart-page-total">${fmtEUR(iEUR)}</div>
+      <div class="cart-page-total">${fmtEUR(iEUR)}<br><small>${fmtTND(iTND)}</small></div>
     </div>`;
   });
   container.innerHTML = html;
@@ -246,11 +253,14 @@ function renderCartPage() {
     summary.style.display = 'block';
     document.getElementById('cartSubtotalEUR').textContent = fmtEUR(tEUR);
     document.getElementById('cartTotalEURPage').textContent = fmtEUR(tEUR);
+    const tndEl = document.getElementById('cartTotalTNDPage');
+    if (tndEl) tndEl.textContent = fmtTND(tTND);
   }
 }
 
-/* ===== FORMATTER ===== */
+/* ===== FORMATTERS ===== */
 function fmtEUR(v) { return v.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+function fmtTND(v) { return v.toLocaleString('fr-FR', { minimumFractionDigits: 3, maximumFractionDigits: 3 }) + ' TND'; }
 
 /* ===== TOAST ===== */
 let toastTimer = null;
@@ -282,8 +292,9 @@ function closeCartSidebar() {
 document.getElementById('checkoutBtn')?.addEventListener('click', () => {
   const cart = getCart();
   if (cart.length === 0) { showToast('Votre panier est vide', 'error'); return; }
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  showToast(`Commande de ${fmtEUR(total)} confirmée ! Merci.`, 'success');
+  const totalEUR = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const totalTND = cart.reduce((s, i) => s + (i.priceTnd || i.price * 3.3) * i.qty, 0);
+  showToast(`Commande de ${fmtEUR(totalEUR)} (${fmtTND(totalTND)}) confirmée ! Merci.`, 'success');
   localStorage.removeItem(CART_KEY);
   updateCartCount();
   renderCartSidebar();
@@ -291,7 +302,18 @@ document.getElementById('checkoutBtn')?.addEventListener('click', () => {
   closeCartSidebar();
 });
 
-/* ===== INIT ON LOAD ===== */
+/* ===== ADD TO CART FROM SHOP BUTTONS ===== */
+document.querySelectorAll('.btn-shop[data-id]').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const card = this.closest('.product-card');
+    const colorInput = card?.querySelector('.color-swatch input:checked');
+    const color = colorInput?.nextElementSibling?.title || colorInput?.value || 'Par défaut';
+    addToCart(this.dataset.id, this.dataset.name, color, parseFloat(this.dataset.price), parseFloat(this.dataset.priceTnd || this.dataset.price * 3.3), this.dataset.emoji || '📦');
+    document.getElementById('cartToggleInput').checked = true;
+    renderCartSidebar();
+  });
+});
 document.addEventListener('DOMContentLoaded', () => {
   AOS?.init({ duration: 1000, once: true });
   initCounters();

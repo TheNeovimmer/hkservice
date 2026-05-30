@@ -73,6 +73,10 @@ function formatEur($amount): string {
     return number_format((float)$amount, 2, ',', ' ');
 }
 
+function formatTnd($amount): string {
+    return number_format((float)$amount, 3, ',', ' ');
+}
+
 function setFlash($type, $msg): void {
     if ($type === 'success') $_SESSION['flash_success'] = $msg;
     else $_SESSION['flash_error'] = $msg;

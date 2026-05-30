@@ -96,7 +96,7 @@ mysql -u root -p < C:\xampp\htdocs\hkservice\database.sql
 
 L'admin panel permet de gérer :
 
-- **Produits** — Ajout/édition/suppression avec images et couleurs (prix en EUR)
+- **Produits** — Ajout/édition/suppression avec images et couleurs (prix en EUR et TND)
 - **Catégories** — Organisation des produits (Maçonnerie, Peinture, etc.)
 - **Projets** — Portfolio avec galerie d'images
 - **Services** — Sections Étude / Construction / Gestion
